@@ -1,0 +1,88 @@
+\select@language {italian}
+\select@language {italian}
+\contentsline {section}{\numberline {1}Introduzione}{1}{section.1}
+\contentsline {subsection}{\numberline {1.1}Scopo del documento}{1}{subsection.1.1}
+\contentsline {subsection}{\numberline {1.2}Scopo del Prodotto}{1}{subsection.1.2}
+\contentsline {subsection}{\numberline {1.3}Glossario}{1}{subsection.1.3}
+\contentsline {subsection}{\numberline {1.4}Riferimenti}{1}{subsection.1.4}
+\contentsline {subsubsection}{\numberline {1.4.1}Normativi}{1}{subsubsection.1.4.1}
+\contentsline {subsubsection}{\numberline {1.4.2}Informativi}{1}{subsubsection.1.4.2}
+\contentsline {section}{\numberline {2}Processo di sviluppo}{3}{section.2}
+\contentsline {subsection}{\numberline {2.1}Scopo del processo}{3}{subsection.2.1}
+\contentsline {subsection}{\numberline {2.2}Descrizione}{3}{subsection.2.2}
+\contentsline {subsection}{\numberline {2.3}Analisi dei requisiti}{3}{subsection.2.3}
+\contentsline {subsubsection}{\numberline {2.3.1}Scopo del processo}{3}{subsubsection.2.3.1}
+\contentsline {subsubsection}{\numberline {2.3.2}Requisiti}{3}{subsubsection.2.3.2}
+\contentsline {subsubsection}{\numberline {2.3.3}Casi d'uso}{3}{subsubsection.2.3.3}
+\contentsline {subsubsection}{\numberline {2.3.4}Strumenti per il tracciamento dei requisiti}{4}{subsubsection.2.3.4}
+\contentsline {subsubsection}{\numberline {2.3.5}UML}{4}{subsubsection.2.3.5}
+\contentsline {subsection}{\numberline {2.4}Progettazione}{4}{subsection.2.4}
+\contentsline {subsubsection}{\numberline {2.4.1}Scopo del processo}{4}{subsubsection.2.4.1}
+\contentsline {subsubsection}{\numberline {2.4.2}Descrizione}{4}{subsubsection.2.4.2}
+\contentsline {subsubsection}{\numberline {2.4.3}Diagrammi UML}{4}{subsubsection.2.4.3}
+\contentsline {subsubsection}{\numberline {2.4.4}Stile di progettazione}{4}{subsubsection.2.4.4}
+\contentsline {subsection}{\numberline {2.5}Codifica}{5}{subsection.2.5}
+\contentsline {subsubsection}{\numberline {2.5.1}Scopo del processo}{5}{subsubsection.2.5.1}
+\contentsline {subsubsection}{\numberline {2.5.2}Descrizione}{5}{subsubsection.2.5.2}
+\contentsline {subsubsection}{\numberline {2.5.3}Intestazione dei file}{5}{subsubsection.2.5.3}
+\contentsline {subsubsection}{\numberline {2.5.4}Formattazione}{6}{subsubsection.2.5.4}
+\contentsline {subsection}{\numberline {2.6}Verifica e validazione}{6}{subsection.2.6}
+\contentsline {section}{\numberline {3}Processo di supporto}{6}{section.3}
+\contentsline {subsection}{\numberline {3.1}Processo di documentazione}{6}{subsection.3.1}
+\contentsline {subsubsection}{\numberline {3.1.1}Scopo del processo}{6}{subsubsection.3.1.1}
+\contentsline {subsubsection}{\numberline {3.1.2}Procedure}{6}{subsubsection.3.1.2}
+\contentsline {subsubsection}{\numberline {3.1.3}Template}{6}{subsubsection.3.1.3}
+\contentsline {subsubsection}{\numberline {3.1.4}Struttura dei documenti}{7}{subsubsection.3.1.4}
+\contentsline {subsubsubsection}{\numberline {3.1.4.1}Comandi personalizzati}{7}{subsubsubsection.3.1.4.1}
+\contentsline {subsubsubsection}{\numberline {3.1.4.2}Frontespizio}{7}{subsubsubsection.3.1.4.2}
+\contentsline {subsubsubsection}{\numberline {3.1.4.3}Registro delle modifiche}{8}{subsubsubsection.3.1.4.3}
+\contentsline {subsubsubsection}{\numberline {3.1.4.4}Indice}{8}{subsubsubsection.3.1.4.4}
+\contentsline {subsubsubsection}{\numberline {3.1.4.5}Intestazione}{8}{subsubsubsection.3.1.4.5}
+\contentsline {subsubsubsection}{\numberline {3.1.4.6}Pi\IeC {\`e} di pagina}{8}{subsubsubsection.3.1.4.6}
+\contentsline {subsubsection}{\numberline {3.1.5}Versionamento}{8}{subsubsection.3.1.5}
+\contentsline {subsubsection}{\numberline {3.1.6}Norme tipografiche}{9}{subsubsection.3.1.6}
+\contentsline {subsubsubsection}{\numberline {3.1.6.1}Formattazione del testo}{9}{subsubsubsection.3.1.6.1}
+\contentsline {subsubsubsection}{\numberline {3.1.6.2}Punteggiatura}{9}{subsubsubsection.3.1.6.2}
+\contentsline {subsubsubsection}{\numberline {3.1.6.3}Composizione del testo}{9}{subsubsubsection.3.1.6.3}
+\contentsline {subsubsubsection}{\numberline {3.1.6.4}Formati}{9}{subsubsubsection.3.1.6.4}
+\contentsline {subsubsection}{\numberline {3.1.7}Componenti grafiche}{10}{subsubsection.3.1.7}
+\contentsline {subsubsubsection}{\numberline {3.1.7.1}Tabelle}{10}{subsubsubsection.3.1.7.1}
+\contentsline {subsubsubsection}{\numberline {3.1.7.2}Immagini}{10}{subsubsubsection.3.1.7.2}
+\contentsline {subsubsection}{\numberline {3.1.8}Strumenti per la documentazione}{10}{subsubsection.3.1.8}
+\contentsline {subsection}{\numberline {3.2}Processo di verifica}{10}{subsection.3.2}
+\contentsline {subsubsection}{\numberline {3.2.1}Scopo del processo}{10}{subsubsection.3.2.1}
+\contentsline {subsubsection}{\numberline {3.2.2}Risultati osservabili}{10}{subsubsection.3.2.2}
+\contentsline {subsubsection}{\numberline {3.2.3}Tecniche di analisi}{10}{subsubsection.3.2.3}
+\contentsline {subsubsubsection}{\numberline {3.2.3.1}Analisi statica}{10}{subsubsubsection.3.2.3.1}
+\contentsline {subsubsubsection}{\numberline {3.2.3.2}Analisi dinamica}{11}{subsubsubsection.3.2.3.2}
+\contentsline {subsubsection}{\numberline {3.2.4}Test}{11}{subsubsection.3.2.4}
+\contentsline {subsubsubsection}{\numberline {3.2.4.1}Test di unit\IeC {\`a}}{11}{subsubsubsection.3.2.4.1}
+\contentsline {subsubsubsection}{\numberline {3.2.4.2}Test di integrazione}{11}{subsubsubsection.3.2.4.2}
+\contentsline {subsubsubsection}{\numberline {3.2.4.3}Test di sistema}{11}{subsubsubsection.3.2.4.3}
+\contentsline {subsubsubsection}{\numberline {3.2.4.4}Test di regressione}{11}{subsubsubsection.3.2.4.4}
+\contentsline {subsubsubsection}{\numberline {3.2.4.5}Test di accettazione}{11}{subsubsubsection.3.2.4.5}
+\contentsline {section}{\numberline {4}Processo Organizzativo}{12}{section.4}
+\contentsline {subsection}{\numberline {4.1}Scopo del processo}{12}{subsection.4.1}
+\contentsline {subsection}{\numberline {4.2}Ruoli di progetto}{12}{subsection.4.2}
+\contentsline {subsubsection}{\numberline {4.2.1}Definizione dei ruoli}{12}{subsubsection.4.2.1}
+\contentsline {subsubsubsection}{\numberline {4.2.1.1}Responsabile: }{12}{subsubsubsection.4.2.1.1}
+\contentsline {subsubsubsection}{\numberline {4.2.1.2}Amministratore: }{12}{subsubsubsection.4.2.1.2}
+\contentsline {subsubsubsection}{\numberline {4.2.1.3}Analista: }{12}{subsubsubsection.4.2.1.3}
+\contentsline {subsubsubsection}{\numberline {4.2.1.4}Progettista: }{12}{subsubsubsection.4.2.1.4}
+\contentsline {subsubsubsection}{\numberline {4.2.1.5}Programmatore: }{12}{subsubsubsection.4.2.1.5}
+\contentsline {subsubsubsection}{\numberline {4.2.1.6}Verificatore: }{12}{subsubsubsection.4.2.1.6}
+\contentsline {subsection}{\numberline {4.3}Comunicazione}{13}{subsection.4.3}
+\contentsline {subsubsection}{\numberline {4.3.1}Interna}{13}{subsubsection.4.3.1}
+\contentsline {subsubsection}{\numberline {4.3.2}Esterna}{13}{subsubsection.4.3.2}
+\contentsline {subsection}{\numberline {4.4}Incontri}{13}{subsection.4.4}
+\contentsline {subsubsection}{\numberline {4.4.1}Interni}{13}{subsubsection.4.4.1}
+\contentsline {subsubsection}{\numberline {4.4.2}Esterni}{13}{subsubsection.4.4.2}
+\contentsline {subsection}{\numberline {4.5}Ticketing}{13}{subsection.4.5}
+\contentsline {subsubsection}{\numberline {4.5.1}Struttura del ticket}{13}{subsubsection.4.5.1}
+\contentsline {subsection}{\numberline {4.6}Strumenti di progetto}{14}{subsection.4.6}
+\contentsline {subsubsection}{\numberline {4.6.1}Sistema operativo}{14}{subsubsection.4.6.1}
+\contentsline {subsubsection}{\numberline {4.6.2}Codifica dei caratteri}{14}{subsubsection.4.6.2}
+\contentsline {subsubsection}{\numberline {4.6.3}Versionamento}{14}{subsubsection.4.6.3}
+\contentsline {subsection}{\numberline {4.7}Produzione dei documenti}{15}{subsection.4.7}
+\contentsline {subsubsection}{\numberline {4.7.1}Dropbox}{15}{subsubsection.4.7.1}
+\contentsline {subsubsection}{\numberline {4.7.2}Editor}{15}{subsubsection.4.7.2}

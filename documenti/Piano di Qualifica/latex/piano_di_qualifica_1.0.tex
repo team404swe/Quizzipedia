@@ -1,0 +1,537 @@
+\documentclass[a4paper,11pt]{article}
+	%INCLUDE DEL TEMPLATE
+	\input{../../template.tex}
+
+	\title{\textbf{{\fontsize{8mm}{5mm}\selectfont QUIZZIPEDIA}}}
+	\date{}
+	\author{}	
+
+
+\begin{document}
+	%\title{Piano di Qualifica} comment by Martin
+	%\author{Andrea Multineddu}
+	\maketitle
+	% da qui : add by Martin
+	\thispagestyle{empty}
+	\begin{center}	
+	\includegraphics{../team_not_found.jpg}\\
+	\fontsize{5mm}{3mm}\url{team404swe@gmail.com}\\
+	
+	\vspace{50mm}
+	\textbf{Piano di qualifica 1.0}
+	%\'end{center}
+	%\'begin{center}
+	%\vspace{4mm}
+	\end{center}
+	\introtab{Piano di qualifica}			%1 nome documento
+			{1.0} 							%2 versione
+			{Esterno} 						%3 Uso
+			{21 dicembre 2015} 				%4 Data cre
+			{\today} 						%5 Data mod
+			{Andrea Multineddu}	%6 Redazione
+			{Marco Crivellaro - Luca Alessio } 			%7 Verifica
+			{Davide Bortot } 				%8 Approvazione
+	%fino a qui : add by Martin
+	\newpage
+	\thispagestyle{empty}
+	\null  % add by Martin
+
+	%\null	comment by Martin
+	\newpage
+	\newpage
+	\fancyhead[R]{REGISTRO DELLE MODIFICHE}
+	\fancyfoot[R]{\thepage}
+	
+	\hspace{30 mm}
+	\section*{Registro delle modifiche}
+	
+	\beginregistro
+	\rigaregistro{\textbf{Versione}}{\textbf{Autore}}{\textbf{Data}}		 {\hspace{5 mm} \textbf{Descrizione}}
+	\rigaregistro{1.0}{D. Bortot (Responsabile)}{16/03/2016}{Approvazione documento.}
+	\rigaregistro{0.2}{L. Alessio (Verificatore)}{15/03/2016}{Verifica documento completo.}
+    	\rigaregistro{0.1.1}{A. Multineddu (Verificatore)}{11/03/2016}{Correzione errori di impaginazione e tipografici}	
+	\rigaregistro{0.1}{M. Crivellaro (Verificatore)}{10/03/2016}{Verifica documento.}
+	\rigaregistro{0.0.7}{A. Multineddu (Verificatore)}{19/01/2016}{Correzione errori nella sezione Misure e metriche}
+	\rigaregistro{0.0.6}{A. Multineddu (Verificatore)}{18/01/2016}{Aggiunta metriche e tabella resoconto misure}
+	\rigaregistro{0.0.5}{M. Crivellaro (Verificatore)}{16/01/2016}{Modifica layout e aggiunta file template.tex}
+	\rigaregistro{0.0.4}{A. Multineddu (Verificatore)}{07/01/2016}{Redazione sezione Misure e metriche}
+	\rigaregistro{0.0.3}{A. Multineddu (Verificatore)}{03/01/2016}{Redazione sezione Risorse per la verifica}
+\rigaregistro{0.0.2}{A. Multineddu (Verificatore)}{22/12/2015}{Redazione sezione Strategia generale di qualifica}			
+		\rigaregistro{0.0.1}{A. Multineddu (Verificatore)}{21/12/2015}{Prima stesura del documento.}
+			
+	\fineregistro
+	\newpage
+	\fancyhead[R]{\leftmark} % add by Martin 
+	\tableofcontents
+	\pagenumbering{Roman}
+
+	%\newpage %Comment by Martin
+	\listoffigures	
+	
+	\newpage
+	\pagenumbering{arabic}
+	
+	\section*{Sommario}
+	Il presente documento contiene il \textit{piano di qualifica} del capitolato \textbf{Quizzipedia}. Vengono rese note le strategie di verifica qualitativa dei processi e del prodotto utilizzate dal gruppo \textbf{Team404}. Strategie che coinvolgono l'attuazione di modelli standard e l'utilizzo di metriche e misure necessarie alla valutazione oggettiva del processo o prodotto in analisi.  
+	
+	\newpage
+	\section{Introduzione}
+	\subsection{Scopo del documento}
+	Questo documento ha lo scopo di esporre le strategie che il gruppo \textbf{Team404} intende adottare per assicurare la qualità del prodotto software \textbf{Quizzipedia} e dei processi coinvolti per il suo sviluppo.
+	
+	
+	\subsection{Scopo del prodotto}
+	Il progetto \textbf{Quizzipedia} ha come obiettivo lo sviluppo di un sistema software basato su tecnologie Web (Javascript\addglos, Node.js\addglos, HTML5\addglos, CSS3\addglos) che permetta la creazione, gestione e fruizione di questionari. Il sistema dovrà quindi poter archiviare i questionari suddivisi per argomento, le cui domande dovranno essere raccolte attraverso uno specifico linguaggio di markup (Quiz Markup Language) d'ora in poi denominato QML\addglos. In un caso d'uso a titolo esemplificativo, un "esaminatore" dovrà poter costruire il proprio questionario scegliendo tra le domande archiviate, ed il questionario così composto sarà presentato e fruibile all' "esaminando", traducendo l'oggetto QML in una pagina HTML\addglos, tramite un'apposita interfaccia web. Il sistema presentato dovrà inoltre poter proporre questionari preconfezionati e valutare le risposte fornite dall'utente finale.
+	\\
+	Per un'analisi più precisa ed approfondita del progetto si rimanda al documento\\ "\textit{analisi\_dei\_requisiti\_1.0.pdf}".
+	\subsection{Glossario}
+	Viene allegato un glossario nel file ``\textit{glossario\_1.0.pdf}'' nel quale viene data una definizione a tutti i termini che in questo documento appaiono con il simbolo '\addglos' a pedice.
+	\newpage
+	\subsection{Riferimenti}
+		\subsubsection{Normativi}
+		\begin{itemize}
+			\item Capitolato d'appalto Quizzipedia:\\
+			\url{http://www.math.unipd.it/~tullio/IS-1/2015/Progetto/C5.pdf}
+			\item Norme di Progetto: "\textit{norme\_di\_progetto\_1.0.pdf}"
+		\end{itemize}
+		\subsubsection{Informativi}
+		\begin{itemize}
+			\item Corso di Ingegneria del Software anno 2015/2016:\\
+			\url{http://www.math.unipd.it/~tullio/IS-1/2015/}
+			\item Regole del progetto didattico:\\
+			\url{http://www.math.unipd.it/~tullio/IS-1/2015/Dispense/PD01.pdf}
+			\url{http://www.math.unipd.it/~tullio/IS-1/2015/Progetto/}\\
+			\url{http://www.math.unipd.it/~tullio/IS-1/2015/Progetto/PD01b.html}
+			\item Metriche di progetto:\\ 
+			\url{https://it.wikipedia.org/wiki/Metriche_di_progetto}
+			\item Metriche per il software\\
+			\url{http://www.verifysoft.com/en_software_complexity_metrics.pdf}
+			\item Complexity-report:\\
+			\url{https://github.com/jared-stilwell/complexity-report}
+		\end{itemize}
+	\pagebreak
+	
+\newpage
+
+\section{Strategia generale di qualifica}
+\subsection{Definizione obiettivi}
+Il gruppo di lavoro, per garantire la qualità del prodotto software \textbf{Quizzipedia} e dei processi coinvolti al suo sviluppo, intende adottare metodologie standard ed il più possibile automatizzabili per ridurre al minimo l'attività umana e favorire processi automatici laddove sia possibile.\\
+Vengono di seguito quindi elencati gli obiettivi di qualità che si vogliono raggiungere per quanto riguarda il prodotto finale e i processi coinvolti per lo sviluppo dello stesso, e le strategie necessarie all'attuazione della corretta verifica e validazione del prodotto.\\
+Lo scopo principale è quello di rendere definibili e misurabili tutti i processi di sviluppo e verifica per poterne controllare l'andamento e la produttività. 
+\subsection{Qualità di processo}
+Per quanto riguarda la valutazione qualitativa dei processi si fa riferimento allo standard\\ \underline{ISO/IEC 15504:1998} denominato SPICE\addglos (Software Process Improvement Capability dEtermination) che definisce un modello per la valutazione del livello di “maturità”
+dei processi per identificare quali azioni possono essere necessarie per migliorare un processo specifico.
+
+\subsection{Qualità di prodotto}
+Come punto di riferimento per la qualità del prodotto software si fa riferimento allo standard \underline{ISO/IEC 9126:2001}.\\
+L'immagine seguente elenca le principali caratteristiche a cui un prodotto software di qualità deve aspirare:\\
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.55]{../images/ISO-9126-cut}
+\caption{Riepilogo caratteristiche ISO/IEC 9126:2001}
+\end{figure}
+\subsection{Pianificazione attività di sviluppo}
+La suddivisione temporale delle diverse fasi di sviluppo segue il cosiddetto modello a V ed è descritta nel documento allegato \textit{Piano-di-Progetto-1.0.pdf}.
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.4]{../images/vmodel-final4.png}
+\caption{Fasi di sviluppo}
+\end{figure} 
+%questo paragrafo era abbastanza da rivedere, ora credo sia più chiaro ma aspetto anche la revisione di andrea e casomai lo modificheremo ancora
+Questo modello prevede un lavoro di controllo e verifica corrispondente ad ogni attività per evitare l'accumulo di errori difficilmente gestibili in seguito.\\
+La divisione in diverse fasi, e l'attività di verifica abbinata ad ogni fase e processo, hanno come scopo quello di facilitare l'integrazione e il corretto funzionamento delle parti che comporranno il sistema finale.
+Il ramo discendente descritto nella precedente figura rappresenta la successione delle fasi di sviluppo: ciascuna fase è accompagnata da una costante attività di verifica in modo da poter permettere il passaggio alla fase successiva esclusivamente quando si è sicuri che non ci siano errori. Ciò è essenziale durante la delicata attività di raccolta e documentazione dei requisiti, nella progettazione architetturale ad alto livello ed in seguito nella progettazione di dettaglio.\\ 
+%in questa frase non capivo proprio cosa volevi dire, nel dubbio sotto la mia frase ti lascio quello che avevi scritto se vuoi rimetterlo
+Del ramo ascendente che attraversa le attività di testing è importante sottolineare l'utilizzo dell'approccio bottom-up.
+%Per quanto riguarda il ramo ascendente, da notare l'essenziale importanza, per l'attività di testing,  dell'approccio bottom-up che inizia nel ramo più basso del diagramma. 
+Dalla fase di codifica quindi, per mezzo di test specifici sulle singole componenti (test di unità), si è in grado di garantire la correttezza del lavoro svolto prima che le singole componenti vengano integrate tra loro. Ovviamente l'esito positivo di ogni test su ogni unità non garantisce la correttezza dell'integrazione tra le stesse. \\
+Nelle sezioni successive verranno elencate le varie fasi del ramo discendente e ne verranno descritte le strategie di verifica qualitativa inerenti.
+\subsection{Gestione amministrativa della revisione}
+Ogni processo coinvolto nell'attività di sviluppo ha bisogno di una costante attività di verifica di supporto in grado di identificare possibili miglioramenti o peggioramenti ed apportare eventuali correzioni. \\
+Il modello che il gruppo intende quindi seguire è il cosiddetto PDCA (o Ciclo di Deming), modello volto al miglioramento continuo che definisce quattro fasi cicliche:
+\begin{itemize}
+\item \textbf{P}lan: definizione del problema, cosa deve essere realizzato e come andrà controllato per la verifica qualitativa;
+\item \textbf{D}o: eseguire le attività secondo i piani;
+\item \textbf{C}heck: verifica nel tempo dei risultati conseguiti in seguito a modifiche e migliorie, confronto tra risultati attesi e risultati effettivi; %spero di non aver stravolto questo punto, apparte questo il resto va bene
+\item \textbf{A}ct: applicazione di soluzioni correttive atte al miglioramento.
+\end{itemize}
+%(vedere Appendice A per una descrizione dettagliata).\\
+Ogni processo deve essere sottoposto a verifica in modo da poterlo migliorare all'iterazione successiva. 
+Le due fasi chiave del modello PDCA sono la prima fase di definizione (P) del problema e la fase di verifica dei risultati attesi (C). 
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.6]{../images/PDCA}
+\caption{PDCA e miglioramento complessivo}
+\end{figure}
+Il concetto generale fa riferimento anche al metodo di \textit{Correctness by construction}, che ha come principio base quello di fare in modo di non introdurre errori già dall'inizio e/o di correggere tali errori nel \textbf{momento più vicino possibile a quando sono stati introdotti}.\\ L'attività costante di verifica, quindi,  deve servire proprio a far sì che gli errori e le divergenze vengano individuate il prima possibile.\\
+Piccoli errori iniziali, se non gestiti, possono portare all'assoluta ingestibilità dell'attività di verifica e quindi compromettere pesantemente il successo finale del progetto. Per evitare ciò, un processo dipendente da un altro non può avere inizio finché il precedente non sia stato verificato e ne sia stata accertata la correttezza.\\\\ %ho scambiato due frasi perchè erano abbastanza scollegate prima
+Nella sezione Misure e metriche vengono elencate due metriche (\textbf{Schedule variance} e \textbf{Budget variance}) necessarie al controllo e alla valutazione dei processi in termini di tempo (schedule) e in termini di costo e risorse impiegate (budget). 
+Tali misurazioni, da effettuare alla fine di ogni fase, si basano sui valori dei consuntivi di ogni fase (presenti nel documento \textit{piano\_di\_progetto\_1.0.pdf}). La valutazione di queste metriche è essenziale per verificare l'andamento di ogni processo misurato e valutarne quindi il miglioramento o il peggioramento complessivo. \\
+Per il coordinamento delle attività giornaliere ci si affida ad un sistema di \textbf{ticketing\addglos} fornito dalla piattaforma online \textbf{Trello}\addglos (vedere documento \textit{norme\_di\_progetto\_1.0.pdf} per una spiegazione dettagliata del suo utilizzo). Tale sistema permette di tenere costantemente sotto controllo l'andamento dei compiti (\textbf{Task}\addglos) e la loro realizzazione. 
+%da qui in poi il resto del documento è abbastanza incompleto (quello che c'è però va bene) e ti darò una mano a finirlo in questi giorni
+%ti prego però, non scrivere ancora la parola "verifica", usa qualche sinonimo che l'hai ripetuta tipo 40 volte XD
+
+\newpage
+\section{Risorse per la verifica}
+
+\subsection{Risorse umane}
+Le risorse attivamente coinvolte nel processo di verifica sono le seguenti: 
+\begin{itemize}
+\item \textbf{Responsabile}: Ha il compito di coordinare le attività di verifica e il controllo di qualità dei processi interni. Distribuisce le risorse sulle attività e ne monitora il corretto svolgimento.
+\item \textbf{Verificatore}: svolge l'effettiva attività di verifica su ogni prodotto. I risultati di tali compiti, che saranno gli esiti delle attività di misurazione, vengono presentati al Responsabile di progetto per la gestione della loro risoluzione.
+\end{itemize}
+Per una più completa ed approfondita descrizione di ogni ruolo si rimanda ai documenti  \textit{Piano-di-progetto-1.0.pdf} e \textit{Norme-di-Progetto.pdf} (sezione 4.2).
+%\begin{itemize} 
+%\item \textbf{Amministratore}: coordina l’attività di verifica e ne definisce metodologie e norme. Ha l’incarico di gestire la risoluzione di anomalie e discrepanze.
+%\item \textbf{Analista}: aggiorna/modifica i requisiti ed i casi d’uso in caso di necessità in seguito a verifica.
+%\item \textbf{Progettista}: modifica la struttura dell’architettura di sistema in caso di necessità in seguito a verifica.
+%\item \textbf{Programmatore}: durante la fase di programmazione si occupa, oltre alla stesura
+%del codice, di attività di debugging per il controllo e/o correzione del codice da lui prodotto. Si occupa anche di applicare le correzioni riscontrate dall’attività di verifica da parte del Verificatore.
+%\end{itemize}
+
+\subsection{Risorse tecnologiche}
+
+Le risorse tecnologiche coinvolte nel processo di verifica sono principalmente le seguenti: 
+\begin{itemize}
+\item \textbf{Complexity-report}: strumento software per l'analisi statica del codice JavaScript;
+\item \textbf{MySpell}: correttore ortografico integrato all'interno di TexMaker;
+\item \textbf{Trello}: piattaforma online per l'organizzazione e la gestione di progetti. 
+\end{itemize}
+\textit{Si rimanda alla sezione Misure e Metriche del presente documento per una spiegazione dettagliata delle metriche utilizzate da Complexity-report, e al documento Norme-di-progetto.pdf per quanto riguarda le modalità di utilizzo dei sopracitati software.} 
+
+
+\newpage
+\section{Misure e Metriche}
+\subsection{Di progetto}
+\subsubsection{Schedule Variance}
+Il valore SV (schedule variance) indica se si è in linea, in anticipo o in ritardo rispetto alla schedulazione delle attività di progetto pianificate nella baseline.\\
+Se SV > 0 significa che il progetto sta producendo (ossia rilasciando deliverable) con maggior velocità a quanto pianificato, viceversa se negativo.
+Formula:
+\begin{center}
+\textbf{SV = BCWP – BCWS\\}
+\end{center}
+Dati:
+\begin{itemize}
+\item \textbf{BCWP} (Budgeted Cost of Work Performed): Valore delle attività realizzate alla data corrente.
+\item \textbf{BCWS} (Budgeted Cost of Work Scheduled): Costo pianificato per realizzare le attività di progetto alla data corrente.
+\end{itemize}
+\begin{itemize}
+	\item Range-accettazione: \begin{math} [ \ge -(PreventivoFase*5\%)]
+	\end{math}
+	\item Range-ottimale: \begin{math}[ \ge 0]\end{math}
+	\end{itemize}
+\subsubsection{Budget variance} Indica se alla data corrente si è speso di più o di meno rispetto a quanto previsto a budget alla data corrente.\\
+Formula: 
+\begin{center}
+\textbf{BV = BCWS – ACWP}
+\end{center}
+Dati:
+\begin{itemize}
+\item \textbf{ACWP} (Actual Cost of Work Performed): Costo effettivamente sostenuto alla data corrente.
+\end{itemize}
+Se BV > 0 significa che il progetto sta spendendo il proprio budget con minor velocità di quanto pianificato, viceversa se negativo. Il fatto di spendere più velocemente il budget non ha nulla a che fare con il risparmio che se ne può avere, rappresentato invece da CV.\\\\
+Parametri utilizzati: 
+\begin{itemize}
+	\item Range-accettazione: \begin{math}[ \ge -(PreventivoFase*10\%)]
+	\end{math}
+	\item Range-ottimale: \begin{math}[ \ge 0]\end{math}
+	\end{itemize}
+\subsection{Per i documenti}
+
+\subsubsection{Indice Gulpease} Indice di leggibilità di un testo tarato sulla lingua italiana. \\
+Questo indice considera due variabili linguistiche: la lunghezza della parola e la lunghezza della frase rispetto al numero delle lettere.
+La formula per il suo calcolo è la seguente:\\
+\begin{center}
+\begin{math}
+89 - \frac{(300 * NumeroFrasi) - (10 * NumeroLettere)}{NumeroParole}
+\end{math}
+\end{center}
+I risultati sono compresi tra 0 e 100, dove il valore 100 indica la leggibilità più alta e 0 la leggibilità più bassa.\\
+In generale risulta che testi con un indice:
+\begin{itemize}
+\item inferiore a 80 sono difficili da leggere per chi ha la licenza elementare;
+\item inferiore a 60 sono difficili da leggere per chi ha la licenza media;
+\item inferiore a 40 sono difficili da leggere per chi ha un diploma superiore.
+\end{itemize}
+\begin{itemize}
+\item Range di accettazione: \begin{math}[50 - 100]\end{math}
+\item Range ottimale: \begin{math}[60 - 100]\end{math}
+\end{itemize}
+\subsection{Per il software}
+
+In questa sezione vengono elencate le metriche utilizzate dal software di analisi Complexity-report come \textbf{Maintainability Index}\addglos, \textbf{Metriche di Halstead}\addglos e \textbf{Complessità Ciclomatica}\addglos) e altri indicatori come la percentuale di \textit{Copertura dei test} e la validazione W3C\addglos dei file HTML\addglos.  
+\\
+Il software complexity-report offre un resoconto delle misurazioni effettuate sull'intero codice, a livello di file, e a livello di funzione presente in ogni file. 
+Di seguito vengono presentate le metriche utilizzate per ogni livello.
+
+%\subsubsection{Logical LOC}
+%Numero di righe di codice che rappresentano degli statement\addglos. 
+\subsubsection{Parameter count}
+Numero di parametri per funzione. Valori bassi sono da preferire.
+Parametri utilizzati:
+\begin{itemize}
+	\item Range di accettazione: \begin{math}[0 - 7]\end{math}
+	\item Range ottimale: \begin{math}[0 - 5]\end{math}
+	\end{itemize}
+\subsubsection{Cyclomatic complexity}
+Metrica software usata per indicare la complessità ciclomatica di un programma. Rappresenta una misura quantitativa del numero di cammini linearmente indipendenti che si possono percorrere nel codice sorgente.  
+La complessità ciclomatica può essere misurata per funzioni individuali, metodi e classi all'interno di un programma.
+\begin{itemize}
+	\item Range di accettazione: \begin{math}[0 - 15]\end{math}
+	\item Range ottimale: \begin{math}[0 - 10]\end{math}
+	\end{itemize}
+\subsubsection{Metriche di Halstead} Queste metriche sono state concepite per identificare proprietà misurabili del codice e le relazioni tra di esse. Questi numeri sono staticamente calcolati dal codice sorgente.\\
+Dati: 
+\begin{itemize}
+\item \textit{n}\begin{tiny}{\ped{1}} \end{tiny} = numero di operatori distinti;
+\item \textit{n}\begin{tiny}{\ped{2}} \end{tiny} = numero di operandi distinti;
+\item \textit{N}\begin{tiny}{\ped{1}} \end{tiny} = numero totale degli operatori;
+\item \textit{N}\begin{tiny}{\ped{2}} \end{tiny} = numero totale degli operandi.
+\end{itemize}
+
+Da questi numeri si possono calcolare le seguenti misure: 
+ 
+\begin{itemize}
+\item Program Vocabulary: \textit{n} = \textit{n}\begin{tiny}{\ped{1}} \end{tiny} + \textit{n}\begin{tiny}{\ped{2}} \end{tiny}
+\item Program Lenght: \textit{N} = \textit{N}\begin{tiny}{\ped{1}} \end{tiny} + \textit{N}\begin{tiny}{\ped{2}} \end{tiny}
+\item \textbf{Volume}: \textit{V = Nlog\begin{tiny}{\ped{2}} \end{tiny}n}
+\begin{itemize}
+	\item Range di accettazione: \begin{math}[20 - 1500]\end{math}
+	\item Range ottimale: \begin{math}[20 - 1000]\end{math}
+	\end{itemize}
+%\item Number of Delivered Bugs: \textit{B} = 
+%\begin{math}
+%\frac{V}{3000}
+%\end{math}
+%\begin{itemize}
+%	\item Range di accettazione: \begin{math}[ = 0 ]\end{math}
+%	\item Range ottimale: \begin{math}[ \le 2 ]\end{math}
+%	\end{itemize}
+\item \textbf{Difficulty}: 
+\begin{math}
+D = \frac{\textit{n}\begin{tiny}{\ped{1}} \end{tiny}}{2} * \frac{\textit{N}\begin{tiny}{\ped{1}} \end{tiny}}{\textit{n}\begin{tiny}{\ped{2}} \end{tiny}}
+\end{math}
+\begin{itemize}
+	\item Range di accettazione: \begin{math}[0 - 30]\end{math}
+	\item Range ottimale: \begin{math}[0 - 15]\end{math}
+	\end{itemize}
+\item \textbf{Effort}: 
+\begin{math}
+E = D * V
+\end{math}
+\begin{itemize}
+	\item Range di accettazione: \begin{math}[0 - 400]\end{math}
+	\item Range ottimale: \begin{math}[0 - 300]\end{math}
+	\end{itemize}
+\end{itemize} 
+\subsubsection{Dependency count}
+Conteggio del numero di chiamate di tipo \textbf{require}\addglos di ogni metodo. Valori bassi sono da preferire.
+\subsubsection{Maintainability Index} Rappresenta l'indice principale dei risultati dell'analisi effettuata da Plato sull'intero codice. Compreso tra 0 e 100, questo indice rappresenta la relativa facilità di manutenzione del codice analizzato. Valori alti rappresentano miglior manutenibilità.\\
+Questo indice viene calcolato utilizzando la seguente formula: \\
+\begin{center}
+\begin{math}
+MI = MAX\bigg[ 0,100 \frac{171-5.2\ln V - 0,23G - 16,2\ln L}{171} \bigg]
+\end{math}
+\end{center}
+dove: 
+\begin{itemize}
+\item \textbf{MI} = Maintainability Index
+\item \textbf{V} = Halstead Volume
+\item \textbf{L} = Source Lines of Code (SLOC)
+\item \textbf{G} = Complessità Ciclomatica totale
+\end{itemize}
+Parametri utilizzati: 
+\begin{itemize}
+	\item Range di accettazione: \begin{math}[20 - 100]\end{math}
+	\item Range ottimale: \begin{math}[70 - 100]\end{math}
+	\end{itemize}
+%\begin{figure}[h!]
+%\centering
+%\includegraphics[scale=0.40]{plato_main.png}
+%\caption{Plato report - Maintainability Index vista generale}
+%\end{figure}
+%Oltre alla valutazione generale sull'intero insieme dei file .js, Plato offre una visione specifica per ogni singolo file e per ogni funzione all'interno di un file: 
+%\begin{figure}[h!]
+%\centering
+%\caption{Plato report - file singolo}
+%\end{figure}
+%I valori mostrati in questa sezione dedicata al singolo file sono i seguenti: 
+%\begin{itemize}
+%\item \textbf{Maintainability}: (vedere sezione precedente)
+%\item \textbf{Lines of Code}: numero di righe del file.
+%\item \textbf{Difficulty}: Valore calcolato tramite la funzione di Halstead (vedere sezione 3.4.3.1), rappresenta una misura di quanto il programma può essere difficile da scrivere o da capire.
+%\item \textbf{Estimated Errors}: valore che rappresenta una stima del numero di errori di implementazione (Halstead's Number of delivered Bugs).
+%\end{itemize}
+
+%\newpage
+%\begin{itemize}
+%\item \textbf{Source Lines Of Code (SLOC)}: numero di linee del codice sorgente in oggetto. Parametro utilizzato per il calcolo del \textbf{Maintainability Index}.
+%\begin{figure}[h!]
+%\centering
+%\includegraphics[scale=0.40]{plato_SLOC.png}
+%\caption{Plato report - SLOC vista generale}
+%\end{figure}
+%\item \textbf{Estimated errors in implementation}: stima del numero di errori di implementazione. Valore calcolato tramite la metrica di \textit{Halstead}.
+
+%\begin{figure}[h!]
+%\centering
+%\includegraphics[scale=0.40]{plato_est.png}
+%\caption{Plato report - Estimated errors in implementation}
+%\end{figure}
+
+%\item \textbf{Lint errors}: DESCRIZIONE
+%\begin{figure}[h!]
+%\centering
+%\includegraphics[scale=0.40]{plato_lint.png}
+%\caption{Plato report - Lint errors}
+%\end{figure}
+%\end{itemize}
+\subsubsection{First-order density}
+Percentuale di tutte le possibili dipendenze interne tra i moduli del progetto. 
+\begin{itemize}
+	\item Range di accettazione: \begin{math}[\le 20\%]\end{math}
+	\item Range ottimale: \begin{math}[\le 15\%]\end{math}
+	\end{itemize}
+\subsubsection{Change cost}
+Percentuale dei moduli affetti da cambiamento quando un modulo all'interno del progetto viene modificato.
+\begin{itemize}
+	\item Range di accettazione: \begin{math}[\le 50\%]\end{math}
+	\item Range ottimale: \begin{math}[\le 40\%]\end{math}
+	\end{itemize}
+\subsubsection{Core size}
+La percentuale dei moduli che hanno molte dipendenze verso (e da) altri moduli.
+\begin{itemize}
+	\item Range di accettazione: \begin{math}[\le 30\%]\end{math}
+	\item Range ottimale: \begin{math}[\le 25\%]\end{math}
+	\end{itemize}
+\subsubsection{Copertura dei test}
+Indica la percentuale dei casi testati rispetto alla totalità dei casi da testare. Una percentuale del 100\% può essere auspicabile solo se sono stati ben definiti i casi che necessitano realmente di essere testati. 
+\begin{center}
+\textit{Copertura dei test = Numero funzioni testate * 100/Numero funzioni da testare}
+\end{center}
+Parametri utilizzati: 
+\begin{itemize}
+	\item Range-accettazione: \begin{math}[70 - 100]\end{math}
+\item Range-ottimale: \begin{math}[80 - 100]\end{math}
+	\end{itemize}
+\subsubsection{W3C - Markup Validation Service}
+Per la validazione delle pagine HTML e i file CSS sviluppati si intende affidarsi allo strumento online W3C Markup Validation Service (\url{https://validator.w3.org/}). 
+
+%\subsubsection{Use Case Points}
+%non so se metterla o meno
+%\begin{itemize}
+%\item \textbf{Nodejs}:
+%\item \textbf{Complessità ciclomatica}:
+%\item \textbf{Numero metodi}:
+%\item \textbf{Variabili non utilizzate o non definite}:
+%\item \textbf{Numero parametri per metodo}:
+%\item \textbf{Numero di livelli di annidamento}
+%\item \textbf{Grado di accoppiamento}:
+%\item \textbf{Copertura del codice}:
+%\item \textbf{Use Case points}:
+%\item \textbf{Statement Coverage}:
+%\item \textbf{Branch Coverage}:
+%\item \textbf{Validazione W3C}:
+%\end{itemize}
+\newpage
+
+\section{Riepilogo parametri di tolleranza}
+\subsection{Processi}
+\begin{center}
+\begin{tabular}{{p{8cm} p{2.5cm} p{2cm}}}
+\textbf{Metrica} & \textbf{Accettazione} & \textbf{Ottimale}\\ \hline
+Schedule Variance &  \begin{math}\ge -(P*5\%)\end{math} & \begin{math} \ge 0\end{math} \\ \hline
+Budget Variance & \begin{math} \ge -(P*10\%) \end{math} & \begin{math} \ge 0 \end{math}\\ \hline
+\end{tabular}
+\end{center}
+\textit{P = PreventivoFase}
+\subsection{Documenti}
+\begin{center}
+\begin{tabular}{{p{8cm} p{2.5cm} p{2cm}}}
+\textbf{Metrica} & \textbf{Accettazione} & \textbf{Ottimale}\\ \hline
+Gulpease Index &  \begin{math}[50 - 100]\end{math} & \begin{math}[60 - 100]\end{math} \\ \hline
+\end{tabular}
+\end{center}
+
+\subsection{Software}
+
+\begin{center}
+\begin{tabular}{{p{8cm} p{2.5cm} p{2cm}}}
+\textbf{Metrica} & \textbf{Accettazione} & \textbf{Ottimale}\\ \hline
+Parameters count & \begin{math}[0 - 7]\end{math} & \begin{math}[0 - 5]\end{math}\\ \hline
+Dependency count & \begin{math} \le 5 \end{math} &\begin{math} = 0 \end{math}\\ \hline
+Halstead's Volume & \begin{math}[20 - 1500]\end{math} & \begin{math}[20 - 1000]\end{math}\\ \hline
+Halstead's Difficulty &  \begin{math}[0 - 30]\end{math} & \begin{math}[0 - 15]\end{math}\\ \hline
+Cyclomatic complexity & \begin{math}[0 - 15]\end{math} & \begin{math}[0 - 10]\end{math}\\ \hline
+First-order density & \begin{math} \le 20\% \end{math} & \begin{math} \le 15\%  \end{math}\\ \hline
+Change cost & \begin{math} \le 50\% \end{math} & \begin{math} \le 40\%\end{math}\\ \hline
+Core size & \begin{math} \le 30\% \end{math} & \begin{math} \le 25\%\end{math}\\ \hline
+Maintainability Index & \begin{math}[20 - 100]\end{math} & \begin{math}[70 - 100]\end{math}\\ \hline
+Copertura dei test & \begin{math}[70 - 100]\end{math}& \begin{math}[80 - 100]\end{math}\\ \hline
+\end{tabular}
+\end{center}
+\newpage
+\section{Resoconto attività di verifica}
+Di seguito viene fornito il resoconto dell'attività di verifica inerente ad ogni fase di sviluppo.
+\subsection{Analisi}
+Riassunto attività di verifica per quello che concerne la fase di analisi:
+\begin{itemize}
+\item \textbf{Organizzazione interna}:
+\begin{itemize}
+\item \textbf{Assegnazione dei ruoli} secondo la pianificazione specificata nel documento \textit{Piano-di-Progetto-1.0.pdf} redatto dal Responsabile di progetto;
+\item \textbf{Corretta pianificazione di sviluppo} secondo quanto stilato sempre nel documento \textit{Piano-di-Progetto-1.0.pdf}. In particolare viene verificata la corretta divisione temporale delle diverse fasi di progetto (vedere sezione precedente) e la correttezza del preventivo in base al budget disponibile;
+\item \textbf{Disponibilità delle risorse umane e tecnologiche} e dell'ambiente di lavoro;
+\item \textbf{Lettura e sottoscrizione delle Norme di Progetto}. Il responsabile deve accertarsi che ogni membro del gruppo abbia letto e compreso il documento \textit{Norme-di-progetto-1.0}. Il documento deve essere quindi preventivamente redatto.
+
+
+\end{itemize} 
+ 
+\item \textbf{Documentazione}:
+\begin{itemize}
+\item Verifica della presenza di tutti i documenti necessari;
+\item Attinenza di ogni documento alle specifiche di stile e formattazione presenti nel documento \textit{Norme-di-progetto-1.0};
+\item Verifica della presenza e del corretto utilizzo del registro delle modifiche interno ad ogni documento;
+\item Verifica iniziale dei documenti tramite la tecnica di analisi statica \textbf{walkthrough};
+\item Verifica dei documenti tramite tecnica di analisi statica di tipo \textbf{inspection}. In questo caso l'attenzione del verificatore si focalizza solo su particolari aspetti del testo (per esempio accenti, sillabazione, maiuscole, ecc);
+\item Monitoraggio da parte dei verificatori del registro delle modifiche in modo da poter attuare la verifica solo alla parte inerente alla sezione modificata;
+\item \textbf{Coerenza} di informazioni tra i diversi documenti;
+\item Verifica di assenza di \textbf{ridondanza} di determinati contenuti tra i diversi documenti;
+\item Calcolo dell'indice di leggibilità \textbf{Gulpease}.
+\end{itemize}
+\item \textbf{Requisiti e Use Case}: 
+\begin{itemize}
+\item Correttezza dei diagrammi UML per quanto riguarda l'adeguata rappresentazione grafica degli Use Case. Verifica, leggibilità e adeguato livello di granularità;
+\item Verifica della correttezza degli Use Case (testuali e grafici) secondo lo standard UML2.0;
+\item Verifica delle precondizioni e delle postcondizioni di ogni Use Case;
+\item Completezza dei requisiti in base alle esigenze di capitolato;
+\item Tracciabilità dei requisiti tramite tabella di mappatura requisiti - casi d'uso;
+\item Controllo eventuali conflitti o imprecisioni nella codifica dei requisiti e dei casi d'uso.
+\end{itemize}
+ 
+
+\end{itemize}
+
+%\subsection{Progettazione}
+
+
+%\subsubsection{Progettazione architetturale}
+
+%\subsubsection{Progettazione di dettaglio}
+
+%\subsection{Codifica}
+
+%\subsection{Verifica e validazione}
+%RAMO ASCENDENTE DEL MODELLO A V\\
+%-test di unità\\
+%-test di integrazione\\
+%-test di sistema\\
+%-test di accettazione\\
+
+\newpage
+\section{Esito dei test}
+In questa sezione verranno presentati gli esiti dei test effettuati per ogni fase di sviluppo. 
+%\subsection{Analisi}
+
+
+
+\end{document}

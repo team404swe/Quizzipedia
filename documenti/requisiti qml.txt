@@ -1,0 +1,49 @@
+1 qml è un linguaggio per la formattazione delle domande (funzionamento simile a wikipedia markup language)
+	1.1 una domanda è caratterizata da un testo e da delle risposte
+	1.2 una domanda deve avere (almeno) una risposta corretta
+	1.3 qml ha la possibilità di gestire immagini all'interno di una domanda
+2 qml permette la definizione di varie tipologie di domande
+	2.1 definizione di domande vero/falso
+	2.2 domande risposta multipla
+		2.2.1 domande con più opzioni e una sola risposta
+		2.2.2 domande con più opzioni e più di una risposta
+	2.3 domande di associazione tra elementi di due insiemi
+		2.3.1 domande di associazione con uguale numero di corrispondenze singole
+		2.3.2 domande di associazione con risposte disturbatori (da inserire nel glossario)
+			2.3.2.1 disturbatori presenti nel primo gruppo
+			2.3.2.2 disturbatori presenti nel secondo gruppo
+	2.4 domande a completamento testuale
+		2.4.1 completamento con parole fornite dalla domanda
+		2.4.2 completamento con parole fornite dalla domanda + disturbatori
+	2.5 domanda timeline
+		2.5.1 senza disturbatori
+		2.5.2 con disturbatori
+	//2.6 domanda causa effetto (ordinamento di eventi correlati) : lista di cose da ordinare con un numeretto vicino
+3 (forse requisiti di qualità) qml ha una sintassi semplice e immediata
+	3.1 l'utente usufruisce della sintassi qml solamente al momento della creazione di una nuova domanda
+	3.2 l'utente può fare uso della sintassi qml solo se è autenticato (vedi requisito ... )
+	3.3 l'input di testo qml avviene tramite form sul sito
+	3.4 è presente una spiegazione della sintassi all'interno del sito
+	// l'utente può modificare una domanda già creata? decidere in base a 4.3 e poi correggere 3.1 se viene violato
+4 qml è memorizzato su un database
+	4.1 il database è mysql
+	4.2 scrittura e lettura dal database vengono regolate tramite nodejs
+	4.3 (decidere) memorizzato in formato testuale opppure boh
+5 requisiti implemetavi
+	5.1 l'utente può submittare solo una domanda alla volta 
+	5.2 è presente un parser e un interprete
+		5.2.1 il parser verifica la correttezza sintattica dell'input sottoposto dall'utente
+			5.2.1.1 se l'input è corretto sintatticamente viene salvato nel database
+			5.2.1.2 se l'input è errato, viene fornita all'utente un messaggio d'errore esaustivo	
+		5.2.2 l'interprete elzabora il testo qml salvato nel database e lo converte in formato HTML
+	5.3 nel database ogni domanda è contraddistinta dalla tupla(ID, testo qml della domanda, categoria, autore/*, data_inserimento*/)
+		5.3.1 l'ID della domanda è il numero di inserimento della domanda che permetterà poi agli utenti autori di questionari di utilizzarla nello stesso
+		5.3.2 la categoria è unica e può essere comune a più domande
+			5.3.2.1 le categorie verranno fornite dal sistema
+		//5.3.3 requisito data eventuale
+
+// qml NON specifica la categoria delle domande
+// qml NON definisce questionari ma solo singole domande (che poi in qualche modo verranno raggruppate in quetionari)
+
+
+	

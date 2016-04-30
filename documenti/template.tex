@@ -1,0 +1,166 @@
+	\usepackage[utf8]{inputenc}
+	\usepackage[italian]{babel}
+	\usepackage{hyperref}	%Consente l'inserimento di \url
+	\usepackage{booktabs}	%Utilità di abbellimento tabelle
+	\usepackage{longtable}
+	\usepackage{tabularx}
+	%\usepackage{widetable}
+	\usepackage{array}
+	\usepackage{listings}
+	\usepackage{graphicx}
+	\usepackage{caption}
+	\usepackage{fancyhdr}
+	\newenvironment{fixpic}{}{} % [1]
+	\usepackage[a4paper,top=3cm,bottom=3cm,left=2.5cm,right=2.5cm]{geometry}
+	%******
+	\usepackage{makeidx}
+	\usepackage{textcomp}
+	\usepackage{multirow}
+	\usepackage{rotfloat}
+	\usepackage{lastpage}
+	\usepackage{array}
+	\usepackage{float}
+	% *************************************
+	% QUI CODICE PER \SUBSUBSUBSECTION
+	\usepackage{titlesec}
+	\titleclass{\subsubsubsection}{straight}[\subsection]
+	
+	\newcounter{subsubsubsection}[subsubsection]
+	\renewcommand\thesubsubsubsection{\thesubsubsection.\arabic{subsubsubsection}}
+	\renewcommand\theparagraph{\thesubsubsubsection.\arabic{paragraph}} % optional; useful if paragraphs are to be numbered
+	
+	\titleformat{\subsubsubsection}
+	  {\normalfont\normalsize\bfseries}{\thesubsubsubsection}{1em}{}
+	\titlespacing*{\subsubsubsection}
+	{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+	
+	\makeatletter
+	\renewcommand\paragraph{\@startsection{paragraph}{5}{\z@}%
+	  {3.25ex \@plus1ex \@minus.2ex}%
+	  {-1em}%
+	  {\normalfont\normalsize\bfseries}}
+	\renewcommand\subparagraph{\@startsection{subparagraph}{6}{\parindent}%
+	  {3.25ex \@plus1ex \@minus .2ex}%
+	  {-1em}%
+	  {\normalfont\normalsize\bfseries}}
+	\def\toclevel@subsubsubsection{4}
+	\def\toclevel@paragraph{5}
+	\def\toclevel@paragraph{6}
+	\def\l@subsubsubsection{\@dottedtocline{4}{7em}{4em}}
+	\def\l@paragraph{\@dottedtocline{5}{10em}{5em}}
+	\def\l@subparagraph{\@dottedtocline{6}{14em}{6em}}
+	\makeatother
+	
+	\setcounter{secnumdepth}{4}
+	\setcounter{tocdepth}{4}
+	%FINE \SUBSUBSUBSECTION
+	%****************************************
+	%STYLE PER INSERIMENTO DEL CODICE
+	\lstdefinestyle{style1}{
+	  belowcaptionskip=1\baselineskip,
+	  breaklines=true,
+	  frame=L,
+	  xleftmargin=\parindent,
+	  language=Pascal,
+	  showstringspaces=false,
+	  basicstyle=\footnotesize\ttfamily,
+	  keywordstyle=\bfseries\color{blue},
+	  commentstyle=\itshape\color{blue},
+	  identifierstyle=\color{blue},
+	  stringstyle=\color{orange},
+	}
+	
+	\lstdefinestyle{style2}{
+	  belowcaptionskip=1\baselineskip,
+	  frame=L,
+	  xleftmargin=\parindent,
+	  language=C,
+	  basicstyle=\footnotesize\ttfamily,
+	  commentstyle=\itshape\color{blue},
+	}
+	\lstset{style=style1}
+	
+	%FINE STYLE INSERIMENTO CODICE
+	%*****************************************
+	\usepackage[default]{cantarell} %% Use option "defaultsans" to use cantarell as sans serif only
+	\usepackage[T1]{fontenc}        %% for font
+	\hypersetup{colorlinks, linkcolor=black, urlcolor=blue}
+	\newcommand{\addglos}{\begin{scriptsize}{\textbf{\ped{G}}} \end{scriptsize}} 
+	\pagestyle{fancy}
+	\fancyhead{}
+	\fancyfoot{}
+	%\fancyhead[L]{\includegraphics[scale=0.28]{team_not_found.jpeg}}
+	\fancyhead[L]{\includegraphics[scale=0.15]{../../team404_small.jpg} \hspace{2mm} QUIZZIPEDIA}
+	\fancyhead[R]{\leftmark}
+	\fancyfoot[L]{Universit\`a degli studi di Padova - IS 2015/2016 \\ \url{team404swe@gmail.com}}
+
+	
+	%Commando usato per la tabella di informazioni sul documento
+	\newcommand{\introtab}[9]{
+		\begin{table}[ht]
+		\begin{center}		
+		\begin{tabular}{r l}			
+			\toprule		
+			\multicolumn{2}{c}{\textbf{ Informazioni sul documento }} \\
+			\midrule 
+			\textbf{Nome Documento}			& \vline \hspace{3.5 mm} {#1} \\
+			\textbf{Versione}				& \vline \hspace{3.5 mm} {#2} \\
+			\textbf{Uso} 					& \vline \hspace{3.5 mm} {#3} \\
+			\textbf{Data Creazione} 		& \vline \hspace{3.5 mm} {#4} \\
+			\textbf{Data Ultima Modifica} 	& \vline \hspace{3.5 mm} {#5} \\
+			\textbf{Redazione}				& \vline \hspace{3.5 mm} {#6} \\
+											%& \vline \hspace{3.5 mm} {#7} \\	
+			\textbf{Verifica} 				& \vline \hspace{3.5 mm} {#7}	\\
+			\textbf{Approvazione}			& \vline \hspace{3.5 mm} {#8}\\	
+			\textbf{Committente} 			& \vline \hspace{3.5 mm} Zucchetti SPA\\
+			\textbf{Lista di distribuzione} & \vline \hspace{3.5 mm} Prof. Vardanega Tullio \\														& \vline \hspace{3.5 mm} TEAM404 \\
+	\bottomrule	
+	\end{tabular}
+	\end{center}
+	\end{table}
+	}
+	% Comando di inizio del registro
+	\newcommand{\beginregistro}{
+		%\begin{longtable}{{|p{0.10\textwidth}|p{0.20\textwidth}|p{0.15\textwidth}|p{0.50\textwidth}|}}
+		\begin{longtable}{{|p{1.5cm}|p{2.5cm}|p{2cm}|p{8cm}|}} 
+	 		\hline	
+	}
+	% commando usato pr inserire una riga al registro delle modifiche
+	\newcommand{\rigaregistro}[4]{
+		{\footnotesize #1} & {\footnotesize #2} &  {\footnotesize #3} &  {\footnotesize #4} \\
+			\hline	
+	}
+	% Comando di fine registro
+	\newcommand{\fineregistro}{ \end{longtable}	}
+	
+	%************************************************
+	% commandi per il GLOSSARIO
+	%***********************************************
+	% Commando di inizio tabella Glossario
+	\newcommand{\beginglos}{
+		\begin{longtable}{{p{0.20\textwidth}p{0.65\textwidth}}}	
+	}
+	% Commando per i termini del glossario
+	
+	\newcommand{\itemglos}[2]{
+		\textbf{#1 :} & {#2} \\ \\ \\
+	}
+	% Commando fine Glossario
+	\newcommand{\fineglos}{ \end{longtable} }
+	% Comando per aggiungere una ssezione numerata con lettere al glossario
+	\newcommand{\sezione}{
+	\subsection{}	
+	\rule[0.3pt]{\linewidth}{0.4pt} \\ % Linea orizzontale
+	}
+	
+\newcommand{\sezioneglos}[1] { 
+  \newpage
+  \cleardoublepage
+  \phantomsection
+  \addcontentsline{toc}{section}{#1}
+  \vspace{11pt}
+  \textbf{\huge{#1} } % Lettera grande 
+  \\
+  \rule[0.3pt]{\linewidth}{0.4pt} \\ % Linea orizzontale
+  \fancyhead[R]{#1}
+}

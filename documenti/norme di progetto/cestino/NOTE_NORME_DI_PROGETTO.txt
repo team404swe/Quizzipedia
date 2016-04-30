@@ -1,0 +1,30 @@
+**************************************************************
+****   Note di completamento delle Norme di progetto!     ****
+**************************************************************
+	
+	3.1.4.2 frontespizio: 
+		-> punto 2:  Logo da indicare.
+	
+	3.1.8 Strumenti per la documentazione
+		* da fare
+
+	4.7. Strumenti per la gestione di progetto:
+		* da fare		
+
+	5.1.3.1 GIT : 
+		* da fare
+		
+	5.1.3.2 GitHub : 
+		* da fare 
+
+		
+		
+		
+		
+		** PER I TIPI DI QUIZZ **
+		1) Multiple choice - Single Answer , 
+		2) Multiple choice - Multiple Answers, 
+		3) Fill in the Blanks,	
+		4) Short Answer, 
+		5) Long Answer,	
+		6) Match the Column

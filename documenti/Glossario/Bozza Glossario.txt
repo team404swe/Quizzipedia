@@ -1,0 +1,32 @@
+App
+Astah
+CSS3
+Committente
+Complessità Ciclomatica
+Driver
+Framework
+Git
+GitHub
+HTML
+HTML5
+I/O
+Inspection
+Javascript
+Markup
+Maintainability Index
+Metriche di Halstead
+Package
+Pattern
+Proponente
+QML
+Repository
+Stub
+Task
+Tools
+Trello
+UTF-8
+Validazione
+Verifica
+UML
+Walkthrough
+W3C

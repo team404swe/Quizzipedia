@@ -1,0 +1,36 @@
+<div class="container">
+	<header>
+	  <h2>Todo List ( {{ $ctrl.incompleteCount}} )</h2>
+		
+		<label class="hide-completed">
+			<input class="checkbox" type="checkbox" ng-model="$ctrl.hideCompleted"/>
+			Hide Completed Tasks
+		</label>
+		
+		<login-buttons></login-buttons>
+		
+		<form class="new-task" ng-submit="$ctrl.addTask($ctrl.newTask)" ng-show="$ctrl.currentUser">
+			<input ng-model="$ctrl.newTask" type="text" name="text" placeholder="Type to add new tasks"/>
+		</form>
+		
+	</header>
+
+	<ul class="collection">
+		<li ng-repeat="task in $ctrl.tasks" ng-class="{'checked': task.checked, 'private': task.private}" class="collection-item">
+			<div class="row">
+				<input type="checkbox" ng-checked="task.checked" ng-click="$ctrl.setChecked(task)" class="toggle-checked, checkbox"/>
+
+				<span class="text">
+				  <strong>{{task.username}}</strong> - {{task.text}}
+				</span>
+				
+				<button class="delete waves-effect waves-light btn right" ng-click="$ctrl.removeTask(task)">&times;</button>
+				
+				<button class="toggle-private waves-effect waves-light btn right" ng-click="$ctrl.setPrivate(task)" ng-show="task.owner === $ctrl.currentUser._id">
+					{{task.private == true ? "Private" : "Public"}}
+				</button>
+			</div>
+		</li>
+	</ul>
+	<p>il Builder funziona</p>
+</div>

@@ -7,3 +7,7 @@ fieldset{
 .hidden{
 	display: none;
 }
+
+input #submit{
+	margin-top: 2em;
+}

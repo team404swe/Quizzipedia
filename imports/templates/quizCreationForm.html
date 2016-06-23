@@ -1,0 +1,33 @@
+<div class="container">
+	<header>
+		<h1>Quiz Creation</h1>
+	</header>
+	
+	<form class="row">
+		<fieldset>
+			<legend class="hidden">Create your quiz</legend>
+			 <div>
+				<fieldset>
+					<div class="input-field col s6">
+						<label for="name">Name</label>
+						<input type="text" id="name" placeholder="Type a name for your quiz"/>
+					</div>
+					<div class="input-field col s6">
+						<label for="category">Materialize Select</label>
+						<select id="category">
+						  <option value="" disabled selected>Choose a Category</option>
+						  <option value="1">Option 1</option>
+						  <option value="2">Option 2</option>
+						  <option value="3">Option 3</option>
+						</select>
+					</div>		
+				</fieldset>
+				
+				<input type="submit" id="submit" value="Save Question" ng-click="saveQuestion()" class="waves-effect waves-light btn"/>
+			</div>
+			
+			
+		</fieldset>
+	</form>
+
+</div>

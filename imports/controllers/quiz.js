@@ -1,17 +1,17 @@
 import angular from 'angular';
 import angularMeteor from 'angular-meteor';
-import template from '../templates/question.html';
+import template from '../templates/quiz.html';
 
-class QuestionController{
+class QuizController{
 	constructor($scope) {
 		$scope.viewModel(this);          
 	}
 }
 
-export default angular.module('question', [
+export default angular.module('quiz', [
   angularMeteor
 ])
-  .component('question', {
+  .component('quiz', {
     templateUrl: 'imports/templates/question.html',
-    controller: ['$scope', QuestionController]
+    controller: ['$scope', QuizController]
   });

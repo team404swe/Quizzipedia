@@ -1,0 +1,11 @@
+<div class="container">		
+	<header>
+		<h1>Question List</h1>
+	</header>
+
+	<ul class="collection">
+		<li ng-repeat="question in questionList.questions" class="collection-item">
+			{{question.title}} - {{question.category}}
+		</li>
+	</ul>
+</div>

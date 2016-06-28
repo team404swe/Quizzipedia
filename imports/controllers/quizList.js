@@ -1,6 +1,7 @@
 import angular from 'angular';
 import angularMeteor from 'angular-meteor';
 import template from '../templates/quizList.html';
+import uiRouter from 'angular-ui-router';
 
 class QuizListController{
 	constructor($scope) {
@@ -9,7 +10,8 @@ class QuizListController{
 }
 
 export default angular.module('quizList', [
-  angularMeteor
+  angularMeteor,
+  uiRouter
 ])
   .component('quizList', {
     templateUrl: 'imports/templates/quizList.html',

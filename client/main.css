@@ -11,3 +11,8 @@ fieldset{
 input #submit{
 	margin-top: 2em;
 }
+
+#logo{
+	background-image: 'images/q.png';
+	text-decoration: none;
+}

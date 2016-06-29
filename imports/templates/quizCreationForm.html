@@ -9,16 +9,16 @@
 			 <div>
 				<fieldset>
 					<div class="input-field col s6">
-						<label for="name">Name</label>
-						<input type="text" id="name"/>
+						<label for="title">Title</label>
+						<input type="text" id="title"/>
 					</div>
 					<div class="input-field col s6">
-						<label for="category">Materialize Select</label>
-						<select id="category">
+						<label for="category">Category</label>
+						<select id="category" ng-model="selectedCategory">
 						  <option value="" disabled selected>Choose a Category</option>
-						  <option value="1">Option 1</option>
-						  <option value="2">Option 2</option>
-						  <option value="3">Option 3</option>
+						  <option value="1">Storia</option>
+						  <option value="2">Economia</option>
+						  <option value="3">SWE</option>
 						</select>
 					</div>					
 				</fieldset>

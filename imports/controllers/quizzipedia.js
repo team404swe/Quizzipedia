@@ -5,6 +5,7 @@ import template from '../templates/quizzipedia.html';
 import topbar from '../controllers/topbar';
 import navbar from '../controllers/navbar';
 import quizList from '../controllers/quizList';
+import questionList from '../controllers/questionList';
 import quizCreationForm from '../controllers/quizCreationForm';
 import questionForm from '../controllers/questionForm';
 
@@ -22,6 +23,7 @@ export default angular.module('quizzipedia', [
   topbar.name,
   navbar.name,
   quizList.name,
+  questionList.name,
   quizCreationForm.name,
   questionForm.name
 ]).component('quizzipedia', {
@@ -41,6 +43,10 @@ export default angular.module('quizzipedia', [
 		$stateProvider.state('quizlist', {
 						url: '/quizlist',
 						template: '<quiz-list></quiz-list>'
+		});
+		$stateProvider.state('questionlist', {
+						url: '/questionlist',
+						template: '<question-list></question-list>'
 		});
 		$stateProvider.state('quizCreationForm', {
 						url: '/quizCreationForm',

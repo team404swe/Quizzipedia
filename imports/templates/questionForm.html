@@ -1,26 +1,27 @@
 <div class="container">
-	<header>
-		<h1>Question Creation</h1>
-	</header>
-
 	<div>
-		<form class="col s12">
+		<header>
+			<h1>Question Creation</h1>
+		</header>
+	
+		<form>
 			<fieldset>
 				<legend class="hidden">Create your question</legend>
 				 <div >
 					<fieldset>
 						<div class="input-field">
 							<label for="category">Category</label>
-							<input type="text" name="category" id="category" placeholder="Type a category"/>
+							<input type="text" name="category" id="category"/>
 						</div>
 						<div class="input-field">
-							<textarea id="qmlCode" class="materialize-textarea" placeholder="Type some valid QML Code"></textarea>
+							<textarea id="qmlCode" class="materialize-textarea"></textarea>
 							<label for="qmlCode">QML Code</label>
 						</div>				
 					</fieldset>
 				</div>
 				
-				<input type="submit" id="submit" value="Save Question" ng-click="saveQuestion()" class="waves-effect waves-light btn"/>
+				<input type="submit" id="check" value="Check QML" ng-click="check()" class="waves-effect waves-light btn"/>
+				<input type="submit" id="submit" value="Save Question" ng-click="saveQuestion()" class="waves-effect waves-light btn"/>				
 			</fieldset>
 		</form>
 	</div>

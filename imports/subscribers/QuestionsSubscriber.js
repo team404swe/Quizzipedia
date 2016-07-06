@@ -1,6 +1,6 @@
-import { Questions } from '../publishers/questionPublisher.js';
+import { Quizzes } from '../publishers/quizPublisher.js';
 
-var collection = 'questions';
+var collection = 'quizzes';
 
 function getCollection(){
 	return collection;

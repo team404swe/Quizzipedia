@@ -4,7 +4,12 @@ import template from '../templates/quizCreationForm.html';
 
 class NewQuizController{
 	constructor($scope) {
-		$scope.viewModel(this);          
+		$scope.viewModel(this);     
+				
+		//JQuery per caricare correttamente la select
+		$(document).ready(function() {
+			$('select').material_select();
+		});      
 	}
 	
 	saveQuiz(newQuiz){

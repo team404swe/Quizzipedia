@@ -4,7 +4,7 @@ import template from '../templates/questionForm.html';
 
 class NewQuestionController{
 	constructor($scope) {
-		$scope.viewModel(this);          
+		$scope.viewModel(this);      				   
 	}
 	
 	saveQuestion(newQuestion){

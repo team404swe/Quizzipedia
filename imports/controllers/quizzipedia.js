@@ -18,7 +18,15 @@ class Quizzipedia {
 		$(".button-collapse").sideNav();
 	}	
 }
-
+teto = 'tetipo';
+utente ={nome:'Tino', cognome:'MBO'};
+ cambia = function(){
+	 debugger;
+	 utente.nome = 'cambiato';
+	 utente.cognome = 'FATTO!';
+	 teto = 'finemondo';
+ };
+ quizComp = {}
 
 // create a module
 export default angular.module('quizzipedia', [

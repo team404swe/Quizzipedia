@@ -16,3 +16,14 @@ input #submit{
 	background-image: 'images/q.png';
 	text-decoration: none;
 }
+
+/*Per spostare il contenuto rispetto alla NavBar*/
+header, main, footer {
+      padding-left: 5%;
+    }
+
+@media only screen and (max-width : 992px) {
+  header, main, footer {
+	padding-left: 0;
+  }
+}

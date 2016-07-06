@@ -12,7 +12,9 @@ import questionForm from '../controllers/questionForm';
 class Quizzipedia {
 	constructor($scope){
 		$scope.viewModel(this);
-	}
+		
+		$(".button-collapse").sideNav();
+	}	
 }
 
 
@@ -33,8 +35,7 @@ export default angular.module('quizzipedia', [
 })
 	.config(config);
  
-	function config($locationProvider, $urlRouterProvider, $stateProvider) {
-		'ngInject';
+	function config($locationProvider, $urlRouterProvider, $stateProvider) {		
 	 
 		$locationProvider.html5Mode(true);
 	 

@@ -15,6 +15,8 @@ input #submit{
 #logo{
 	background-image: 'images/q.png';
 	text-decoration: none;
+	margin-top:10px;
+	max-height:40px;
 }
 
 /*Per spostare il contenuto rispetto alla NavBar*/

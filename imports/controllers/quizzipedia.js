@@ -8,6 +8,8 @@ import quizList from '../controllers/quizList';
 import questionList from '../controllers/questionList';
 import quizCreationForm from '../controllers/quizCreationForm';
 import questionForm from '../controllers/questionForm';
+import searchForm from '../controllers/searchForm';
+import quizCompilation from '../controllers/quizCompilation';
 
 class Quizzipedia {
 	constructor($scope){
@@ -27,7 +29,9 @@ export default angular.module('quizzipedia', [
   quizList.name,
   questionList.name,
   quizCreationForm.name,
-  questionForm.name
+  questionForm.name,
+  searchForm.name,
+  quizCompilation.name
 ]).component('quizzipedia', {
   templateUrl: 'imports/templates/quizzipedia.html',  
   controllerAs: 'quizzipedia',
@@ -56,5 +60,13 @@ export default angular.module('quizzipedia', [
 		$stateProvider.state('questionForm', {
 						url: '/questionForm',
 						template: '<question-form></question-form>'
+		});
+		$stateProvider.state('searchForm', {
+						url: '/searchForm',
+						template: '<search-form></search-form>'
+		});
+		$stateProvider.state('quizCompilation', {
+						url: '/quizCompilation',
+						template: '<quiz-Compilation></quiz-Compilation>'
 		});
 	}

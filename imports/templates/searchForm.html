@@ -1,118 +1,107 @@
 
-	 <div class="row ">
-	 	<form ng-submit="$ctrl.cerca($ctrl.searchPatt)">
-	 		<div class="input-field col s10 center card">           		
-            	<!-- sssss -->
-            	<div class="col s11">
-                	<input id="search" type="text" placeholder="Ricerca" class="validate" ng-model="$ctrl.searchPatt">
-                </div>
-                <div class="col s1">
-                	
-                	<a class="btn-floating waves-effect waves-light red"><i class="material-icons ">search</i></a>
-                </div>      	
-      		</div>
-	 		<div class="col s8"> 
-	 			<div class="col s2"> cerca in: 	
-	 			</div> 		
-	 			<div class="col s3">
-	 				<input type="checkbox" id="checkQuiz" ng-model="$ctrl.searchQuiz" />
-      				<label for="checkQuiz">Quiz</label>
-      			</div>
-      			<div class="col s3">
-	 				<input type="checkbox" id="checkQuestion" ng-model="$ctrl.searchQuestion" />
-      				<label for="checkQuestion">Question</label>
-      			</div>
-      			<div class="col s4">
-      				<input type="checkbox" id="checkFilter" ng-model="$ctrl.searchFilter" />
-      				<label for="checkFilter">Filtrare per</label>
-      			
-      				<span ng-show="$ctrl.searchFilter"> Filtrare</span>
-      			</div>
-	 		</div> 
-	 	</form>
-	 </div>
-	<div class="row">   
-      	<h5>Risultati della ricerca: </h5>
-      	<div class="col s12">
-        	<ul class="collapsible popout" data-collapsible="accordion">
-        		<li ng-repeat="result in [ 'Primo', 'Secondo', 'Terzo'] track by $index">
-        			 
-        			<div class="collapsible-header">
-      					<i class="material-icons">filter_drama</i>
-      					{{result}}
-      				</div>
-      				<div class="collapsible-body">
-      					<p>Qui 	vanno i dettagli del risultato.</p>
-      				</div>
-        		</li>        		
-        		
-        	</ul>
-      	</div>
-      	<div class="col s12">
-        	
-        	<div class="collection popout">
-    			<a href="#!" class="collection-item" ng-repeat="quiz in $ctrl.resultModel">
-    			<i class="material-icons">{{quiz.avatar}}</i>
-    				{{quiz.titolo}} 
-    				<span class="badge tooltipped" data-position="top" data-delay="900" data-tooltip="Numero di domande">    					
-    					# {{quiz.questions.length}}     					
-    				</span>
-    			</a>
-    		</div>
+ <div class="row ">
+	<form ng-submit="$ctrl.cerca($ctrl.searchPatt)">
+		<div class="input-field col s10 center card">           		
+			<!-- sssss -->
+			<div class="col s11">
+				<input id="search" type="text" placeholder="Ricerca" class="validate" ng-model="$ctrl.searchPatt">
+			</div>
+			<div class="col s1">				
+				<a class="btn-floating waves-effect waves-light red"><i class="material-icons ">search</i></a>
+			</div>      	
+		</div>
+		<div class="col s8"> 
+			<div class="col s2"> cerca in: 	
+			</div> 		
+			<div class="col s3">
+				<input type="checkbox" id="checkQuiz" ng-model="$ctrl.searchQuiz" />
+				<label for="checkQuiz">Quiz</label>
+			</div>
+			<div class="col s3">
+				<input type="checkbox" id="checkQuestion" ng-model="$ctrl.searchQuestion" />
+				<label for="checkQuestion">Question</label>
+			</div>
+			<div class="col s4">
+				<input type="checkbox" id="checkFilter" ng-model="$ctrl.searchFilter" />
+				<label for="checkFilter">Filtrare per</label>
+			
+				<span ng-show="$ctrl.searchFilter"> Filtrare</span>
+			</div>
+		</div> 
+	</form>
+ </div>
+ 
+<div class="row">   
+	<h5>Risultati della ricerca: </h5>
+	<div class="col s12">
+		<ul class="collapsible popout" data-collapsible="accordion">
+			<li ng-repeat="result in [ 'Primo', 'Secondo', 'Terzo'] track by $index">
+				 
+				<div class="collapsible-header">
+					<i class="material-icons">filter_drama</i>
+					{{result}}
+				</div>
+				<div class="collapsible-body">
+					<p>Qui 	vanno i dettagli del risultato.</p>
+				</div>
+			</li>        		
+			
+		</ul>
+	</div>
+	<div class="col s12">
+		
+		<div class="collection popout">
+			<a href="#!" class="collection-item" ng-repeat="quiz in $ctrl.resultModel">
+			<i class="material-icons">{{quiz.avatar}}</i>
+				{{quiz.titolo}} 
+				<span class="badge tooltipped" data-position="top" data-delay="900" data-tooltip="Numero di domande">    					
+					# {{quiz.questions.length}}     					
+				</span>
+			</a>
+		</div>
 
-        	<ul class="collapsible" data-collapsible="accordion">
-        		<li  ng-repeat="quiz in $ctrl.resultModel"> 
-      				<div class="collapsible-header">
-      					<div class="col s10">
-      						<i class="material-icons">filter_drama</i>
-      						{{quiz.titolo}} 
-      					</div> 
-      					<div class="col s2"> 
-      						<i class="material-icons">av_timer</i>
-      						 <span>{{quiz.questions.length}} </span>
-      					</div>
-      				</div>
-      				<div class="collapsible-body">
-      					<p>Domande: {{quiz.questions.length}} </p>
-      					<p>tempo:{{quiz.tip}}</p>
-      				</div>
-    			</li>
-    		</ul>
-        	
-      	</div>
-      	<div class="card col s4">
-    		<div class="card-image waves-effect waves-block waves-light">
-      			<img class="activator" src="images/office.jpg">
-    		</div>
-    		<div class="card-content">
-      			<span class="card-title activator grey-text text-darken-4">
-      				Card Title
-      				<i class="material-icons right">more_vert</i>
-      			</span>
-      			<p>
-      				<a href="#">This is a link</a>
-      			</p>
-    		</div>
-    		<div class="card-reveal">	
-      			<span class="card-title grey-text text-darken-4">
-      				Card Title
-      				<i class="material-icons right">close</i>
-      			</span>
-      			<p>
-      				Here is some more information about this product that is only revealed once clicked on.
-      			</p>
-    		</div>
-  		</div>
-
-  		 <div class="input-field col s12">
-    <select>
-      <option value="" disabled selected>Choose your option</option>
-      <option value="1">Option 1</option>
-      <option value="2">Option 2</option>
-      <option value="3">Option 3</option>
-    </select>
-    <label>Materialize Select</label>
-  </div>
+		<ul class="collapsible" data-collapsible="accordion">
+			<li  ng-repeat="quiz in $ctrl.resultModel"> 
+				<div class="collapsible-header">
+					<div class="col s10">
+						<i class="material-icons">filter_drama</i>
+						{{quiz.titolo}} 
+					</div> 
+					<div class="col s2"> 
+						<i class="material-icons">av_timer</i>
+						 <span>{{quiz.questions.length}} </span>
+					</div>
+				</div>
+				<div class="collapsible-body">
+					<p>Domande: {{quiz.questions.length}} </p>
+					<p>tempo:{{quiz.tip}}</p>
+				</div>
+			</li>
+		</ul>
+		
+	</div>
+	<div class="card col s4">
+		<div class="card-image waves-effect waves-block waves-light">
+			<img class="activator" src="images/office.jpg">
+		</div>
+		<div class="card-content">
+			<span class="card-title activator grey-text text-darken-4">
+				Card Title
+				<i class="material-icons right">info_outline</i>
+			</span>
+			<p>
+				<a href="#">This is a link</a>
+			</p>
+		</div>
+		<div class="card-reveal">	
+			<span class="card-title grey-text text-darken-4">
+				Card Title
+				<i class="material-icons right">close</i>
+			</span>
+			<p>
+				Here is some more information about this product that is only revealed once clicked on.
+			</p>
+		</div>
+	</div>
       	
-
-    </div>
+</div>

@@ -14,8 +14,9 @@ input #submit{
 
 #logo{
 	text-decoration: none;
-	margin-top:10px;
-	max-height:40px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	max-height: 55px;
 }
 #qzimg{
 	text-decoration: none;

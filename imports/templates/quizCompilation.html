@@ -27,17 +27,70 @@
 					</p>
 				</div>
 				<div class="row">
-				
+				<div class="divider col s12"></div>
 				<div ng-show="$ctrl.miniModel[0].questions[$ctrl.idx].tipo = 'dF' " >
-					<div class="divider col s12"></div>
-					<div class="section vero col s12 l8 offset-l2 ">
-						<a class="waves-effect waves-light btn col s12 l6 offset-l3  card">VERO</a>
 					
-					</div>
-					<div class="section falso col s12 l8 offset-l2 ">
+					<div class="section vero col s12 l8 offset-l2 ">
+						<a class="waves-effect waves-light btn col s12 l6 offset-l3  card">VERO</a>				
 					
 						<a class="waves-effect waves-light btn col s12 l6 offset-l3 card">FALSO</a>
 					</div>
+					
+					<div class="section sceltasingola col s12 l8 offset-l2 ">
+						
+							<p class=" col s12 m6 l6">
+								<input class="with-gap" name="group1" type="radio" id="test1" />
+     							 <label for="test1">Red</label>
+    						</p>
+    						<p class=" col s12 m6 l6" >
+      							<input class="with-gap" name="group1" type="radio" id="test2" />
+     							 <label for="test2">Yellow</label>
+    						</p>
+    						<p class=" col s12 m6 l6">
+      							<input class="with-gap" name="group1" type="radio" id="test3"  />
+      							<label for="test3">Green</label>
+    						</p>
+      						<p class=" col s12 m6 l6">
+        						<input class="with-gap" name="group1" type="radio" id="test4"  />
+        						<label for="test4">Brown</label>
+    						</p>  						
+					</div>
+					<div class="section sceltamultipla col s12 l8 offset-l2 ">
+						 <p class=" col s12 m6 l6" >
+							<input type="checkbox" id="test5" />
+      						<label for="test5">Red</label>
+    						</p>
+    					<p class=" col s12 m6 l6" >
+      						<input type="checkbox" id="test6"  />
+      						<label for="test6">Yellow</label>
+    					</p>
+    					<p class=" col s12 m6 l6" >
+      						<input type="checkbox"  id="filled-in-box"  />
+      						<label for="filled-in-box">Filled in</label>
+    					</p>
+    					<p class=" col s12 m6 l6" >
+      						<input type="checkbox" id="indeterminate-checkbox" />
+      						<label for="indeterminate-checkbox">Indeterminate Style</label>
+    					</p>					
+					</div >
+					<div class="section associazione col s12 l8 offset-l2 ">
+						<div ng-repeat="p in ['paul', 'john', 'luc']" class="card-panel col s12">
+						<p class=" col s12 m6 l4 offset-l1">
+							<select ng-model="selectedItem">
+								<option value="" disabled selected>Choose your option</option>
+								<option ng-repeat="p in ['paul', 'john', 'luc']" value="{{p}}">{{p}}</option>
+							</select>
+						</p>
+						<p class=" col s12 m6 l4 offset-l1">
+							<select ng-model="selectedItem">
+								<option value="" disabled selected>Choose your option</option>
+								<option ng-repeat="p in ['paul', 'john', 'luc']" value="{{p}}">{{p}}</option>
+							</select>
+						</p>
+						</div>
+						
+					</div>
+					
 				</div>
 				</div>
 				
@@ -50,7 +103,7 @@
 			<div class="col s3 offset-s6 m2 offset-m8 l3 offset-l6 ">
 				<a class="waves-effect waves-light btn col s12 m8 offset-m2 l6 offset-l3 " ng-click="$ctrl.gonext($ctrl.miniModel[0].questions)">SUCC.</a>
 			</div>
-			</div>
+		</div>
 		</div>
 	
 	

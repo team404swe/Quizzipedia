@@ -67,7 +67,11 @@ class QuizCompilationController{
 */
 			}]; 
 			
-			
+		//JQuery per caricare correttamente la select
+		$(document).ready(function() {
+			$('select').material_select();
+		});      
+	
 	}
 	goback(lista){
 		debugger;

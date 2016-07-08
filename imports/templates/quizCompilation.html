@@ -8,7 +8,7 @@
 					<p>	Tempo rimanente: {{$ctrl.prova}} -sep-{{$ctrl.teto}} {{$ctrl.utente.nome}}</p>
 				</div>				
 				<div class="col s12 m3 offset-m1 l2 offset-l1"> 
-					<a class="waves-effect waves-light btn col s12 card " ng-click="$ctrl.cambia()">Consegna!</a> 
+					<a class="waves-effect waves-light btn col s12 card " ng-click="$ctrl.completaQuiz()">Consegna!</a> 
 				</div> 
 				
 				<div class="col s12 m12 l12 breadcrumb1 flat">
@@ -78,16 +78,19 @@
 						<p class=" col s12 m6 l4 offset-l1">
 							<select ng-model="selectedItem">
 								<option value="" disabled selected>Choose your option</option>
-								<option ng-repeat="p in ['paul', 'john', 'luc']" value="{{p}}">{{p}}</option>
+								<option ng-repeat="p in ['G. Clooney', 'W. Snipes', 'J. Travolta']" value="{{p}}">{{p}}</option>
 							</select>
 						</p>
 						<p class=" col s12 m6 l4 offset-l1">
 							<select ng-model="selectedItem">
 								<option value="" disabled selected>Choose your option</option>
-								<option ng-repeat="p in ['paul', 'john', 'luc']" value="{{p}}">{{p}}</option>
+								<option ng-repeat="p1 in ['Money Ganster', 'Grease', 'Blade', 'Pretty Woman']" value="{{p1}}">{{p1}}</option>
 							</select>
 						</p>
 						</div>
+						
+					</div>
+					<div class="section ordinamento col s12 l8 offset-l2 " >
 						
 					</div>
 					

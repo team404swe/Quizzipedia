@@ -24,47 +24,7 @@ class QuizCompilationController{
 					{"_id":"8", "tipo": "VF", "image":"qzcustom/p8.gif", "ask": "In presenza del segnale raffigurato e del semaforo a tre luci abbiamo la precedenza se il semaforo è a luce verde e l'agente del traffico ci ordina di fermarci",	"ans": "V"}	,
 					{"_id":"9", "tipo": "VF", "image":"qzcustom/p9.gif", "ask": "La striscia bianca laterale discontinua in figura divide la carreggiata da una corsia di accelerazione",	"ans": "V"}		
 				]
-/*
-			},
-			{"titolo": "Matematica"	,
-			"avatar":"alarm_off",
-			"tip": 	"alarm_off",
-			"questions":
-				[	{"tipo": "VF", "ask": "il puffo è blu", "ans": "V"},  				 
-					{"tipo": "VF", "ask": "il cielo è rosso", "ans": "F"},
-					{"tipo": "VF", "ask": "il cielo è blu",	"ans": "V"}	
-				]
 
-			},
-			{"titolo": "Cinema"	,
-			"avatar":"alarm_off",
-			"tip": 	"NO",
-			"questions":
-				[	{"tipo": "VF", "ask": "il puffo è blu", "ans": "V"},  				 
-					{"tipo": "VF", "ask": "il cielo è rosso", "ans": "F"},
-					{"tipo": "VF", "ask": "il cielo è blu",	"ans": "V"}	
-				]
-
-			},
-			{"titolo": "Musica"	,
-			"avatar":"alarm_on",
-			"tip": 	"NO",
-			"questions":
-				[	{"tipo": "VF", "ask": "il puffo è blu", "ans": "V"},  				 
-					{"tipo": "VF", "ask": "il cielo è rosso", "ans": "F"},
-					{"tipo": "VF", "ask": "il cielo è blu",	"ans": "V"}	
-				]
-
-			},
-			{"titolo": "Sport"	,
-			"avatar":"alarm_on",
-			"tip": 	"NO",
-			"questions":
-				[	{"tipo": "VF", "ask": "il puffo è blu", "ans": "V"},  				 
-					{"tipo": "VF", "ask": "il cielo è rosso", "ans": "F"},
-					{"tipo": "VF", "ask": "il cielo è blu",	"ans": "V"}	
-				]
-*/
 			}]; 
 			
 		//JQuery per caricare correttamente la select
@@ -74,7 +34,7 @@ class QuizCompilationController{
 	
 	}
 	goback(lista){
-		debugger;
+		
 			
 			//	var attr = idx + 1;
 				//if( attr < lista.length )
@@ -93,6 +53,12 @@ class QuizCompilationController{
 			}
 	goIndex(indice){
 		this.idx = indice;
+		
+	}
+	
+	completaQuiz(){
+		
+		QzMessage.showAlert();
 		
 	}
 } 

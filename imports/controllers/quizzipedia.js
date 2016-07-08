@@ -26,7 +26,28 @@ utente ={nome:'Tino', cognome:'MBO'};
 	 utente.cognome = 'FATTO!';
 	 teto = 'finemondo';
  };
- quizComp = {}
+ quizComp = { 
+			aa(){ alert(); }
+			}
+ 
+QzMessage = {
+	
+	 showAlert(){
+		var $toastContent = $("<span class='red'>Messaggio di Errore!</span>");
+		Materialize.toast($toastContent, 5000);
+	var close = document.getElementsByClassName("closebtn");
+var i;
+
+for (i = 0; i < close.length; i++) {
+    close[i].onclick = function(){
+        var div = this.parentElement;
+        div.style.opacity = "0";
+        setTimeout(function(){ div.style.display = "none"; }, 600);
+    }
+}
+	}
+ }
+ 
 
 // create a module
 export default angular.module('quizzipedia', [

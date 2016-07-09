@@ -3,6 +3,10 @@ import Quizzes from "../publishers/quizPublisher";
 
 Meteor.methods({
    "quizzes.insert" (title, questions, categories, time){
+	   
+	   if (!Meteor.userId()){
+           throw new Meteor.Error('non-authorized');
+       }
        
        Quizzes.insert({
            title,

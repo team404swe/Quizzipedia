@@ -20,4 +20,5 @@ accounts-password
 dotansimha:accounts-ui-angular
 practicalmeteor:mocha
 materialize:materialize
-useraccounts:materialize
+accounts-base
+accounts-ui

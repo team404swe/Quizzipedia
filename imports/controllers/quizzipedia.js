@@ -60,7 +60,8 @@ export default angular.module('quizzipedia', [
   quizCreationForm.name,
   questionForm.name,
   searchForm.name,
-  quizCompilation.name
+  quizCompilation.name,
+  'accounts.ui'
 ]).component('quizzipedia', {
   templateUrl: 'imports/templates/quizzipedia.html',  
   controllerAs: 'quizzipedia',

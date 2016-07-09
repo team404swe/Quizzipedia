@@ -3,6 +3,10 @@ import Questions from "../publishers/questionPublisher";
 
 Meteor.methods({
    "questions.insert" (QMLtext, category){
+	   
+	   if (!Meteor.userId()){
+           throw new Meteor.Error('non-authorized');
+       }
        
        Questions.insert({
            QMLtext,

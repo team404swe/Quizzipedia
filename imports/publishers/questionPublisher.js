@@ -1,10 +1,10 @@
 import { Mongo } from 'meteor/mongo';
 
-export const Questions = new Mongo.Collection('Questions');
+export const Questions = new Mongo.Collection('questions');
 
 if (Meteor.isServer)
 {
-	Meteor.publish('Questions', function tasksPublication() {
-	return Tasks.find();
+	Meteor.publish('questions', function questionsPublication() {
+		return Questions.find();
 	});
 }

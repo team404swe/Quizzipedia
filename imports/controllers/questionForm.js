@@ -1,14 +1,21 @@
 import angular from 'angular';
 import angularMeteor from 'angular-meteor';
+import { Meteor } from 'meteor/meteor'
 import template from '../templates/questionForm.html';
+import '../methods/questionMethods.js';
 
 class NewQuestionController{
 	constructor($scope) {
-		$scope.viewModel(this);      				   
-	}
+		$scope.viewModel(this);   											   	
+	}	
 	
-	saveQuestion(newQuestion){
-		
+	saveQuestion(QMLText, category){
+		if(QMLText=="" || category==""){
+			console.log("campi dati necessari");
+		}
+		else{
+			Meteor.call("questions.insert",	QMLText, category );
+		}
 	}
 }
 

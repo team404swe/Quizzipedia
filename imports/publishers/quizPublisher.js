@@ -4,7 +4,7 @@ export const Quizzes = new Mongo.Collection('Quiz');
 
 if (Meteor.isServer)
 {
-	Meteor.publish('Quiz', function tasksPublication() {
-	return Tasks.find();
+	Meteor.publish('quizzes', function tasksPublication() {
+		return Quizzes.find();
 	});
 }

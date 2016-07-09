@@ -4,12 +4,12 @@ import { Questions } from "../publishers/questionPublisher.js";
 import { QuestionsStatistics } from "../statistics/Statistics.js";
 
 import "../parser/Parser.js";
-
+/*
 Meteor.methods({
 	"questions.insert" (QMLtext, category){
        
-	   var controllo = Meteor.call("check", QMLtext);//invoco il check
-	   if(controllo !== "OK") return controllo;
+	   //var controllo = Meteor.call("check", QMLtext);//invoco il check
+	   //if(controllo !== "OK") return controllo;
 	   
        Questions.insert({
 			QMLtext,
@@ -36,3 +36,4 @@ Meteor.methods({
 		QuestionsStatistics.remove(questionId);
     }
 });
+*/

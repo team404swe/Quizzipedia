@@ -3,7 +3,7 @@ import angularMeteor from 'angular-meteor';
 import template from '../templates/questionList.html';
 import Question from './question';
 
-import { Questions } from '../api/questions.js';
+import { Questions } from '../publishers/questionPublisher.js';
 
 class QuestionListController{
 	constructor($scope) {

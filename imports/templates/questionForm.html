@@ -4,24 +4,24 @@
 			<h1>Question Creation</h1>
 		</header>
 	
-		<form>
+		<form ng-submit="$ctrl.saveQuestion($ctrl.QMLText, $ctrl.category)">
 			<fieldset>
 				<legend class="hidden">Create your question</legend>
 				 <div >
 					<fieldset>
 						<div class="input-field">
 							<label for="category" data-error="wrong" data-success="right">Category</label>
-							<input type="text" name="category" id="category" class="validate" required/>
+							<input type="text" name="category" id="category" class="validate" required ng-model="$ctrl.category"/>
 						</div>
 						<div class="input-field">
-							<textarea id="qmlCode" class="materialize-textarea"></textarea>
 							<label for="qmlCode">QML Code</label>
+							<textarea id="qmlCode" class="materialize-textarea" ng-model="$ctrl.QMLText"></textarea>							
 						</div>				
 					</fieldset>
 				</div>
 				
-				<input type="submit" id="check" value="Check QML" ng-click="check()" class="waves-effect waves-light btn"/>
-				<input type="submit" id="submit" value="Save Question" ng-click="saveQuestion()" class="waves-effect waves-light btn"/>				
+				<button id="check" ng-click="check()" class="waves-effect waves-light btn">Check QML</button>
+				<input type="submit" id="submit" value="Save Question" class="waves-effect waves-light btn"/>				
 			</fieldset>
 		</form>
 	</div>

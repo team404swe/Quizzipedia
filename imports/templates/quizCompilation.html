@@ -8,10 +8,10 @@
 					<p>	Tempo rimanente: {{$ctrl.prova}} -sep-{{$ctrl.teto}} {{$ctrl.utente.nome}}</p>
 				</div>				
 				<div class="col s12 m3 offset-m1 l2 offset-l1"> 
-					<a class="waves-effect waves-light btn col s12 card " ng-click="$ctrl.completaQuiz()">Consegna!</a> 
+					<a class="waves-effect waves-light btn col s12 card " ng-click="{{quizComp}}">Consegna!</a> 
 				</div> 
 				
-				<div class="col s12 m12 l12 breadcrumb1 flat">
+				<div class="col s12 m12 l12 breadcrumb1 flat hide-on-small-only">
 					<a href="#" class="active">Inizio</a>
 					<a href="#" ng-repeat= "x in $ctrl.miniModel[0].questions" ng-click="$ctrl.goIndex($index)">{{$index+1}}</a>					
 					<a href="#" class="active">Fine</a>					
@@ -91,7 +91,13 @@
 						
 					</div>
 					<div class="section ordinamento col s12 l8 offset-l2 " >
-						
+						<p class=" col s12 m6 l4 offset-l1" ng-repeat="p1 in ['Money Ganster', 'Grease', 'Blade', 'Pretty Woman']">
+						{{$index + 1}}. 
+							<select ng-model="selectedItem">
+								<option value="" disabled selected>Choose your option</option>
+								<option ng-repeat="p1 in ['Money Ganster', 'Grease', 'Blade', 'Pretty Woman']" value="{{p1}}">{{p1}}</option>
+							</select>
+						</p>
 					</div>
 					
 				</div>

@@ -5,32 +5,38 @@ import template from '../templates/questionForm.html';
 
 class NewQuestionController{
 	constructor($scope) {
-		$scope.viewModel(this);   			
+		$scope.viewModel(this);   
+		
+		//JQuery per caricare correttamente la select
+		$(document).ready(function() {
+			$('select').material_select();
+		});			
 	}	
 	
 	check(QMLtext){		
 		if(QMLtext=="" || QMLtext==undefined){
 				QzMessage.showText(0, "Testo QML assente");
 		}
-		else{
-			console.log(QMLtext);
+		else{			
 			var ris = "";
 			Meteor.call("parser.check", QMLtext , function(error, result) {
-				if (error)
+				if (error){
 					console.log(error);
-				else
-			console.log(result);
-			if(result == "Testo QML corretto")
-				QzMessage.showText(2, result);
-			else
-				QzMessage.showText(1, result);
+					QzMessage.showText(1, "Testo QML invalido");
+				}
+				else{			
+					if(result == "Testo QML corretto")
+						QzMessage.showText(2, result);
+					else
+						QzMessage.showText(1, result);
+				}
 			});
 		}
 	}
 	
 	saveQuestion(QMLtext, category){
-		if(QMLtext=="" || category=="" || QMLtext==undefined || category==undefined){			
-			QzMessage.showText(0, "Please fill the form data");
+		if(QMLtext==undefined || category==undefined){			
+			QzMessage.showText(0, "Please fill the required data");
 		}
 		else{
 			Meteor.call("questions.insert",	QMLtext, category );

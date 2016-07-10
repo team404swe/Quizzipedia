@@ -13,27 +13,13 @@
 			<div class="input-field col s4">
 				<label for="time" class="active">Quiz time</label>
 				<input type="number" min="5" max="120" id="time"  placeholder="5" ng-model="$ctrl.time" required/>
-			</div>
-			
-			<!--
-			<div class="input-field col s4">
-				<label for="category" class="active">Category</label>
-				<select name="category" id="category" ng-model="$ctrl.categories">
-				  <option value="" disabled selected>Choose a Category</option>
-				  <option value="Storia">Storia</option>
-				  <option value="Economia">Economia</option>
-				  <option value="SWE">SWE</option>
-				  <option value="Informatica">Informatica</option>
-				  <option value="Matematica">Matematica</option>
-				  <option value="Cultura_generale">Cultura generale</option>						  
-				</select>
-			</div> -->
+			</div>					
 			
 			<div class="col s12">
 				<ul class="collection with-header">
 					<li class="collection-header"><h4>Quiz categories</h4></li>
 					<li ng-repeat="category in $ctrl.categories" class="collection-item">
-						{{category}}						
+						{{category.category}} - {{category.counter}}					
 					</li>						
 				</ul>
 			</div>

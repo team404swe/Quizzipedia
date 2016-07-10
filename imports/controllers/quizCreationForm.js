@@ -7,12 +7,7 @@ import { Questions } from '../publishers/questionPublisher.js';
 
 class NewQuizController{
 	constructor($scope) {
-		$scope.viewModel(this);     
-				
-		//JQuery per caricare correttamente la select
-		$(document).ready(function() {
-			$('select').material_select();
-		});
+		$scope.viewModel(this);     						
 		
 		this.questions = [];	
 		this.categories= [];
@@ -30,14 +25,26 @@ class NewQuizController{
 		var idpos= this.questions.indexOf(question._id);
 		if(idpos > -1){
 			this.questions.splice(idpos,1);
-			var categoryPos= this.categories.indexOf(question.category);
+			var categoryPos = this.categories.map(function(c) {return c.category; }).indexOf(question.category); 			
+			
 			if(categoryPos > -1){
-				this.categories.splice(categoryPos,1);
+				if(this.categories[categoryPos].counter > 1){
+					this.categories[categoryPos].counter--;
+				}
+				else{
+					this.categories.splice(categoryPos,1);
+				}
 			}
 		}
 		else{
 			this.questions.push(question._id);
-			this.categories.push(question.category);
+			var categoryPos = this.categories.map(function(c) {return c.category; }).indexOf(question.category); 			
+			if(categoryPos == -1){
+				this.categories.push({category: question.category, counter: 1});				
+			}
+			else{
+				this.categories[categoryPos].counter++;
+			}
 		}
 	}
 	
@@ -47,6 +54,7 @@ class NewQuizController{
 			QzMessage.showText(0, "Please fill all the form data and select at least a question");
 		}
 		else{
+			categories=  this.categories.map(function(item){ return item.category});
 			Meteor.call("quizzes.insert", title, questions, categories, time);
 			QzMessage.showText(2,'quiz inserito');		
 		}
@@ -61,3 +69,29 @@ export default angular.module('quizCreationForm', [
     controller: ['$scope', NewQuizController]
   });
   
+  
+  /*toggleSelection(question){		
+		var idpos= this.questions.indexOf(question._id);
+		if(idpos > -1){
+			this.questions.splice(idpos,1);
+			this.categories.forEach(function(item, index){
+				if(item.category == question.category && item.counter >1 ){
+					item.counter--;
+				}
+				else{
+					this.categories.splice(index,1);
+				}
+			});
+		}
+		else{
+			this.questions.push(question._id);
+			this.categories.forEach(function(item, index){
+				if(item.category == question.category){
+					item.counter++;
+				}
+				else{
+					this.categories.push({category: question.category, counter: 1});
+				}
+			});
+		}
+	}*/

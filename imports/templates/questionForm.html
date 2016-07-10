@@ -1,28 +1,39 @@
-<div >
-	<div>
-		<header>
-			<h1>Question Creation</h1>
-		</header>
+<header>
+	<h1>Question Creation</h1>
+</header>
+
+<div class="row">
+	<form ng-submit="$ctrl.saveQuestion($ctrl.QMLtext, $ctrl.category)">
+		<fieldset>
+			<legend class="hidden">Create your question</legend>
+			 <div >
+				<fieldset>					
+					<div class="input-field col s4">
+						<label for="category" data-error="wrong" data-success="right">Category</label>
+						<input type="text" name="category" id="category" class="validate" ng-model="$ctrl.category"/>
+					</div>
+					<!--	
+					<div class="input-field col s4">
+						<label for="category" class="active">Category</label>
+						<select name="category" id="category" ng-model="$ctrl.category">
+						  <option value="" disabled selected>Choose a Category</option>
+						  <option value="Storia">Storia</option>
+						  <option value="Economia">Economia</option>
+						  <option value="SWE">SWE</option>
+						  <option value="Informatica">Informatica</option>
+						  <option value="Matematica">Matematica</option>
+						  <option value="Cultura_generale">Cultura generale</option>						  
+						</select>
+					</div>-->
+					<div class="input-field col s10">
+						<label for="qmlCode">QML Code</label>
+						<textarea id="QMLCode" class="materialize-textarea" ng-model="$ctrl.QMLtext"></textarea>							
+					</div>				
+				</fieldset>
+			</div>
 			
-		<form ng-submit="$ctrl.saveQuestion($ctrl.QMLtext, $ctrl.category)">
-			<fieldset>
-				<legend class="hidden">Create your question</legend>
-				 <div >
-					<fieldset>
-						<div class="input-field">
-							<label for="category" data-error="wrong" data-success="right">Category</label>
-							<input type="text" name="category" id="category" class="validate" ng-model="$ctrl.category"/>
-						</div>
-						<div class="input-field">
-							<label for="qmlCode">QML Code</label>
-							<textarea id="QMLCode" class="materialize-textarea" ng-model="$ctrl.QMLtext"></textarea>							
-						</div>				
-					</fieldset>
-				</div>
-				
-				<span id="check" ng-click="$ctrl.check($ctrl.QMLtext)" class="waves-effect waves-light btn">Check QML</span>
-				<input type="submit" id="submit" value="Save Question" class="waves-effect waves-light btn"/>				
-			</fieldset>
-		</form>
-	</div>
-</div>
+			<span id="check" ng-click="$ctrl.check($ctrl.QMLtext)" class="waves-effect waves-light btn">Check QML</span>
+			<input type="submit" id="submit" value="Save Question" class="waves-effect waves-light btn"/>				
+		</fieldset>
+	</form>
+</div>	

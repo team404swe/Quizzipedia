@@ -1,4 +1,8 @@
 <div >
+	<div class="alert success" ng-class="{{msgAlert}}" ng-show="$ctrl.quizInserted">
+			<span class="closebtn" ng-click="$ctrl.quizInserted=false;">&times;</span>
+			Your quiz has been saved!
+		</div>
 	<header>
 		<h1>Quiz Creation</h1>
 	</header>
@@ -8,28 +12,42 @@
 			<legend class="hidden">Create your quiz</legend>
 			 <div>
 				<fieldset>
-					<div class="input-field col s6">
+					<div class="input-field col s4">
 						<label for="title">Title</label>
-						<input type="text" id="title"/>
+						<input type="text" id="title" ng-model="$ctrl.title" required/>
 					</div>
-					<div class="input-field col s6">
-						<label for="category" class="hidden">Category</label>
-						<select id="category" ng-model="selectedCategory">
+					<div class="input-field col s4">
+						<label for="time" class="active">Quiz time</label>
+						<input type="number" min="5" max="120" id="time"  placeholder="5" ng-model="$ctrl.time" required/>
+					</div>
+					
+					<div class="input-field col s4">
+						<label for="category" class="active">Category</label>
+						<select id="category" ng-model="$ctrl.category">
 						  <option value="" disabled selected>Choose a Category</option>
 						  <option value="1">Storia</option>
 						  <option value="2">Economia</option>
 						  <option value="3">SWE</option>
 						  <option value="4">Informatica</option>
-						  <option value="5"></option>
-						  <option value="6">SWE</option>
-						  <option value="7">SWE</option>
+						  <option value="5">Matematica</option>
+						  <option value="6">Cultura generale</option>						  
 						</select>
-					</div>					
-				</fieldset>
+					</div>		
+					
+					<div class="input-field col s12">
+						<h2>Add questions to your quiz</h2>
+						<ul class="collection popout">
+							<li ng-repeat="question in quizCreationForm.questions" class="collection-item">
+								Categoria: {{question.category}}
+								<input type="checkbox" id="{{$index}}" class="filled-in addQuestion" value="{{question._id}}" ng-model="$ctrl.questions"/>								
+								<label for="{{$index}}"></label>
+							</li>						
+						</ul>
+					</div>			
+				</fieldset>				
 				
 				<input type="submit" id="submit" value="Save Quiz" class="waves-effect waves-light btn"/>
-			</div>
-			
+			</div>			
 			
 		</fieldset>
 	</form>

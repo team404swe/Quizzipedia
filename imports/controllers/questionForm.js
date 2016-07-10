@@ -9,9 +9,13 @@ class NewQuestionController{
 		this.questionInserted= false;
 	}	
 	
-	check(QMLtext){
-		console.log(QMLtext);
-		Meteor.call("parser.check", QMLtext );
+	check(QMLtext){		
+		if(QMLtext=="" || QMLtext==undefined){
+			console.log("Testo QML vuoto");
+		}
+		else{
+			Meteor.call("parser.check", QMLtext );
+		}
 	}
 	
 	saveQuestion(QMLtext, category){

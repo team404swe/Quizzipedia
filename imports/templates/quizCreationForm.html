@@ -39,7 +39,7 @@
 						<ul class="collection popout">
 							<li ng-repeat="question in quizCreationForm.questions" class="collection-item">
 								Categoria: {{question.category}}
-								<input type="checkbox" id="{{$index}}" class="filled-in addQuestion" value="{{question._id}}" ng-model="$ctrl.questions"/>								
+								<input type="checkbox" id="{{$index}}" class="addQuestion filled-in" value="{{question._id}}" ng-model="$ctrl.questions"/>								
 								<label for="{{$index}}"></label>
 							</li>						
 						</ul>

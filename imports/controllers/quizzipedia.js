@@ -19,6 +19,7 @@ class Quizzipedia {
 		debugger;
 		$scope.viewModel(this);		
 		
+		//attivazione del menu mobile
 		$(".button-collapse").sideNav();
 	}	
 	

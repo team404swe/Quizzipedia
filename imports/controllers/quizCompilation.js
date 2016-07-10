@@ -23,7 +23,7 @@ class QuizCompilationController{
 					{"_id":"7", "tipo": "VF", "image":"qzcustom/p7.gif", "ask": "Il segnale raffigurato indica una curva pericolosa a destra",	"ans": "V"}	,
 					{"_id":"8", "tipo": "VF", "image":"qzcustom/p8.gif", "ask": "In presenza del segnale raffigurato e del semaforo a tre luci abbiamo la precedenza se il semaforo è a luce verde e l'agente del traffico ci ordina di fermarci",	"ans": "V"}	,
 					{"_id":"9", "tipo": "VF", "image":"qzcustom/p9.gif", "ask": "La striscia bianca laterale discontinua in figura divide la carreggiata da una corsia di accelerazione",	"ans": "V"}	,
-					{"_id":"9", "tipo": "VF", "ask": "chi ha scoperto l'aria fritta", "ans":" }
+					
 				]
 
 			}]; 

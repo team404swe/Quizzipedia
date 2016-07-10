@@ -1,55 +1,59 @@
 <div >
-	<div class="alert success" ng-class="{{msgAlert}}" ng-show="$ctrl.quizInserted">
-			<span class="closebtn" ng-click="$ctrl.quizInserted=false;">&times;</span>
-			Your quiz has been saved!
-		</div>
 	<header>
 		<h1>Quiz Creation</h1>
 	</header>
 	
-	<form class="row" ng-submit="$ctrl.saveQuiz(title, questions, categories, time)">
+	<form ng-submit="$ctrl.saveQuiz($ctrl.title, $ctrl.questions, $ctrl.categories, $ctrl.time)" class="row">
+		<legend class="hidden">Create your quiz</legend>
 		<fieldset>
-			<legend class="hidden">Create your quiz</legend>
-			 <div>
-				<fieldset>
-					<div class="input-field col s4">
-						<label for="title">Title</label>
-						<input type="text" id="title" ng-model="$ctrl.title" required/>
-					</div>
-					<div class="input-field col s4">
-						<label for="time" class="active">Quiz time</label>
-						<input type="number" min="5" max="120" id="time"  placeholder="5" ng-model="$ctrl.time" required/>
-					</div>
-					
-					<div class="input-field col s4">
-						<label for="category" class="active">Category</label>
-						<select id="category" ng-model="$ctrl.category">
-						  <option value="" disabled selected>Choose a Category</option>
-						  <option value="1">Storia</option>
-						  <option value="2">Economia</option>
-						  <option value="3">SWE</option>
-						  <option value="4">Informatica</option>
-						  <option value="5">Matematica</option>
-						  <option value="6">Cultura generale</option>						  
-						</select>
-					</div>		
-					
-					<div class="input-field col s12">
-						<h2>Add questions to your quiz</h2>
-						<ul class="collection popout">
-							<li ng-repeat="question in quizCreationForm.questions" class="collection-item">
-								Categoria: {{question.category}}
-								<input type="checkbox" id="{{$index}}" class="addQuestion filled-in" value="{{question._id}}" ng-model="$ctrl.questions"/>								
-								<label for="{{$index}}"></label>
-							</li>						
-						</ul>
-					</div>			
-				</fieldset>				
-				
-				<input type="submit" id="submit" value="Save Quiz" class="waves-effect waves-light btn"/>
-			</div>			
+			<div class="input-field col s4">
+				<label for="title">Title</label>
+				<input type="text" id="title" ng-model="$ctrl.title" required/>
+			</div>
+			<div class="input-field col s4">
+				<label for="time" class="active">Quiz time</label>
+				<input type="number" min="5" max="120" id="time"  placeholder="5" ng-model="$ctrl.time" required/>
+			</div>
 			
-		</fieldset>
+			<!--
+			<div class="input-field col s4">
+				<label for="category" class="active">Category</label>
+				<select name="category" id="category" ng-model="$ctrl.categories">
+				  <option value="" disabled selected>Choose a Category</option>
+				  <option value="Storia">Storia</option>
+				  <option value="Economia">Economia</option>
+				  <option value="SWE">SWE</option>
+				  <option value="Informatica">Informatica</option>
+				  <option value="Matematica">Matematica</option>
+				  <option value="Cultura_generale">Cultura generale</option>						  
+				</select>
+			</div> -->
+			
+			<div class="col s12">
+				<ul class="collection with-header">
+					<li class="collection-header"><h4>Quiz categories</h4></li>
+					<li ng-repeat="category in $ctrl.categories" class="collection-item">
+						{{category}}						
+					</li>						
+				</ul>
+			</div>
+			
+			<div class="input-field col s12">						
+				<ul class="collection with-header">
+					<li class="collection-header"><h4>Add questions to your quiz</h4></li>
+					<li ng-repeat="question in $ctrl.questionList" class="collection-item">
+						<div>									
+							<input type="checkbox" id="{{$index}}" class="filled-in" ng-checked="$ctrl.questions.indexOf(question._id) > -1"  ng-click="$ctrl.toggleSelection(question)" value="{{question._id}}" />								
+							<label for="{{$index}}"></label>
+							Categoria: {{question.category}}
+						</div>
+					</li>						
+				</ul>
+			</div>			
+			<div class="col s7 right">
+				<input type="submit" id="submit" value="Save Quiz" class="waves-effect waves-light btn"/>	
+			</div>
+		</fieldset>														
 	</form>
 
 </div>

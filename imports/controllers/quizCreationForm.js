@@ -14,18 +14,42 @@ class NewQuizController{
 			$('select').material_select();
 		});
 		
-		this.quizInserted= false;
+		this.questions = [];	
+		this.categories= [];
+				
 		this.subscribe('questions');
 		   
 		this.helpers({
-			questions() {
+			questionList() {
 				return Questions.find({}, {"sort" : [['createdAt', 'desc']]});
 			}
 		});   
 	}
 	
-	saveQuiz(title, questions, categories, time){
-		Meteor.call("quizzes.insert", title, questions, categories, time);
+	toggleSelection(question){		
+		var idpos= this.questions.indexOf(question._id);
+		if(idpos > -1){
+			this.questions.splice(idpos,1);
+			var categoryPos= this.categories.indexOf(question.category);
+			if(categoryPos > -1){
+				this.categories.splice(categoryPos,1);
+			}
+		}
+		else{
+			this.questions.push(question._id);
+			this.categories.push(question.category);
+		}
+	}
+	
+	saveQuiz(title, questions, categories, time){			
+		
+		if(title==undefined || questions==undefined || categories==undefined || time==undefined ){
+			QzMessage.showText(0, "Please fill all the form data and select at least a question");
+		}
+		else{
+			Meteor.call("quizzes.insert", title, questions, categories, time);
+			QzMessage.showText(2,'quiz inserito');		
+		}
 	}
 }
 
@@ -33,8 +57,7 @@ export default angular.module('quizCreationForm', [
   angularMeteor
 ])
   .component('quizCreationForm', {
-    templateUrl: 'imports/templates/quizCreationForm.html',
-    controllerAs: 'quizCreationForm',
+    templateUrl: 'imports/templates/quizCreationForm.html',    
     controller: ['$scope', NewQuizController]
   });
   

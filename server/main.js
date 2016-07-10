@@ -3,6 +3,7 @@ import '../imports/publishers/questionPublisher.js';
 import '../imports/publishers/quizPublisher.js';
 import '../imports/statistics/Statistics.js';
 import '../imports/methods/questionMethods.js';
+import '../imports/methods/quizMethods.js';
 import '../imports/parser/Parser.js';
 
 Meteor.startup(() => {

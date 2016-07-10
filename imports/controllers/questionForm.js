@@ -5,8 +5,7 @@ import template from '../templates/questionForm.html';
 
 class NewQuestionController{
 	constructor($scope) {
-		$scope.viewModel(this);   	
-		this.questionInserted= false;
+		$scope.viewModel(this);   			
 	}	
 	
 	check(QMLtext){		
@@ -19,15 +18,12 @@ class NewQuestionController{
 	}
 	
 	saveQuestion(QMLtext, category){
-		console.log(QMLtext);
-		console.log(category);
-		if(QMLtext=="" || category=="" || QMLtext==undefined || category==undefined){
-			console.log("campi dati necessari");
-			QzMessage.showText(0, "campi dati necessari")
+		if(QMLtext=="" || category=="" || QMLtext==undefined || category==undefined){			
+			QzMessage.showText(0, "Please fill the form data");
 		}
 		else{
 			Meteor.call("questions.insert",	QMLtext, category );
-			this.questionInserted= true;
+			QzMessage.showText(2, "Your question has been saved!")			
 			this.QMLtext="";
 			this.category="";
 		}

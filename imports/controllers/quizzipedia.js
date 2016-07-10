@@ -17,9 +17,7 @@ utente ={nome:'Tino', cognome:'MBO'};
 class Quizzipedia {
 	constructor($scope){
 		debugger;
-		$scope.viewModel(this);
-		this.msgClass = "hide";		
-		
+		$scope.viewModel(this);		
 		
 		$(".button-collapse").sideNav();
 	}	
@@ -38,21 +36,18 @@ class Quizzipedia {
 			}
  
 QzMessage = {
-	
-	showAlert(){
-		var $toastContent = $("<span class='red'>Messaggio di Errore!</span>");
-		Materialize.toast($toastContent, 5000);
+	msgTipo : ['error','warning','success'],
+	showAlert(msg){
+		this.showText(0,msg);
 		
-		var close = document.getElementsByClassName("closebtn");
-		var i;
-
-		for (i = 0; i < close.length; i++) {
-			close[i].onclick = function(){
-				var div = this.parentElement;
-				div.style.opacity = "0";
-				setTimeout(function(){ div.style.display = "none"; }, 600);
-			}
-		}
+		
+	} ,
+	showText(tipo,msg){	
+		var msgTip = ['error','warning','success'];		
+		var msgClass = "alert "+msgTip[tipo]; 	
+		
+		Materialize.toast(msg, 5000, msgClass);		
+				
 	}
  }
  
@@ -130,10 +125,10 @@ var m; // array in cui viene memorizzata la domanda scomposta
 //ritorna true se trova il match completo (senza controllare se esiste almeno una risposta giusta)
 // il controllo della presenza della risposta giusta è fatto dalla funzione checkAnswer()
 
-function checkText()
-{
+checkText = function(str)
+{	debugger;
     
-    str = document.getElementById("inputText").value;
+   // str = document.getElementById("inputText").value;
     
     var AR = [VF, M, A, MX];
     var match = false;
@@ -149,17 +144,20 @@ function checkText()
     }
 
     if(m)
+	{
         window.alert("domanda di tipo:\n"+m[1]);
-    else 
+		return "domanda di tipo: " + m[1];
+    }
+	else 
+	{	
         window.alert("codice non corretto");  
-
-    return match;
-
+		return match;
+	}
 }
 
 //controlla il tipo della domanda e in base a quello chiama le funzioni seguenti per controllare se c'è almeno una risposta giusta
 
-function checkAnswer()
+ checkAnswer = function()
 {
     var question;
     if(checkText())
@@ -225,7 +223,7 @@ function checkAnswer()
 }
 
 // ritorna true o false in base alla risposta se è V o F
-function checkVF()
+ checkVF = function()
 {
     switch(m[3])
     {
@@ -244,7 +242,7 @@ function checkVF()
 }
 
 
-function checkA()
+ checkA = function()
 {
     var A = [], // elementi del gruppo A
         B = []; // elementi del gruppo B
@@ -309,7 +307,7 @@ function checkA()
 }
 
 
-function checkM()
+ checkM = function()
 {
     var re = /((\{X?[\s]*\}[\s]*\S{1,}.*[\s]*){2,})/;
     var s;
@@ -335,7 +333,7 @@ function checkM()
 
 }
 
-function checkMX(){
+ checkMX = function(){
 
     var re = /((\{X?[\s]*\}[\s]*\S{1,}.*[\s]*){2,})/;
     var s;
@@ -360,7 +358,7 @@ function checkMX(){
     return lines;
 }
 
-function getRightAns()
+ getRightAns = function()
 {   
 
     var re = /\{X[\s]*\}([\s]*\S{1,}.*[\s]*)/;
@@ -394,6 +392,5 @@ function getRightAns()
 
 
 // EOF
-
 
 

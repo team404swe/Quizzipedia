@@ -23,6 +23,7 @@ class NewQuestionController{
 		console.log(category);
 		if(QMLtext=="" || category=="" || QMLtext==undefined || category==undefined){
 			console.log("campi dati necessari");
+			QzMessage.showText(0, "campi dati necessari")
 		}
 		else{
 			Meteor.call("questions.insert",	QMLtext, category );

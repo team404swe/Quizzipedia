@@ -15,34 +15,44 @@ class NewQuestionController{
 	
 	check(QMLtext){		
 		if(QMLtext=="" || QMLtext==undefined){
-				QzMessage.showText(0, "Testo QML assente");
+				QzMessage.showText(0, "Missing QML text");
 		}
-		else{			
-			var ris = "";
-			Meteor.call("parser.check", QMLtext , function(error, result) {
-				if (error){
+		else{
+			console.log(QMLtext);
+			Meteor.call("parser.check", QMLtext, function(error, result) {
+				if (error)
 					console.log(error);
-					QzMessage.showText(1, "Testo QML invalido");
-				}
-				else{			
-					if(result == "Testo QML corretto")
-						QzMessage.showText(2, result);
-					else
-						QzMessage.showText(1, result);
-				}
+				else
+			console.log(result);
+			if(result == "QML text is correct")
+				QzMessage.showText(2, result);
+			else
+				QzMessage.showText(1, result);
 			});
 		}
 	}
 	
 	saveQuestion(QMLtext, category){
-		if(QMLtext==undefined || category==undefined){			
-			QzMessage.showText(0, "Please fill the required data");
+		if(QMLtext=="" || category=="" || QMLtext==undefined || category==undefined){			
+			QzMessage.showText(0, "Please fill the form data");
 		}
 		else{
-			Meteor.call("questions.insert",	QMLtext, category );
-			QzMessage.showText(2, "Your question has been saved!")			
-			this.QMLtext="";
-			this.category="";
+			Meteor.call("questions.insert",	QMLtext, category, function(error, result) {
+				if (error)
+					console.log(error);
+				else
+					console.log(result);
+					if(result == "OK")
+					{
+						QzMessage.showText(2, "Your question has been saved!");
+						this.QMLtext="";
+						this.category="";
+					}
+					else if(result == "QML text has sintax errors")
+						QzMessage.showText(0, "QML text has sintax errors");
+					else
+						QzMessage.showText(0, "You need to be logged");
+			});
 		}
 	}
 }

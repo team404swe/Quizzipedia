@@ -5,7 +5,10 @@
 			
 	<ul class="collection">
 		<li ng-repeat="quiz in $ctrl.quizzes" class="collection-item">
-			{{quiz.title}} - Time: {{quiz.time}}
+			<strong>{{quiz.title}}</strong> <br>			
+			Number of questions: {{quiz.questions.length}}<br>
+			Categories: <span ng-repeat="category in quiz.categories">{{category}} </span> <br>
+			Maximum time: {{quiz.time}} <br>
 		</li>
 	</ul>
 </div>

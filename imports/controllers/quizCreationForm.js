@@ -50,8 +50,11 @@ class NewQuizController{
 	
 	saveQuiz(title, questions, categories, time){			
 		
-		if(title==undefined || questions==undefined || categories==undefined || time==undefined ){
-			QzMessage.showText(0, "Please fill all the form data and select at least a question");
+		if(title==undefined || time==undefined ){
+			QzMessage.showText(0, "Please fill all the form data");
+		}
+		else if(questions.length == 0 || categories.length==0){
+			QzMessage.showText(0, "Select at least a question and a category");
 		}
 		else{
 			categories=  this.categories.map(function(item){ return item.category});

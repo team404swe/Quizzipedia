@@ -1,14 +1,31 @@
 
 	<div class="row">			
-
-		<div class="qzcomp card-panel  col s12 m12 l12">
+		<div class="col s12 " >
+			
+			
+			
+		</div>
+		<div class="col s12 m6 offset-m3 l6 offset-l3 center" ng-hide="$ctrl.quizPlay">
+          <div class="card blue-grey darken-1">
+            <div class="card-content white-text">
+              <span class="card-title">{{$ctrl.miniModel[0].titolo}}</span>
+              <p>{{$ctrl.miniModel[0].descrizione}} - I am a very simple card. I am good at containing small bits of information.
+              I am convenient because I require little markup to use effectively.</p>
+            </div>
+            <div class="card-action">
+              <a class=" waves-effect waves-light btn"  ng-click="$ctrl.quizPlay = !$ctrl.quizPlay">Indietro</a>
+              <a class=" waves-effect waves-light btn"  ng-click="$ctrl.startQuiz()">Inizia il Quiz</a>
+            </div>
+          </div>
+        </div>
+		<div class="qzcomp card-panel  col s12 m12 l12" ng-show="$ctrl.quizPlay">
 			<div class="qzcomphdr col s12 m12 ">
 				<div class="col s12 m l9 card">
 					<p class="col s8 center">	{{$ctrl.miniModel[0].titolo}} </p>
 					<p>	Tempo rimanente: {{$ctrl.prova}} -sep-{{$ctrl.teto}} {{$ctrl.utente.nome}}</p>
 				</div>				
 				<div class="col s12 m3 offset-m1 l2 offset-l1"> 
-					<a class="waves-effect waves-light btn col s12 card " ng-click="{{quizComp}}">Consegna!</a> 
+					<a class="waves-effect waves-light btn col s12 card " ng-click="$ctrl.submitQuiz()">Consegna!</a> 
 				</div> 
 				
 				<div class="col s12 m12 l12 breadcrumb1 flat hide-on-small-only">
@@ -18,25 +35,27 @@
 				</div>
 			</div>
 			<div class="qzdmd col s12 m12 l12  " >
-				<div class="col s12 m9 l8 offset-l1  card ">
-					<p>{{$ctrl.miniModel[0].questions[$ctrl.idx].ask}}</p>
-				</div>
-				<div class="col s12 m2 offset-m1 l2    ">
-					<p class="center">
-					<img class="responsive-img " id="qzimg" src="$ctrl.miniModel[0].questions[$ctrl.idx].image">
-					</p>
+				<div class="row">
+					<div class="col s12 m9 l8 offset-l1  card ">
+						<p>{{$ctrl.miniModel[0].questions[$ctrl.idx].ask}}</p>
+					</div>
+					<div class="col s12 m2 offset-m1 l2    ">
+						<p class="center">
+						<img class="responsive-img " id="qzimg" src="$ctrl.miniModel[0].questions[$ctrl.idx].image">
+						</p>
+					</div>
 				</div>
 				<div class="row">
 				<div class="divider col s12"></div>
-				<div  >
+				<div ng-switch="$ctrl.miniModel[0].questions[$ctrl.idx].tipo">
 					
-					<div class="section vero col s12 l8 offset-l2 ">
+					<div class="section vero col s12 l8 offset-l2 " ng-switch-when="VF">
 						<a class="waves-effect waves-light btn col s12 l6 offset-l3  card">VERO</a>				
 					
 						<a class="waves-effect waves-light btn col s12 l6 offset-l3 card">FALSO</a>
 					</div>
 					
-					<div class="section sceltasingola col s12 l8 offset-l2 ">
+					<div class="section sceltasingola col s12 l8 offset-l2 " ng-switch-when="MU">
 						
 							<p class=" col s12 m6 l6">
 								<input class="with-gap" type="radio" ng-model="myVar" value="dogs" id="test1" />
@@ -55,7 +74,7 @@
         						<label for="test4">Brown</label>
     						</p>  						
 					</div>
-					<div class="section sceltamultipla col s12 l8 offset-l2 ">
+					<div class="section sceltamultipla col s12 l8 offset-l2 " ng-switch-when="MX">
 						 <p class=" col s12 m6 l6" >
 							<input type="checkbox" id="test5" />
       						<label for="test5">Red</label>
@@ -71,9 +90,10 @@
     					<p class=" col s12 m6 l6" >
       						<input type="checkbox" id="indeterminate-checkbox" />
       						<label for="indeterminate-checkbox">Indeterminate Style</label>
-    					</p>					
+    					</p>	
+								
 					</div >
-					<div class="section associazione col s12 l8 offset-l2 ">
+					<div class="section associazione col s12 l8 offset-l2 " ng-switch-when="AS">
 						<div ng-repeat="p in ['paul', 'john', 'luc']" class="card-panel col s12">
 						<p class=" col s12 m6 l4 offset-l1">
 							<select ng-model="selectedItem">
@@ -86,18 +106,23 @@
 								<option value="" disabled selected>Choose your option</option>
 								<option ng-repeat="p1 in ['Money Ganster', 'Grease', 'Blade', 'Pretty Woman']" value="{{p1}}">{{p1}}</option>
 							</select>
+							
 						</p>
 						</div>
+						<span ng-model="$ctrl.activeSelect()"></span>
+						
 						
 					</div>
-					<div class="section ordinamento col s12 l8 offset-l2 " >
+					<div class="section ordinamento col s12 l8 offset-l2 " ng-switch-when="OD" >
 						<p class=" col s12 m6 l4 offset-l1" ng-repeat="p1 in ['Money Ganster', 'Grease', 'Blade', 'Pretty Woman']">
 						{{$index + 1}}. 
 							<select ng-model="selectedItem">
 								<option value="" disabled selected>Choose your option</option>
 								<option ng-repeat="p1 in ['Money Ganster', 'Grease', 'Blade', 'Pretty Woman']" value="{{p1}}">{{p1}}</option>
 							</select>
+							
 						</p>
+						<span ng-model="$ctrl.activeSelect()"></span>
 					</div>
 					
 				</div>
@@ -107,10 +132,10 @@
 				
 		<div class="row">	
 			<div class="col s3 m2 l3  ">
-				<a class="waves-effect waves-light btn col s12 m8 offset-m2 l6 offset-l3 " ng-click="$ctrl.goback($ctrl.miniModel[0].questions)">PREC.</a>
+				<a class="waves-effect waves-light btn col s12 m8 offset-m2 l6 offset-l3 " ng-click="$ctrl.prevQuestion($ctrl.miniModel[0].questions)">PREC.</a>
 			</div>
 			<div class="col s3 offset-s6 m2 offset-m8 l3 offset-l6 ">
-				<a class="waves-effect waves-light btn col s12 m8 offset-m2 l6 offset-l3 " ng-click="$ctrl.gonext($ctrl.miniModel[0].questions)">SUCC.</a>
+				<a class="waves-effect waves-light btn col s12 m8 offset-m2 l6 offset-l3 " ng-click="$ctrl.nextQuestion($ctrl.miniModel[0].questions)">SUCC.</a>
 			</div>
 		</div>
 		</div>

@@ -13,7 +13,7 @@ class QuizCompilationController{
 			this.myQuiz = {};
 			this.miniModel = [{
 			"titolo": "Patente"	,
-			descrizione:"Piccola descrizione del quiz",
+			descrizione:"Questo quiz di prova simula la prova teorica proposta all'esame per il conseguimento della patente",
 			"tempo": 	"alarm_on",
 			"questions":
 				[	{_id:"1", tipo: "VF", image:"qzcustom/p1.gif", ask: "Il Segnale raffigurato presegnala un tratto di strada deformata", ans: "V"},  				 

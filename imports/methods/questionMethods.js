@@ -12,12 +12,22 @@ Meteor.methods({
            throw new Meteor.Error('non-authorized');
        }
 	   else{
-		   Questions.insert({
-				QMLtext,
-				category,
-				createdAt: new Date(),
-				owner: Meteor.userId(),
-			});		
+		   Meteor.call("parser.check", QMLtext, function(error, result) {
+			   if(error)
+				   console.log(error);
+				else
+				{
+					if(result == "QML text has sintax errors")
+						return result;
+					Questions.insert({
+						QMLtext,
+						category,
+						createdAt: new Date(),
+						owner: Meteor.userId()
+					});
+					return "OK";
+				}
+		   });
 		
 			/*var lastQuestion = Questions.find().sort({createdAt : -1}).limit(1);
 			QuestionsStatistics.insert({lastQuestion._id});	*/

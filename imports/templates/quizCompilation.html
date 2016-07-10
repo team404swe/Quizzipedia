@@ -28,7 +28,7 @@
 				</div>
 				<div class="row">
 				<div class="divider col s12"></div>
-				<div ng-show="$ctrl.miniModel[0].questions[$ctrl.idx].tipo = 'dF' " >
+				<div  >
 					
 					<div class="section vero col s12 l8 offset-l2 ">
 						<a class="waves-effect waves-light btn col s12 l6 offset-l3  card">VERO</a>				
@@ -39,19 +39,19 @@
 					<div class="section sceltasingola col s12 l8 offset-l2 ">
 						
 							<p class=" col s12 m6 l6">
-								<input class="with-gap" name="group1" type="radio" id="test1" />
+								<input class="with-gap" type="radio" ng-model="myVar" value="dogs" id="test1" />
      							 <label for="test1">Red</label>
     						</p>
     						<p class=" col s12 m6 l6" >
-      							<input class="with-gap" name="group1" type="radio" id="test2" />
+      							<input class="with-gap" type="radio" ng-model="myVar" value="wer" id="test2"  />
      							 <label for="test2">Yellow</label>
     						</p>
     						<p class=" col s12 m6 l6">
-      							<input class="with-gap" name="group1" type="radio" id="test3"  />
+      							<input class="with-gap" type="radio" ng-model="myVar" value="ds"  id="test3"  />
       							<label for="test3">Green</label>
     						</p>
       						<p class=" col s12 m6 l6">
-        						<input class="with-gap" name="group1" type="radio" id="test4"  />
+        						<input class="with-gap" type="radio" ng-model="myVar" value="dogds"  id="test4" />
         						<label for="test4">Brown</label>
     						</p>  						
 					</div>

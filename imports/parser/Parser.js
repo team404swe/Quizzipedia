@@ -1,9 +1,9 @@
+import { Meteor } from 'meteor/meteor'
+
 Meteor.methods({
 	
-	"check" (QMLTesto) {
+	"parser.check" (QMLTesto) {
 		// aspettiamo da martin la funzioncina gia' pronta
-		
-		
 	}
 	
 });

@@ -15,16 +15,16 @@
 					<fieldset>
 						<div class="input-field">
 							<label for="category" data-error="wrong" data-success="right">Category</label>
-							<input type="text" name="category" id="category" class="validate" required ng-model="$ctrl.category"/>
+							<input type="text" name="category" id="category" class="validate" value="eqweqwe" ng-model="$ctrl.category"/>
 						</div>
 						<div class="input-field">
 							<label for="qmlCode">QML Code</label>
-							<textarea id="qmlCode" class="materialize-textarea" ng-model="$ctrl.QMLtext"></textarea>							
+							<textarea id="QMLCode" class="materialize-textarea" value="eqweqwe" ng-model="$ctrl.QMLtext"></textarea>							
 						</div>				
 					</fieldset>
 				</div>
 				
-				<button id="check" ng-click="$ctrl.check($ctrl.QMLtext)" class="waves-effect waves-light btn">Check QML</button>
+				<span id="check" ng-click="$ctrl.check($ctrl.QMLtext)" class="waves-effect waves-light btn">Check QML</span>
 				<input type="submit" id="submit" value="Save Question" class="waves-effect waves-light btn"/>				
 			</fieldset>
 		</form>

@@ -10,11 +10,14 @@ class NewQuestionController{
 	}	
 	
 	check(QMLtext){
-		
+		console.log(QMLtext);
+		Meteor.call("parser.check", QMLtext );
 	}
 	
 	saveQuestion(QMLtext, category){
-		if(QMLtext=="" || category==""){
+		console.log(QMLtext);
+		console.log(category);
+		if(QMLtext=="" || category=="" || QMLtext==undefined || category==undefined){
 			console.log("campi dati necessari");
 		}
 		else{

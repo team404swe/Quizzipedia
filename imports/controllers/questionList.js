@@ -13,7 +13,7 @@ class QuestionListController{
 	
 		this.helpers({
 			questions() {
-				return Questions.find();
+				return Questions.find({}, {"sort" : [['createdAt', 'desc']]});
 			}
 		});
 	}

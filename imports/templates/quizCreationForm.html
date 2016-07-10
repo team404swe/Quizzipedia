@@ -3,7 +3,7 @@
 		<h1>Quiz Creation</h1>
 	</header>
 	
-	<form class="row">
+	<form class="row" ng-submit="$ctrl.saveQuiz(title, questions, categories, time)">
 		<fieldset>
 			<legend class="hidden">Create your quiz</legend>
 			 <div>
@@ -19,11 +19,15 @@
 						  <option value="1">Storia</option>
 						  <option value="2">Economia</option>
 						  <option value="3">SWE</option>
+						  <option value="4">Informatica</option>
+						  <option value="5"></option>
+						  <option value="6">SWE</option>
+						  <option value="7">SWE</option>
 						</select>
 					</div>					
 				</fieldset>
 				
-				<input type="submit" id="submit" value="Save Quiz" ng-click="saveQuiz()" class="waves-effect waves-light btn"/>
+				<input type="submit" id="submit" value="Save Quiz" class="waves-effect waves-light btn"/>
 			</div>
 			
 			

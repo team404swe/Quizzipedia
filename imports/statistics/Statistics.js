@@ -23,7 +23,7 @@ if (Meteor.isServer)
 	return UsersStatistics.find();
 	});
 }
-
+/*
 function UpdateQuestionStatitics()
 {
 	
@@ -38,3 +38,4 @@ function UpdateUserStatitics()
 {
 	
 }
+*/

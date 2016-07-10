@@ -1,5 +1,6 @@
 import angular from 'angular';
 import angularMeteor from 'angular-meteor';
+import { Meteor } from 'meteor/meteor'
 import template from '../templates/quizCreationForm.html';
 
 class NewQuizController{
@@ -12,8 +13,8 @@ class NewQuizController{
 		});      
 	}
 	
-	saveQuiz(newQuiz){
-		
+	saveQuiz(title, questions, categories, time){
+		Meteor.call("quizzes.insert", title, questions, categories, time);
 	}
 }
 

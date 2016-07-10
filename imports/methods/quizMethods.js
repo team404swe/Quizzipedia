@@ -1,5 +1,5 @@
 import { Meteor } from "meteor/meteor";
-import Quizzes from "../publishers/quizPublisher";
+import { Quizzes } from "../publishers/quizPublisher";
 
 Meteor.methods({
    "quizzes.insert" (title, questions, categories, time){
@@ -19,8 +19,7 @@ Meteor.methods({
        });
    },
     
-    "quizzes.remove" (quizId){
-        
+    "quizzes.remove" (quizId){        
         Quizzes.remove(quizId);
     }
     

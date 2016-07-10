@@ -3,6 +3,7 @@ import { Mongo } from 'meteor/mongo';
 import { Quizzes } from "../publishers/quizPublisher.js";
 import { QuizzesStatistics } from "../statistics/Statistics.js";
 
+/*
 Meteor.methods({
 	"quizzes.insert" (title, questions, categories, time, createdAt, owner)
 	{
@@ -32,3 +33,4 @@ Meteor.methods({
 		QuizzesStatistics.remove(quizId);
 	}
 });
+* */

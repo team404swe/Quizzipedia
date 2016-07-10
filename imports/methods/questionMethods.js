@@ -1,7 +1,6 @@
 import { Meteor } from "meteor/meteor";
-import { Mongo } from 'meteor/mongo';
 import { Questions } from "../publishers/questionPublisher.js";
-import { Statistics } from "../statistics/Statistics.js";
+//import { Statistics } from "../statistics/Statistics.js";
 
 Meteor.methods({
 	"questions.insert" (QMLtext, category){
@@ -9,18 +8,20 @@ Meteor.methods({
 	   //var controllo = Meteor.call("check", QMLtext);//invoco il check
 	   //if(controllo !== "OK") return controllo;
 	   
-       Questions.insert({
-			QMLtext,
-			category,
-			createdAt: new Date(),
-			owner: Meteor.userId(),
-		});
+	   if (!Meteor.userId()){
+           throw new Meteor.Error('non-authorized');
+       }
+	   else{
+		   Questions.insert({
+				QMLtext,
+				category,
+				createdAt: new Date(),
+				owner: Meteor.userId(),
+			});		
 		
-		/*Statistics.insert({
-			Questions.find({}, {_id : 1}).sort(createdAt : -1).limit(1);
-		});*/
-		
-		return true;
+			/*var lastQuestion = Questions.find().sort({createdAt : -1}).limit(1);
+			QuestionsStatistics.insert({lastQuestion._id});	*/
+		}		
 	},
 	
 	/*"questions.update" (questionID, QMLtext, category){
@@ -30,6 +31,6 @@ Meteor.methods({
 	"questions.remove" (questionId)
 	{
         Questions.remove(questionId);
-		Statistics.remove(questionId);
+		//QuestionsStatistics.remove(questionId);
     }
 });

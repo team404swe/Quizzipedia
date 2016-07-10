@@ -1,10 +1,14 @@
 <div >
 	<div>
+		<div class="alert success" ng-class="{{msgAlert}}" ng-show="$ctrl.questionInserted">
+			<span class="closebtn" ng-click="$ctrl.questionInserted=false;">&times;</span>
+			Your question has been inserted!
+		</div>
 		<header>
 			<h1>Question Creation</h1>
 		</header>
-	
-		<form ng-submit="$ctrl.saveQuestion($ctrl.QMLText, $ctrl.category)">
+			
+		<form ng-submit="$ctrl.saveQuestion($ctrl.QMLtext, $ctrl.category)">
 			<fieldset>
 				<legend class="hidden">Create your question</legend>
 				 <div >
@@ -15,12 +19,12 @@
 						</div>
 						<div class="input-field">
 							<label for="qmlCode">QML Code</label>
-							<textarea id="qmlCode" class="materialize-textarea" ng-model="$ctrl.QMLText"></textarea>							
+							<textarea id="qmlCode" class="materialize-textarea" ng-model="$ctrl.QMLtext"></textarea>							
 						</div>				
 					</fieldset>
 				</div>
 				
-				<button id="check" ng-click="check()" class="waves-effect waves-light btn">Check QML</button>
+				<button id="check" ng-click="$ctrl.check($ctrl.QMLtext)" class="waves-effect waves-light btn">Check QML</button>
 				<input type="submit" id="submit" value="Save Question" class="waves-effect waves-light btn"/>				
 			</fieldset>
 		</form>

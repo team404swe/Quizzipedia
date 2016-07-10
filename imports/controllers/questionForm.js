@@ -11,10 +11,21 @@ class NewQuestionController{
 	
 	check(QMLtext){		
 		if(QMLtext=="" || QMLtext==undefined){
-			console.log("Testo QML vuoto");
+				QzMessage.showText(0, "Testo QML assente");
 		}
 		else{
-			Meteor.call("parser.check", QMLtext );
+			console.log(QMLtext);
+			var ris = "";
+			Meteor.call("parser.check", QMLtext , function(error, result) {
+				if (error)
+					console.log(error);
+				else
+			console.log(result);
+			if(result == "Testo QML corretto")
+				QzMessage.showText(2, result);
+			else
+				QzMessage.showText(1, result);
+			});
 		}
 	}
 	
@@ -23,7 +34,7 @@ class NewQuestionController{
 		console.log(category);
 		if(QMLtext=="" || category=="" || QMLtext==undefined || category==undefined){
 			console.log("campi dati necessari");
-			QzMessage.showText(0, "campi dati necessari")
+			QzMessage.showText(0, "campi dati necessari");
 		}
 		else{
 			Meteor.call("questions.insert",	QMLtext, category );

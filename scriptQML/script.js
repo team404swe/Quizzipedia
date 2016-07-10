@@ -38,19 +38,19 @@ function checkText()
     switch (m[1])
         {
             case "VF":
-            window.alert("caso VF");
+            
                 match = true;
                 alert(match);
                 break;
 
             case "MU":
-            window.alert("caso MU");
+           
             	if( 1 == getRightAnsNumber() )
             	    match = true;
             	break;            	
 
             case "MX":
-                window.alert("caso MX");
+                
                 if ( 2 <= getRightAnsNumber() ){
                 	window.alert("sono nell'if");
                 	match = true; 
@@ -58,7 +58,7 @@ function checkText()
             break;
 
             case "AS":
-            	window.alert("caso AS");
+            	
                 match = true;
                 break; 
 
@@ -68,9 +68,9 @@ function checkText()
     
     
     if(m && match)
-        window.alert("domanda di tipo:\n"+m[1]);
+        window.alert("QML corretto. Domanda di tipo:\n"+m[1]);
     else 
-        window.alert("codice non corretto");  
+        window.alert("codice QML non corretto");  
     return match;
 
 }

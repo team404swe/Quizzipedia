@@ -32,12 +32,45 @@ function checkText()
                 AR[i].lastIndex++;
         }
     }
+    
+    match = false; 
 
-    if(m)
+    switch (m[1])
+        {
+            case "VF":
+            window.alert("caso VF");
+                match = true;
+                alert(match);
+                break;
+
+            case "MU":
+            window.alert("caso MU");
+            	if( 1 == getRightAnsNumber() )
+            	    match = true;
+            	break;            	
+
+            case "MX":
+                window.alert("caso MX");
+                if ( 2 <= getRightAnsNumber() ){
+                	window.alert("sono nell'if");
+                	match = true; 
+                }
+            break;
+
+            case "AS":
+            	window.alert("caso AS");
+                match = true;
+                break; 
+
+            default:
+                window.alert("errore QML");
+        }
+    
+    
+    if(m && match)
         window.alert("domanda di tipo:\n"+m[1]);
     else 
         window.alert("codice non corretto");  
-
     return match;
 
 }
@@ -61,7 +94,7 @@ function checkAnswer()
                 break;
 
             case "MU":
-                var answer = getRightAns();
+                var answer = getRightAnsNumber();
                 if(answer.length == 1) 
                 {
                     question = {
@@ -273,7 +306,39 @@ function getRightAns()
             
     }
 
-    window.alert("risposta giusta: " + rAns);
+    //window.alert("risposta giusta: " + rAns);
+    return rAns;
+}
+
+function getRightAnsNumber()
+{   
+
+    var re = /\{X[\s]*\}([\s]*\S{1,}.*[\s]*)/;
+    var s; 
+
+    var lines = m[3].split('\n');
+
+    var j = 0; 
+    for (var i = 0; i < lines.length; i++) {
+        if(lines[i] == null)
+            j = i; 
+    }
+    lines.pop(j); 
+    //window.alert(lines);
+
+    var rAns = 0;
+    for (var i = 0; i < lines.length; i++)
+    {
+        if ((s = re.exec(lines[i])) !== null)
+        {
+            if (s.index === re.lastIndex) 
+                re.lastIndex++;
+            rAns++;
+        }
+            
+    }
+
+    window.alert("numero risposte giuste: " + rAns);
     return rAns;
 }
 

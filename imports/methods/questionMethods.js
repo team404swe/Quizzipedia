@@ -19,13 +19,15 @@ Meteor.methods({
 				{
 					if(result == "QML text has sintax errors")
 						return result;
-					Questions.insert({
-						QMLtext,
-						category,
-						createdAt: new Date(),
-						owner: Meteor.userId()
-					});
-					return "OK";
+					else{
+						Questions.insert({
+							QMLtext,
+							category,
+							createdAt: new Date(),
+							owner: Meteor.userId()
+						});
+						return "OK";
+					}
 				}
 		   });
 		

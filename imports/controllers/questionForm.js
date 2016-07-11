@@ -49,9 +49,7 @@ class NewQuestionController{
 						this.category="";
 					}
 					else if(result == "QML text has sintax errors")
-						QzMessage.showText(0, "QML text has sintax errors");
-					else
-						QzMessage.showText(0, "You need to be logged");
+						QzMessage.showText(0, "QML text has sintax errors");											
 			});
 		}
 	}

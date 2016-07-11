@@ -23,9 +23,10 @@ class NewQuizController{
 	
 	toggleSelection(question){		
 		var idpos= this.questions.indexOf(question._id);
+		var categoryPos = this.categories.map(function(c) {return c.category; }).indexOf(question.category); 
+		
 		if(idpos > -1){
-			this.questions.splice(idpos,1);
-			var categoryPos = this.categories.map(function(c) {return c.category; }).indexOf(question.category); 			
+			this.questions.splice(idpos,1);						
 			
 			if(categoryPos > -1){
 				if(this.categories[categoryPos].counter > 1){
@@ -37,8 +38,7 @@ class NewQuizController{
 			}
 		}
 		else{
-			this.questions.push(question._id);
-			var categoryPos = this.categories.map(function(c) {return c.category; }).indexOf(question.category); 			
+			this.questions.push(question._id);						
 			if(categoryPos == -1){
 				this.categories.push({category: question.category, counter: 1});				
 			}
@@ -59,7 +59,7 @@ class NewQuizController{
 		else{
 			categories=  this.categories.map(function(item){ return item.category});
 			Meteor.call("quizzes.insert", title, questions, categories, time);
-			QzMessage.showText(2,'quiz inserito');		
+			QzMessage.showText(2,'Your Quiz has been saved!');		
 		}
 	}
 }
@@ -71,30 +71,3 @@ export default angular.module('quizCreationForm', [
     templateUrl: 'imports/templates/quizCreationForm.html',    
     controller: ['$scope', NewQuizController]
   });
-  
-  
-  /*toggleSelection(question){		
-		var idpos= this.questions.indexOf(question._id);
-		if(idpos > -1){
-			this.questions.splice(idpos,1);
-			this.categories.forEach(function(item, index){
-				if(item.category == question.category && item.counter >1 ){
-					item.counter--;
-				}
-				else{
-					this.categories.splice(index,1);
-				}
-			});
-		}
-		else{
-			this.questions.push(question._id);
-			this.categories.forEach(function(item, index){
-				if(item.category == question.category){
-					item.counter++;
-				}
-				else{
-					this.categories.push({category: question.category, counter: 1});
-				}
-			});
-		}
-	}*/

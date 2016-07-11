@@ -168,7 +168,7 @@ header, main, footer {
 
 /*Login Buttons adjust*/
 
-.quiz-list{
+.quiz-list, .question-list{
 	padding: 1em;
 	margin-left: 1em;
 }

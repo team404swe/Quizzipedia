@@ -7,7 +7,14 @@ import { Questions } from '../publishers/questionPublisher.js';
 
 class QuestionListController{
 	constructor($scope) {
-		$scope.viewModel(this);          
+		$scope.viewModel(this);     
+		
+		/*Materilize collapsible initialization*/
+		$(document).ready(function(){
+			$('.collapsible').collapsible({
+			  accordion : true 
+			});
+		});      
 		
 		this.subscribe('questions');
 	

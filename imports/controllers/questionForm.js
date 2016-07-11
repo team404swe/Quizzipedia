@@ -21,13 +21,14 @@ class NewQuestionController{
 			console.log(QMLtext);
 			Meteor.call("parser.check", QMLtext, function(error, result) {
 				if (error)
-					console.log(error);
-				else
-			console.log(result);
-			if(result == "QML text is correct")
-				QzMessage.showText(2, result);
-			else
-				QzMessage.showText(1, result);
+					QzMessage.showText(0, error);
+				else{
+					console.log(result);
+					if(result == "QML text is correct")
+						QzMessage.showText(2, result);
+					else
+						QzMessage.showText(1, result);
+				}
 			});
 		}
 	}
@@ -39,7 +40,7 @@ class NewQuestionController{
 		else{
 			Meteor.call("questions.insert",	QMLtext, category, function(error, result) {
 				if (error)
-					console.log(error);
+					QzMessage.showText(0, error);
 				else
 					console.log(result);
 					if(result == "OK")

@@ -3,9 +3,14 @@
 		<h1>Question List</h1>
 	</header>
 
-	<ul class="collection">
-		<li ng-repeat="question in questionList.questions" class="collection-item">
-			QML: {{question.QMLtext}} - Categoria: {{question.category}}
+	<ul class="collapsible popout" data-collapsible="accordion">
+		<li ng-repeat="question in questionList.questions">
+			<div class="collapsible-header">
+				<i class="material-icons">live_help</i> <strong>Categoria: {{question.category}}</strong> <br>			
+			</div>
+			<div class="collapsible-body question-list">
+				QML: {{question.QMLtext}}
+			</div>
 		</li>
 	</ul>
 </div>

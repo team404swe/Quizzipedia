@@ -14,7 +14,7 @@ Meteor.methods({
 	   else{
 		   Meteor.call("parser.check", QMLtext, function(error, result) {
 			   if(error)
-				   console.log(error);
+				   QzMessage.showText(0, error);
 				else
 				{
 					if(result == "QML text has sintax errors")

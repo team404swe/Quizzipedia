@@ -40,7 +40,7 @@
 					</div>
 					<div class="col s12 m2 offset-m1 l2    ">
 						<p class="center">
-						<img class="responsive-img " id="qzimg" src="$ctrl.miniModel[0].questions[$ctrl.idx].image">
+						<img class="responsive-img " id="qzimg" src="{{$ctrl.miniModel[0].questions[$ctrl.idx].image}}">
 						</p>
 					</div>
 				</div>
@@ -49,63 +49,41 @@
 				<div ng-switch="$ctrl.miniModel[0].questions[$ctrl.idx].tipo">
 					
 					<div class="section vero col s12 l8 offset-l2 " ng-switch-when="VF">
-						<a class="waves-effect waves-light btn col s12 l6 offset-l3  card">VERO</a>				
+						<a class="waves-effect waves-light btn col s12 l6 offset-l3 card"  ng-click="$ctrl.setAnswer('true')">VERO</a>				
 					
-						<a class="waves-effect waves-light btn col s12 l6 offset-l3 card">FALSO</a>
+						<a class="waves-effect waves-light btn col s12 l6 offset-l3 card" ng-click="$ctrl.setAnswer('false')">FALSO</a>
 					</div>
 					
 					<div class="section sceltasingola col s12 l8 offset-l2 " ng-switch-when="MU">
-						
-							<p class=" col s12 m6 l6">
-								<input class="with-gap" type="radio" ng-model="myVar" value="dogs" id="test1" />
-     							 <label for="test1">Red</label>
+						<div class="col s12">
+							<p class=" col s12 m6 l6"  ng-repeat="rad in $ctrl.miniModel[0].questions[$ctrl.idx].ans">
+								<input class="with-gap" type="radio" ng-model="$ctrl.miniModel[0].questions[$ctrl.idx].risp" value="{{rad.id}}" id="radio{{rad.id}}" name="group1"  />
+     							 <label for="radio{{rad.id}}">{{rad.testo}}</label>
     						</p>
-    						<p class=" col s12 m6 l6" >
-      							<input class="with-gap" type="radio" ng-model="myVar" value="wer" id="test2"  />
-     							 <label for="test2">Yellow</label>
-    						</p>
-    						<p class=" col s12 m6 l6">
-      							<input class="with-gap" type="radio" ng-model="myVar" value="ds"  id="test3"  />
-      							<label for="test3">Green</label>
-    						</p>
-      						<p class=" col s12 m6 l6">
-        						<input class="with-gap" type="radio" ng-model="myVar" value="dogds"  id="test4" />
-        						<label for="test4">Brown</label>
-    						</p>  						
+    					</div>	  						
 					</div>
 					<div class="section sceltamultipla col s12 l8 offset-l2 " ng-switch-when="MX">
-						 <p class=" col s12 m6 l6" >
-							<input type="checkbox" id="test5" />
-      						<label for="test5">Red</label>
+						 <p class=" col s12 m6 l6"  ng-repeat="chk in $ctrl.miniModel[0].questions[$ctrl.idx].ans">
+							<input type="checkbox" id="check{{chk.id}}"  ng-model="$ctrl.miniModel[0].questions[$ctrl.idx].ans[$index].risp" />
+      						<label for="check{{chk.id}}">{{chk.testo}}</label>
     						</p>
-    					<p class=" col s12 m6 l6" >
-      						<input type="checkbox" id="test6"  />
-      						<label for="test6">Yellow</label>
-    					</p>
-    					<p class=" col s12 m6 l6" >
-      						<input type="checkbox"  id="filled-in-box"  />
-      						<label for="filled-in-box">Filled in</label>
-    					</p>
-    					<p class=" col s12 m6 l6" >
-      						<input type="checkbox" id="indeterminate-checkbox" />
-      						<label for="indeterminate-checkbox">Indeterminate Style</label>
-    					</p>	
+    					
+    						
 								
 					</div >
 					<div class="section associazione col s12 l8 offset-l2 " ng-switch-when="AS">
-						<div ng-repeat="p in ['paul', 'john', 'luc']" class="card-panel col s12">
-						<p class=" col s12 m6 l4 offset-l1">
+						<div class="card-panel col s12">
+						<p class="col s12 " ng-repeat="asa in $ctrl.miniModel[0].questions[$ctrl.idx].ans.a" >
+							<span class="col s12 m6 l5  ">
+								{{asa.testo}}
+							</span>
+							<span class=" col s12 m6 l6 offset-l1">
 							<select ng-model="selectedItem">
 								<option value="" disabled selected>Choose your option</option>
-								<option ng-repeat="p in ['G. Clooney', 'W. Snipes', 'J. Travolta']" value="{{p}}">{{p}}</option>
-							</select>
-						</p>
-						<p class=" col s12 m6 l4 offset-l1">
-							<select ng-model="selectedItem">
-								<option value="" disabled selected>Choose your option</option>
-								<option ng-repeat="p1 in ['Money Ganster', 'Grease', 'Blade', 'Pretty Woman']" value="{{p1}}">{{p1}}</option>
-							</select>
-							
+								<option ng-repeat="asb in $ctrl.miniModel[0].questions[$ctrl.idx].ans.b"  
+								ng-model="$ctrl.miniModel[0].questions[$ctrl.idx].ans.a[$parent.$index].risp" >{{asb.testo}}</option>
+							</select>							
+							</span>
 						</p>
 						</div>
 						<span ng-model="$ctrl.activeSelect()"></span>
@@ -113,15 +91,24 @@
 						
 					</div>
 					<div class="section ordinamento col s12 l8 offset-l2 " ng-switch-when="OD" >
-						<p class=" col s12 m6 l4 offset-l1" ng-repeat="p1 in ['Money Ganster', 'Grease', 'Blade', 'Pretty Woman']">
-						{{$index + 1}}. 
+						
+						
+						<div class="card-panel col s12 l6" ng-repeat="pip in ['Money Ganster', 'Grease', 'Blade', 'Pretty Woman']">
+						<div class="col s12 "  >
+							<span class="col s1  l1  ">
+								{{$index + 1}}.
+							</span>
+							<span class=" col s5  l11 ">
 							<select ng-model="selectedItem">
 								<option value="" disabled selected>Choose your option</option>
 								<option ng-repeat="p1 in ['Money Ganster', 'Grease', 'Blade', 'Pretty Woman']" value="{{p1}}">{{p1}}</option>
-							</select>
-							
-						</p>
+							</select>							
+							</span>
+						</div>
+						</div>
 						<span ng-model="$ctrl.activeSelect()"></span>
+						
+						
 					</div>
 					
 				</div>

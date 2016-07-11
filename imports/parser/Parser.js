@@ -5,9 +5,9 @@ Meteor.methods({
 	"parser.check" (QMLTesto) {
 		
 		if(checkAnswer(QMLTesto) != null)
-			return "QML text is correct"
+			return true;
 		else
-			return "QML text has sintax errors"
+			return false;
 
 		//ritorna true se trova il match completo (senza controllare se esiste almeno una risposta giusta)
 		// il controllo della presenza della risposta giusta è fatto dalla funzione checkAnswer()

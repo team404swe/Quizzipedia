@@ -5,12 +5,14 @@ import template from '../templates/questionForm.html';
 
 class NewQuestionController{
 	constructor($scope) {
-		$scope.viewModel(this);   
+		$scope.viewModel(this);   				
 		
-		//JQuery per caricare correttamente la select
-		$(document).ready(function() {
-			$('select').material_select();
-		});			
+		/*Materilize collapsible initialization*/
+		$(document).ready(function(){
+			$('.collapsible').collapsible({
+			  accordion : true 
+			});
+		}); 
 	}	
 	
 	check(QMLtext){		
@@ -24,10 +26,10 @@ class NewQuestionController{
 					QzMessage.showText(0, error);
 				else{
 					console.log(result);
-					if(result == "QML text is correct")
-						QzMessage.showText(2, result);
+					if(result)
+						QzMessage.showText(2, "QML syntax is valid");
 					else
-						QzMessage.showText(1, result);
+						QzMessage.showText(1, "QML text has sintax errors");
 				}
 			});
 		}
@@ -43,13 +45,13 @@ class NewQuestionController{
 					QzMessage.showText(0, error);
 				else
 					console.log(result);
-					if(result == "OK")
+					if(result)
 					{
 						QzMessage.showText(2, "Your question has been saved!");
 						this.QMLtext="";
 						this.category="";
 					}
-					else if(result == "QML text has sintax errors")
+					else
 						QzMessage.showText(0, "QML text has sintax errors");											
 			});
 		}

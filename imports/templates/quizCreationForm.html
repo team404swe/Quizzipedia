@@ -12,7 +12,7 @@
 			</div>
 			<div class="input-field col s4">
 				<label for="time" class="active">Quiz time</label>
-				<input type="number" min="5" max="120" id="time"  placeholder="5" ng-model="$ctrl.time"/>
+				<input type="number" min="5" max="30" id="time"  placeholder="5" ng-model="$ctrl.time"/>
 			</div>					
 			
 			<div class="col s12" ng-show="$ctrl.categories.length != 0">
@@ -31,7 +31,9 @@
 						<div>									
 							<input type="checkbox" id="{{$index}}" class="filled-in" ng-checked="$ctrl.questions.indexOf(question._id) > -1"  ng-click="$ctrl.toggleSelection(question)" value="{{question._id}}" />								
 							<label for="{{$index}}"></label>
-							Categoria: {{question.category}}
+							Categoria: {{question.category}}	<br>
+							<span style="padding-left: 2.8em;">QML: {{question.QMLtext}}</span>
+													
 						</div>
 					</li>						
 				</ul>

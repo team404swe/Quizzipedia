@@ -168,7 +168,8 @@ header, main, footer {
 
 /*Login Buttons adjust*/
 
-login-buttons{
-	
+.quiz-list{
+	padding: 1em;
+	margin-left: 1em;
 }
 

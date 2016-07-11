@@ -6,7 +6,14 @@ import { Quizzes } from '../publishers/quizPublisher.js';
 
 class QuizListController{
 	constructor($scope) {
-		$scope.viewModel(this);          
+		$scope.viewModel(this);     
+		
+		/*Materilize collapsible initialization*/
+		$(document).ready(function(){
+			$('.collapsible').collapsible({
+			  accordion : true 
+			});
+		});     
 		
 		this.subscribe('quizzes');
 	

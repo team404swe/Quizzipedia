@@ -77,7 +77,7 @@ export default angular.module('quizzipedia', [
 	 
 		$locationProvider.html5Mode(true);
 	 
-		$urlRouterProvider.otherwise('/');
+		$urlRouterProvider.otherwise('/quizlist');
 	  
 		$stateProvider.state('quizlist', {
 						url: '/quizlist',

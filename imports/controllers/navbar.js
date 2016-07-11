@@ -5,6 +5,12 @@ import template from '../templates/navbar.html';
 class NavbarController {
 	constructor($scope){
 		$scope.viewModel(this);
+		
+		this.helpers({
+			isLoggedIn(){
+				return !!Meteor.userId();
+			}
+		});
 	}
 }
 
@@ -12,8 +18,8 @@ class NavbarController {
 // create a module
 export default angular.module('navbar', [
   angularMeteor, 
+  'accounts.ui'
 ]).component('navbar', {
   templateUrl: 'imports/templates/navbar.html',  
-  controllerAs: 'navbar',
   controller: [ '$scope' , NavbarController ]
 })

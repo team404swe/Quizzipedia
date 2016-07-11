@@ -3,12 +3,15 @@
 	<li>
 		<a href="/" id="logo"><img class="responsive-img " id="logo" src="images/q.png"></a>
 	</li>
+	<li><login-buttons></login-buttons></li>
 	<li class="bold"><a href="/searchForm" class="waves-effect waves-teal">Cerca</a></li>
-	<li class="bold"><a href="/quizlist" class="waves-effect waves-teal">Quiz List</a></li>
-	<li class="bold"><a href="/questionForm" class="waves-effect waves-teal">Create Question</a></li>
-	<li class="bold"><a href="/quizCreationForm" class="waves-effect waves-teal">Create Quiz</a></li>
+	<li class="bold"><a href="/quizlist" class="waves-effect waves-teal">Quiz List</a></li>	
 	<li class="bold"><a href="/questionlist" class="waves-effect waves-teal">Question List</a></li>
 	<li class="bold"><a href="/quizCompilation" class="waves-effect waves-teal">Svolgi quiz</a></li>
+	<div ng-show="$ctrl.isLoggedIn">
+		<li class="bold"><a href="/questionForm" class="waves-effect waves-teal">Create Question</a></li>
+		<li class="bold"><a href="/quizCreationForm" class="waves-effect waves-teal">Create Quiz</a></li>
+	</div>	
 </ul>
 <a href="/" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
 

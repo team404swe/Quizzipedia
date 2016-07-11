@@ -12,8 +12,7 @@ class TopbarController {
 
 // create a module
 export default angular.module('topbar', [
-  angularMeteor, 
-  'accounts.ui'
+  angularMeteor  
 ]).component('topbar', {
   templateUrl: 'imports/templates/topbar.html',  
   controllerAs: 'topbar',

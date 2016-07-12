@@ -51,15 +51,17 @@
 				<div ng-switch="$ctrl.miniModel[0].questions[$ctrl.idx].tipo">
 					
 					<div class="section vero col s12 l8 offset-l2 " ng-switch-when="VF">
-						<a class="waves-effect waves-light btn col s12 l6 offset-l3 card"  ng-click="$ctrl.setAnswer('true')">VERO</a>				
-					
-						<a class="waves-effect waves-light btn col s12 l6 offset-l3 card" ng-click="$ctrl.setAnswer('false')">FALSO</a>
+						<a class="waves-effect waves-light btn col s12 l6 offset-l3 card"  ng-click="$ctrl.setAnswer('V')" ng-class="{'grey lighten-3 black-text ': 'V' != $ctrl.miniModel[0].questions[$ctrl.idx].risp}">VERO</a>	
+						<a class="waves-effect waves-light btn col s12 l6 offset-l3 card"  ng-click="$ctrl.miniModel[0].questions[$ctrl.idx].risp = 'F' " ng-class="{'grey lighten-3 black-text': 'F' != $ctrl.miniModel[0].questions[$ctrl.idx].risp}">FALSO</a>
+						
+						
+						
 					</div>
 					
 					<div class="section sceltasingola col s12 l8 offset-l2 " ng-switch-when="MU">
 						<div class="col s12">
 							<p class=" col s12 m6 l6"  ng-repeat="rad in $ctrl.miniModel[0].questions[$ctrl.idx].ans">
-								<input class="with-gap" type="radio" ng-model="$ctrl.miniModel[0].questions[$ctrl.idx].risp" value="{{rad.id}}" id="radio{{rad.id}}" name="group1"  />
+								<input class="with-gap" type="radio" ng-model="$ctrl.miniModel[0].questions[$ctrl.idx].risp" value="{{rad.id}}" id="radio{{rad.id}}" name="group{{$ctrl.idx}}"  />
      							 <label for="radio{{rad.id}}">{{rad.testo}}</label>
     						</p>
     					</div>	  						

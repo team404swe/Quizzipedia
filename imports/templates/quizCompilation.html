@@ -67,49 +67,51 @@
     					</div>	  						
 					</div>
 					<div class="section sceltamultipla col s12 l8 offset-l2 " ng-switch-when="MX">
-						 <p class=" col s12 m6 l6"  ng-repeat="chk in $ctrl.miniModel[0].questions[$ctrl.idx].ans">
+						<p class=" col s12 m6 l6"  ng-repeat="chk in $ctrl.miniModel[0].questions[$ctrl.idx].ans">
 							<input type="checkbox" id="check{{chk.id}}"  ng-model="$ctrl.miniModel[0].questions[$ctrl.idx].ans[$index].risp" />
       						<label for="check{{chk.id}}">{{chk.testo}}</label>
-    						</p>
+    					</p>
     					
     						 
 								
 					</div >
 					<div class="section associazione col s12 l8 offset-l2 " ng-switch-when="AS">
+				
 						<div class="card-panel col s12">
 						<p class="col s12 " ng-repeat="(adx,asa) in $ctrl.miniModel[0].questions[$ctrl.idx].ans.a" >
 							<span class="col s12 m6 l5  ">
 								{{asa.testo}}
 							</span>
 							<span class=" col s12 m6 l6 offset-l1">
-							<select ng-model="selectItem" >
+							<select ng-model="asa.risp"  class="browser-default">
 								<option  disabled value="">Choose your option</option>
 								<option ng-repeat="asb in $ctrl.miniModel[0].questions[$ctrl.idx].ans.b"  
-								value="{{ asb.testo }}"
-								ng-class="{'selected':asa.risp == asb.id">{{asb.testo}}</option>
+								value="{{ asb.id }}"
+								ng-class="{'selected':asa.risp == asb.id}">{{asb.testo}}</option>
 							</select>		
-							<select ng-model="$ctrl.model2" ng-option="asb.toString() for asb in $ctrl.miniModel[0].questions[$ctrl.idx].ans.b">
-							</select>
-							{{selectItem}} {{prova}}
+							
+							{{asa.risp}}
 							</span>
 						</p>
+						
 						</div>
 						<span ng-model="$ctrl.activeSelect()"></span>
-						
-						
+
 					</div>
 					<div class="section ordinamento col s12 l8 offset-l2 " ng-switch-when="OD" >
 						
 						
 						<div class="card-panel col s12 l6" ng-repeat="pip in ['Money Ganster', 'Grease', 'Blade', 'Pretty Woman']">
 						<div class="col s12 "  >
-							<span class="col s1  l1  ">
-								{{$index + 1}}.
+							<span >
+								
 							</span>
 							<span class=" col s5  l11 ">
-							<select ng-model="selectedItem">
-								<option value="" disabled selected>Choose your option</option>
-								<option ng-repeat="p1 in ['Money Ganster', 'Grease', 'Blade', 'Pretty Woman']" value="{{p1}}">{{p1}}</option>
+							<label for="singleSelect"  class="col s1  l1  "   >{{$index + 1}}. </label>
+							<select ng-model="selectedItem" class="browser-default">
+								<option value="" disabled >Choose your option</option>
+								<option ng-repeat="p1 in ['Money Ganster', 'Grease', 'Blade', 'Pretty Woman']" value="{{p1}}"
+								ng-class="{'selected':selectedItem == p1}" >{{p1}}</option>
 							</select>							
 							</span>
 						</div>
@@ -125,6 +127,7 @@
 			</div>
 				
 		<div class="row">	
+		
 			<div class="col s3 m2 l3  ">
 				<a class="waves-effect waves-light btn col s12 m8 offset-m2 l6 offset-l3 " ng-click="$ctrl.prevQuestion($ctrl.miniModel[0].questions)">PREC.</a>
 			</div>
@@ -157,4 +160,9 @@
     </div>
   </div>
 	
+</div>
+
+<div class="row">
+	
+
 </div>

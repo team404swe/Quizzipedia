@@ -8,7 +8,6 @@ class QuizCompilationController{
 			this.testo = "Il cielo ha un colore che tende al blu.";
 			this.idx= 0;
 			this.link = "qzcustom/p1.gif";
-			this.prova = utente.nome;
 			this.quizplay = false;
 			this.myQuiz = {};
 			this.miniModel = [{
@@ -28,8 +27,11 @@ class QuizCompilationController{
 					{_id:"6", tipo: "MU", ask: "chi ha scoperto l'aria fritta",risp:"" ,ans:[{testo:"pippo",id:1},{testo:"pluto",id:3},{testo:"paperino",id:4},{testo:"Chuck",id:2}] }
 				]
 
-			}]; 
+			}];
 			
+			this.options = [{label:"option1",value:"1"},{label:"option2",value:"2"},{label:"option3",value:"3"}];
+			
+
 		
 	}
 	
@@ -60,7 +62,7 @@ class QuizCompilationController{
 	startQuiz()
 	{	
 		this.quizPlay = true;
-		this.myQuiz = miniModel.questions;
+		this.myQuiz = this.miniModel[0].questions;
 	}
 	
 	

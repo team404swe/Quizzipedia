@@ -77,16 +77,20 @@
 					</div >
 					<div class="section associazione col s12 l8 offset-l2 " ng-switch-when="AS">
 						<div class="card-panel col s12">
-						<p class="col s12 " ng-repeat="asa in $ctrl.miniModel[0].questions[$ctrl.idx].ans.a" >
+						<p class="col s12 " ng-repeat="(adx,asa) in $ctrl.miniModel[0].questions[$ctrl.idx].ans.a" >
 							<span class="col s12 m6 l5  ">
 								{{asa.testo}}
 							</span>
 							<span class=" col s12 m6 l6 offset-l1">
-							<select ng-model="selectedItem">
-								<option value="" disabled selected>Choose your option</option>
+							<select ng-model="selectItem" >
+								<option  disabled value="">Choose your option</option>
 								<option ng-repeat="asb in $ctrl.miniModel[0].questions[$ctrl.idx].ans.b"  
-								ng-model="$ctrl.miniModel[0].questions[$ctrl.idx].ans.a[$parent.$index].risp" >{{asb.testo}}</option>
-							</select>							
+								value="{{ asb.testo }}"
+								ng-class="{'selected':asa.risp == asb.id">{{asb.testo}}</option>
+							</select>		
+							<select ng-model="$ctrl.model2" ng-option="asb.toString() for asb in $ctrl.miniModel[0].questions[$ctrl.idx].ans.b">
+							</select>
+							{{selectItem}} {{prova}}
 							</span>
 						</p>
 						</div>

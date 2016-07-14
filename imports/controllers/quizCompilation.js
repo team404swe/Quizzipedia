@@ -22,7 +22,7 @@ class QuizCompilationController{
 					risp:{ }, ans:[{testo:"in discesa",id:1},{testo:"gaussiana",id:3},{testo:"sapiente",id:4},{testo:"nessuna delle precedenti",id:2}] }	,
 					
 					{_id:"4", tipo: "AS", image:"qzcustom/p8.gif", ask: "In presenza del segnale raffigurato e del semaforo a tre luci abbiamo la precedenza se il semaforo è a luce verde e l'agente del traffico ci ordina di fermarci",	
-					ans: {a:[{testo:"banana",id:3},{testo:"fragola",id:5}],b:[{testo:"giallo",id:3},{testo:"viola",id:1},{testo:"rosso",id:5}]} }	,
+					ans: {a:[{testo:"banana",id:3,risp:""},{testo:"fragola",id:5,risp:""}],b:[{testo:"giallo",id:3},{testo:"viola",id:1},{testo:"rosso",id:5}]} }	,
 					
 					{_id:"5", tipo: "OD", image:"qzcustom/p9.gif", ask: "La striscia bianca laterale discontinua in figura divide la carreggiata da una corsia di accelerazione",	ans: "V"}	,
 					{_id:"6", tipo: "MU", ask: "chi ha scoperto l'aria fritta",risp:"" ,ans:[{testo:"pippo",id:1},{testo:"pluto",id:3},{testo:"paperino",id:4},{testo:"Chuck",id:2}] }

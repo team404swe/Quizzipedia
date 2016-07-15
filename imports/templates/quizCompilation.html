@@ -8,8 +8,8 @@
 		<div class="col s12 m6 offset-m3 l6 offset-l3 center" ng-hide="$ctrl.quizPlay">
           <div class="card blue-grey darken-1">
             <div class="card-content white-text">
-              <span class="card-title">{{$ctrl.miniModel[0].titolo}}</span>
-              <p>{{$ctrl.miniModel[0].descrizione}}</p>
+              <span class="card-title">{{$ctrl.miniModel.titolo}}</span>
+              <p>{{$ctrl.miniModel.descrizione}}</p>
             </div>
             <div class="card-action">
               <a class=" waves-effect waves-light btn"  ng-click="$ctrl.goBack()">Indietro</a>
@@ -20,9 +20,11 @@
 		<div class="qzcomp card-panel  col s12 m12 l12" ng-show="$ctrl.quizPlay">
 			<div class="qzcomphdr col s12 m12 ">
 				<div class="col s12 m l9 card">
-					<p class="col s6 ">	{{$ctrl.miniModel[0].titolo}} </p>
-					<p class="col s2" > {{$ctrl.idx + 1}}/{{$ctrl.miniModel[0].questions.length}} </p>
-					<p class="col s3"> 	<i class="material-icons">av_timer</i>: {{$ctrl.prova}} </p>
+					<p class="col s6 ">	{{$ctrl.miniModel.titolo}} </p>
+					<p class="col s2" > {{$ctrl.idx + 1}}/{{$ctrl.myQuiz.length}} </p>
+					<p class="col s3 offset-s1 right"> 	
+					<i class="material-icons">av_timer</i> 
+					</p>
 				</div>				
 				<div class="col s12 m3 offset-m1 l2 offset-l1"> 
 					<a class="waves-effect waves-light btn col s12 card " ng-click="$ctrl.submitQuiz()">Consegna!</a> 
@@ -30,7 +32,7 @@
 				
 				<div class="col s12 m12 l12 breadcrumb1 flat hide-on-small-only">
 					
-					<a href="#" ng-repeat= "x in $ctrl.miniModel[0].questions" ng-click="$ctrl.goIndex($index)" class="{{x.nClass}}">{{$index+1}}
+					<a href="#" ng-repeat= "x in $ctrl.myQuiz" ng-click="$ctrl.goIndex($index)" class="{{x.nClass}}">{{$index+1}}
 					</a>					
 									
 				</div>
@@ -38,21 +40,21 @@
 			<div class="qzdmd col s12 m12 l12  " >
 				<div class="row">
 					<div class="col s12 m9 l8 offset-l1  card ">
-						<p>{{$ctrl.miniModel[0].questions[$ctrl.idx].ask}}</p>
+						<p>{{$ctrl.myQuiz[$ctrl.idx].ask}}</p>
 					</div>
 					<div class="col s12 m2 offset-m1 l2    ">
 						<p class="center">
-						<img class="responsive-img " id="qzimg" src="{{$ctrl.miniModel[0].questions[$ctrl.idx].image}}">
+						<img class="responsive-img " id="qzimg" src="{{$ctrl.myQuiz[$ctrl.idx].image}}">
 						</p>
 					</div>
 				</div>
 				<div class="row">
 				<div class="divider col s12"></div>
-				<div ng-switch="$ctrl.miniModel[0].questions[$ctrl.idx].tipo">
+				<div ng-switch="$ctrl.myQuiz[$ctrl.idx].tipo">
 					
 					<div class="section vero col s12 l8 offset-l2 " ng-switch-when="VF">
-						<a class="waves-effect waves-light btn col s12 l6 offset-l3 card"  ng-click="$ctrl.setAnswer('V')" ng-class="{'grey lighten-3 black-text ': 'V' != $ctrl.miniModel[0].questions[$ctrl.idx].risp}">VERO</a>	
-						<a class="waves-effect waves-light btn col s12 l6 offset-l3 card"  ng-click="$ctrl.miniModel[0].questions[$ctrl.idx].risp = 'F' " ng-class="{'grey lighten-3 black-text': 'F' != $ctrl.miniModel[0].questions[$ctrl.idx].risp}">FALSO</a>
+						<a class="waves-effect waves-light btn col s12 l6 offset-l3 card"  ng-click="$ctrl.setAnswer('V')" ng-class="{'grey lighten-3 black-text ': 'V' != $ctrl.myQuiz[$ctrl.idx].risp}">VERO</a>	
+						<a class="waves-effect waves-light btn col s12 l6 offset-l3 card"  ng-click="$ctrl.myQuiz[$ctrl.idx].risp = 'F' " ng-class="{'grey lighten-3 black-text': 'F' != $ctrl.myQuiz[$ctrl.idx].risp}">FALSO</a>
 						
 						
 						
@@ -60,15 +62,15 @@
 					
 					<div class="section sceltasingola col s12 l8 offset-l2 " ng-switch-when="MU">
 						<div class="col s12">
-							<p class=" col s12 m6 l6"  ng-repeat="rad in $ctrl.miniModel[0].questions[$ctrl.idx].ans">
-								<input class="with-gap" type="radio" ng-model="$ctrl.miniModel[0].questions[$ctrl.idx].risp" value="{{rad.id}}" id="radio{{rad.id}}" name="group{{$ctrl.idx}}"  />
+							<p class=" col s12 m6 l6"  ng-repeat="rad in $ctrl.myQuiz[$ctrl.idx].ans">
+								<input class="with-gap" type="radio" ng-model="$ctrl.myQuiz[$ctrl.idx].risp" value="{{rad.id}}" id="radio{{rad.id}}" name="group{{$ctrl.idx}}"  />
      							 <label for="radio{{rad.id}}">{{rad.testo}}</label>
     						</p>
     					</div>	  						
 					</div>
 					<div class="section sceltamultipla col s12 l8 offset-l2 " ng-switch-when="MX">
-						<p class=" col s12 m6 l6"  ng-repeat="chk in $ctrl.miniModel[0].questions[$ctrl.idx].ans">
-							<input type="checkbox" id="check{{chk.id}}"  ng-model="$ctrl.miniModel[0].questions[$ctrl.idx].ans[$index].risp" />
+						<p class=" col s12 m6 l6"  ng-repeat="chk in $ctrl.myQuiz[$ctrl.idx].ans">
+							<input type="checkbox" id="check{{chk.id}}"  ng-model="$ctrl.myQuiz[$ctrl.idx].ans[$index].risp" />
       						<label for="check{{chk.id}}">{{chk.testo}}</label>
     					</p>
     					
@@ -78,14 +80,14 @@
 					<div class="section associazione col s12 l8 offset-l2 " ng-switch-when="AS">
 				
 						<div class="card-panel col s12">
-						<p class="col s12 " ng-repeat="(adx,asa) in $ctrl.miniModel[0].questions[$ctrl.idx].ans.a" >
+						<p class="col s12 " ng-repeat="(adx,asa) in $ctrl.myQuiz[$ctrl.idx].ans.a" >
 							<span class="col s12 m6 l5  ">
 								{{asa.testo}}
 							</span>
 							<span class=" col s12 m6 l6 offset-l1">
 							<select ng-model="asa.risp"  class="browser-default">
 								<option  disabled value="">Choose your option</option>
-								<option ng-repeat="asb in $ctrl.miniModel[0].questions[$ctrl.idx].ans.b"  
+								<option ng-repeat="asb in $ctrl.myQuiz[$ctrl.idx].ans.b"  
 								value="{{ asb.id }}"
 								ng-class="{'selected':asa.risp == asb.id}">{{asb.testo}}</option>
 							</select>		
@@ -95,28 +97,24 @@
 						</p>
 						
 						</div>
-						<span ng-model="$ctrl.activeSelect()"></span>
+						<!--	<span ng-model="$ctrl.activeSelect()"></span> -->
 
 					</div>
-					<div class="section ordinamento col s12 l8 offset-l2 " ng-switch-when="OD" >
+					<div class="section ordinamento col s12 l8 offset-l2 " ng-switch-when="OD" >						
 						
-						
-						<div class="card-panel col s12 l6" ng-repeat="pip in ['Money Ganster', 'Grease', 'Blade', 'Pretty Woman']">
-						<div class="col s12 "  >
+						<div class="card-panel col s12 l6" ng-repeat="(zdx,pip) in $ctrl.myQuiz[$ctrl.idx].ans">
+						<div class="col s12 "  >							
 							<span >
-								
-							</span>
-							<span class=" col s5  l11 ">
 							<label for="singleSelect"  class="col s1  l1  "   >{{$index + 1}}. </label>
-							<select ng-model="selectedItem" class="browser-default">
+							<select ng-model="$ctrl.myQuiz[$ctrl.idx].risp[zdx]" class="col s10  l11 browser-default" name="singleSelect" >
 								<option value="" disabled >Choose your option</option>
-								<option ng-repeat="p1 in ['Money Ganster', 'Grease', 'Blade', 'Pretty Woman']" value="{{p1}}"
-								ng-class="{'selected':selectedItem == p1}" >{{p1}}</option>
+								<option ng-repeat="p1 in $ctrl.myQuiz[$ctrl.idx].ans" value="{{p1.id}}"
+								ng-class="{'selected':selectedItem == p1}" >{{p1.testo}}</option>
 							</select>							
 							</span>
 						</div>
 						</div>
-						<span ng-model="$ctrl.activeSelect()"></span>
+					<!--	<span ng-model="$ctrl.activeSelect()"></span> -->
 						
 						
 					</div>
@@ -129,10 +127,10 @@
 		<div class="row">	
 		
 			<div class="col s3 m2 l3  ">
-				<a class="waves-effect waves-light btn col s12 m8 offset-m2 l6 offset-l3 " ng-click="$ctrl.prevQuestion($ctrl.miniModel[0].questions)">PREC.</a>
+				<a class="waves-effect waves-light btn col s12 m8 offset-m2 l6 offset-l3 " ng-click="$ctrl.prevQuestion($ctrl.myQuiz)">PREC.</a>
 			</div>
 			<div class="col s3 offset-s6 m2 offset-m8 l3 offset-l6 ">
-				<a class="waves-effect waves-light btn col s12 m8 offset-m2 l6 offset-l3 " ng-click="$ctrl.nextQuestion($ctrl.miniModel[0].questions)">SUCC.</a>
+				<a class="waves-effect waves-light btn col s12 m8 offset-m2 l6 offset-l3 " ng-click="$ctrl.nextQuestion($ctrl.myQuiz)">SUCC.</a>
 			</div>
 		</div>
 		</div>
@@ -147,8 +145,8 @@
     </div>
 	<div class="card blue-grey darken-1">
             <div class="card-content white-text">
-              <span class="card-title">{{$ctrl.miniModel[0].titolo}}</span>
-              <p>{{$ctrl.miniModel[0].descrizione}}</p>
+              <span class="card-title">{{$ctrl.miniModel.titolo}}</span>
+              <p>{{$ctrl.miniModel.descrizione}}</p>
             </div>
             <div class="card-action">
               <a class=" waves-effect waves-light btn"  ng-click="$ctrl.goBack()">Indietro</a>

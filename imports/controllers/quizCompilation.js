@@ -17,14 +17,17 @@ class QuizCompilationController{
 			questions:
 				[	{_id:"1", tipo: "VF", image:"qzcustom/p9.gif", ask: "La striscia bianca laterale discontinua in figura divide la carreggiata da una corsia di accelerazione", ans:"V"}	,
 					{_id:"2", tipo: "VF", image:"qzcustom/p6.gif", ask: "Il segnale raffigurato obbliga a rallentare per essere pronti a fermarsi in caso di segnalazione da parte degli agenti",	ans:"F"}	,
-					{_id:"3", tipo: "MU", image:"qzcustom/p7.gif", ask: "Il segnale raffigurato indica una curva ",	
-					risp:{ }, ans:[{testo:"in discesa",id:1},{testo:"gaussiana",id:3},{testo:"sapiente",id:4},{testo:"nessuna delle precedenti",id:2}] }	,
-					{_id:"6", tipo: "MX", ask: "chi ha scoperto l'aria fritta",risp:"" ,ans:[{testo:"pippo",id:1},{testo:"pluto",id:3},{testo:"paperino",id:4},{testo:"Chuck",id:2}] } ,
+					{_id:"3", tipo: "MU", image:"qzcustom/p7.gif", ask: "Il segnale raffigurato indica una curva ",	rightAns:2,
+					risp:undefined, ans:[{testo:"in discesa",id:1},{testo:"gaussiana",id:3},{testo:"sapiente",id:4},{testo:"nessuna delle precedenti",id:2}] }	,
 					
-					{_id:"4", tipo: "AS", image:"qzcustom/p8.gif", ask: "In presenza del segnale raffigurato e del semaforo a tre luci abbiamo la precedenza se il semaforo è a luce verde e l'agente del traffico ci ordina di fermarci",	
-					ans: {a:[{testo:"banana",id:3,risp:""},{testo:"fragola",id:5,risp:""}],b:[{testo:"giallo",id:3},{testo:"viola",id:1},{testo:"rosso",id:5}]} }	,
+					{_id:"6", tipo: "MX", ask: "chi ha scoperto l'aria fritta",risp:undefined , rightAns:{1:false,2:true,3:false,4:true},
+					ans:[{testo:"pippo",id:1},{testo:"pluto",id:3},{testo:"Mario",id:4},{testo:"Chuck",id:2}] } ,
 					
-					{_id:"5", tipo: "OD", image:"qzcustom/p9.gif", ask: "Giocatori di calcio: dal più vecchio al più giovane",	
+					{_id:"4", tipo: "AS", ask: "In presenza del segnale raffigurato e del semaforo a tre luci abbiamo la precedenza se il semaforo è a luce verde e l'agente del traffico ci ordina di fermarci",	
+					ans: {a:[{testo:"banana",id:3,risp:""},{testo:"fragola",id:5,risp:""}],b:[{testo:"giallo",id:3},{testo:"viola",id:1},{testo:"rosso",id:5}]},
+					rightAns:{1:1,3:3,5:5}, risp:{}					}	,
+					
+					{_id:"5", tipo: "OD", image:"qzcustom/p9.gif", ask: "Ordina i paesi per superficie più grande ",	
 					ans:[ {id:7 , testo:"Italia" },{id:2 , testo:"Spagna"},{id:11 , testo:"Regno Unito" },{id:3 , testo:"Polonia" }]  }	
 				]
 
@@ -158,19 +161,35 @@ class QuizCompilationController{
 				}
 				
 			}
-			else if (this.myQuiz[i].tipo = "MU")
+			else if (this.myQuiz[i].tipo === "MU")
+			{	if(this.myQuiz[i].rightAns == this.myQuiz[i].risp )
+				{
+					conta += 1; 
+				}
+				
+			}
+			else if (this.myQuiz[i].tipo === "MX")
+			{	var sentinella = true;
+				var lo_quiz = this.myQuiz[i];
+				var lo_ans = lo_quiz.ans;
+				for(var j = 0; j < lo_ans.length; j++)
+				{	if( lo_quiz.risp[lo_ans[j].id] === undefined )
+					{
+						lo_quiz.risp[lo_ans[j].id] = false;
+					}
+					if( lo_quiz.rightAns[lo_ans[j].id] !== lo_quiz.risp[lo_ans[j].id] )
+					{
+						sentinella = false;
+					}
+				}
+				if( sentinella === true ){ conta += 1;}
+				
+			}
+			else if (this.myQuiz[i].tipo === "AS")
 			{
 				
 			}
-			else if (this.myQuiz[i].tipo = "MX")
-			{
-				
-			}
-			else if (this.myQuiz[i].tipo = "AS")
-			{
-				
-			}
-			else if (this.myQuiz[i].tipo = "OD")
+			else if (this.myQuiz[i].tipo === "OD")
 			{
 				
 			}

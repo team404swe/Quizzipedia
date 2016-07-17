@@ -70,7 +70,7 @@
 					</div>
 					<div class="section sceltamultipla col s12 l8 offset-l2 " ng-switch-when="MX">
 						<p class=" col s12 m6 l6"  ng-repeat="chk in $ctrl.myQuiz[$ctrl.idx].ans">
-							<input type="checkbox" id="check{{chk.id}}"  ng-model="$ctrl.myQuiz[$ctrl.idx].ans[$index].risp" />
+							<input type="checkbox" id="check{{chk.id}}"  ng-model="$ctrl.myQuiz[$ctrl.idx].risp[chk.id]" />
       						<label for="check{{chk.id}}">{{chk.testo}}</label>
     					</p>
     					
@@ -85,7 +85,7 @@
 								{{asa.testo}}
 							</span>
 							<span class=" col s12 m6 l6 offset-l1">
-							<select ng-model="asa.risp"  class="browser-default">
+							<select ng-model="$ctrl.myQuiz[$ctrl.idx].risp[asa.id]"  class="browser-default">
 								<option  disabled value="">Choose your option</option>
 								<option ng-repeat="asb in $ctrl.myQuiz[$ctrl.idx].ans.b"  
 								value="{{ asb.id }}"

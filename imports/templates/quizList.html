@@ -2,19 +2,18 @@
 	<header>
 		<h1>Quiz List</h1>
 	</header>
-			
-	<ul class="collapsible popout" data-collapsible="accordion">
-		<li ng-repeat="quiz in $ctrl.quizzes" >
-			<div class="collapsible-header">
-				<i class="material-icons">subject</i> <strong>{{quiz.title}}</strong> <br>			
-			</div>
-			<div class="collapsible-body quiz-list">				
-				<ul>
-					<li>Number of questions: {{quiz.questions.length}}</li>
-					<li>Categories: <span ng-repeat="category in quiz.categories">{{category}} </span></li>
-					<li>Maximum time: {{quiz.time}}</li>
-				</ul>				
-			</div>
-		</li>
-	</ul>
+    <ul class="collapsible popout">
+        <li class="collection-item" ng-repeat="quiz in $ctrl.quizzes">
+            <div class="collapsible-header quiz-item">
+                <i class="circle material-icons quiz-icon">assignment</i>
+                <strong>{{quiz.title}}</strong>
+                <a href="quizCompilation" class="secondary-content"><span class="left">Compile </span><i class="material-icons">send</i></a>
+            </div>
+            <div class="collapsible-body">
+                <p>Number of questions: {{quiz.questions.length}}<br />
+                Categories: <span ng-repeat="category in quiz.categories">{{category}} </span><br />
+                Maximum time: {{quiz.time}}</p>
+            </div>
+        </li>
+    </ul>
 </div>

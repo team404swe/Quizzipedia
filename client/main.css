@@ -173,3 +173,18 @@ header, main, footer {
 	margin-left: 1em;
 }
 
+/**********************************************************/
+
+/*quiz list*/
+
+.quiz-item {
+    padding: 1rem;
+}
+
+.collection-item .quiz-icon {
+    background-color: #AAAAAA;
+    color: #FFFFFF;
+    width: 3rem;
+    height: 3rem;
+}
+

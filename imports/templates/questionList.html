@@ -4,12 +4,13 @@
 	</header>
 
 	<ul class="collapsible popout" data-collapsible="accordion">
-		<li ng-repeat="question in questionList.questions">
+		<li ng-repeat="question in $ctrl.questions">
 			<div class="collapsible-header">
-				<i class="material-icons">live_help</i> <strong>Categoria: {{question.category}}</strong> <br>			
+				<i class="material-icons">live_help</i> <strong>{{ $ctrl.getQuestionDetails(question.QMLtext).text }}</strong> <br>			
 			</div>
-			<div class="collapsible-body question-list">
-				QML: {{question.QMLtext}}
+			<div class="collapsible-body question-list">				
+				Categoria: {{question.category}}<br>
+				Type: {{ $ctrl.getQuestionDetails(question.QMLtext).type }} 				
 			</div>
 		</li>
 	</ul>

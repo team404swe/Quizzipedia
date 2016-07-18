@@ -48,7 +48,7 @@ function checkText(testo)
 
 //controlla il tipo della domanda e in base a quello chiama le funzioni seguenti per controllare se c'è almeno una risposta giusta
 
-function checkAnswer(testo)
+export default function checkAnswer(testo)
 {
     var question;
     if(checkText(testo))

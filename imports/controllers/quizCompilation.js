@@ -7,13 +7,15 @@ class QuizCompilationController{
 		$scope.viewModel(this);   
 			this.punti=0;
 			this.idx= 0;
+			this.myClock = {tempo:""};
 			this.link = "qzcustom/p1.gif";
 			this.quizPlay = false;
 			this.myQuiz = [];
 			this.miniModel = {
+			_id:"test",
 			titolo: "Patente"	,
 			descrizione:"Questo quiz di prova simula la prova teorica proposta all'esame per il conseguimento della patente",
-			tempo: 	"alarm_on",
+			time: 100,
 			questions:
 				[	{_id:"1", tipo: "VF", image:"qzcustom/p9.gif", ask: "La striscia bianca laterale discontinua in figura divide la carreggiata da una corsia di accelerazione", ans:"V"}	,
 					{_id:"2", tipo: "VF", image:"qzcustom/p6.gif", ask: "Il segnale raffigurato obbliga a rallentare per essere pronti a fermarsi in caso di segnalazione da parte degli agenti",	ans:"F"}	,
@@ -25,16 +27,26 @@ class QuizCompilationController{
 					
 					{_id:"4", tipo: "AS", ask: "In presenza del segnale raffigurato e del semaforo a tre luci abbiamo la precedenza se il semaforo è a luce verde e l'agente del traffico ci ordina di fermarci",	
 					ans: {a:[{testo:"banana",id:3,risp:""},{testo:"fragola",id:5,risp:""}],b:[{testo:"giallo",id:3},{testo:"viola",id:1},{testo:"rosso",id:5}]},
-					rightAns:{1:1,3:3,5:5}, risp:{}					}	,
+					rightAns:{3:"3",5:"5"}, risp:{}					}	,
 					
-					{_id:"5", tipo: "OD", image:"qzcustom/p9.gif", ask: "Ordina i paesi per superficie più grande ",	
+					{_id:"5", tipo: "OD", image:"qzcustom/p9.gif", ask: "Ordina i paesi per superficie più grande ", rightAns:{1:"2",2:"3",3:"7",4:"11" },
 					ans:[ {id:7 , testo:"Italia" },{id:2 , testo:"Spagna"},{id:11 , testo:"Regno Unito" },{id:3 , testo:"Polonia" }]  }	
 				]
 
 			};
-			
-			
-
+		/*	
+		Meteor.call("", QMLtext, function(error, result) {
+				if (error)
+					QzMessage.showText(0, error);
+				else{
+					console.log(result);
+					if(result)
+						QzMessage.showText(2, "QML syntax is valid");
+					else
+						QzMessage.showText(1, "QML text has sintax errors");
+				}
+			});
+		*/
 		
 	}
 	
@@ -67,9 +79,19 @@ class QuizCompilationController{
 		this.quizPlay = true;
 		this.myQuiz = this.miniModel.questions;
 		this.goIndex(0);
+		$interval(this.startTimer(this),1000);
+	}	
+	startTimer(capo)
+	{	if(capo.miniModel.time === 0)
+		{
+			//	fine del timer
+		}
+		capo.myClock.ora = (capo.miniModel.time / 60) >> 0;
+		capo.myClock.min = capo.miniModel.time % 60;
+		capo.myClock.tempo = (capo.myClock.ora< 10 ? "0"+capo.myClock.ora : capo.myClock.ora) +":"+(capo.myClock.min < 10 ? "0"+capo.myClock.min : capo.myClock.min );
+		capo.miniModel.time--;
+		
 	}
-	
-	
 	prevQuestion(lista)
 	{			
 		if( this.idx > 0 )
@@ -172,26 +194,35 @@ class QuizCompilationController{
 			{	var sentinella = true;
 				var lo_quiz = this.myQuiz[i];
 				var lo_ans = lo_quiz.ans;
-				for(var j = 0; j < lo_ans.length; j++)
-				{	if( lo_quiz.risp[lo_ans[j].id] === undefined )
-					{
-						lo_quiz.risp[lo_ans[j].id] = false;
-					}
-					if( lo_quiz.rightAns[lo_ans[j].id] !== lo_quiz.risp[lo_ans[j].id] )
-					{
-						sentinella = false;
-					}
+				if(lo_quiz.risp !== undefined)
+				{				
+					for(var j = 0; j < lo_ans.length; j++)
+					{	
+						if(  lo_quiz.risp[lo_ans[j].id] === undefined )
+						{
+							lo_quiz.risp[lo_ans[j].id] = false;
+						}
+						if( lo_quiz.rightAns[lo_ans[j].id] !== lo_quiz.risp[lo_ans[j].id] )
+						{
+							sentinella = false;
+						}
+					}							
+					if( sentinella === true ){ conta += 1;}
 				}
-				if( sentinella === true ){ conta += 1;}
-				
 			}
 			else if (this.myQuiz[i].tipo === "AS")
 			{
-				
+				if ( angular.equals( this.myQuiz[i].rightAns , this.myQuiz[i].risp ) )
+				{
+					conta += 1;
+				}
 			}
 			else if (this.myQuiz[i].tipo === "OD")
 			{
-				
+				if ( angular.equals( this.myQuiz[i].rightAns , this.myQuiz[i].risp ) )
+				{
+					conta += 1;
+				}
 			}
 			
 		}	

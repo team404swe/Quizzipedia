@@ -24,6 +24,7 @@
 					<p class="col s2" > {{$ctrl.idx + 1}}/{{$ctrl.myQuiz.length}} </p>
 					<p class="col s3 offset-s1 right"> 	
 					<i class="material-icons">av_timer</i> 
+					<p ng-bind="$ctrl.myClock.tempo"></p>
 					</p>
 				</div>				
 				<div class="col s12 m3 offset-m1 l2 offset-l1"> 
@@ -43,7 +44,7 @@
 						<p>{{$ctrl.myQuiz[$ctrl.idx].ask}}</p>
 					</div>
 					<div class="col s12 m2 offset-m1 l2    ">
-						<p class="center">
+						<p class="center"  ng-if="$ctrl.myQuiz[$ctrl.idx].image != undefined">
 						<img class="responsive-img " id="qzimg" src="{{$ctrl.myQuiz[$ctrl.idx].image}}">
 						</p>
 					</div>
@@ -106,7 +107,7 @@
 						<div class="col s12 "  >							
 							<span >
 							<label for="singleSelect"  class="col s1  l1  "   >{{$index + 1}}. </label>
-							<select ng-model="$ctrl.myQuiz[$ctrl.idx].risp[zdx]" class="col s10  l11 browser-default" name="singleSelect" >
+							<select ng-model="$ctrl.myQuiz[$ctrl.idx].risp[zdx + 1]" class="col s10  l11 browser-default" name="singleSelect" >
 								<option value="" disabled >Choose your option</option>
 								<option ng-repeat="p1 in $ctrl.myQuiz[$ctrl.idx].ans" value="{{p1.id}}"
 								ng-class="{'selected':selectedItem == p1}" >{{p1.testo}}</option>

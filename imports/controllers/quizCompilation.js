@@ -13,7 +13,7 @@ class QuizCompilationController{
 			this.myQuiz = [];
 			this.miniModel = {
 			_id:"test",
-			titolo: "Patente"	,
+			title: "Patente"	,
 			descrizione:"Questo quiz di prova simula la prova teorica proposta all'esame per il conseguimento della patente",
 			time: 100,
 			questions:
@@ -34,6 +34,8 @@ class QuizCompilationController{
 				]
 
 			};
+			
+			this.setQuiz();
 		/*	
 		Meteor.call("", QMLtext, function(error, result) {
 				if (error)
@@ -73,6 +75,14 @@ class QuizCompilationController{
 				this.myQuiz[i].nClass = "";
 			} 
 		}
+	}
+	setQuiz()
+	{
+		if ( quizComp !== undefined )
+		{
+			this.miniModel = quizComp;
+		}
+		
 	}
 	startQuiz()
 	{	

@@ -32,9 +32,7 @@ class Quizzipedia {
 	 utente.cognome = 'FATTO!';
 	 teto = 'finemondo';
  };
- quizComp = function(){ 
-			alert('GLOBAL FUNCTION');
-			}
+ quizComp = {};
  
 QzMessage = {
 	msgTipo : ['error','warning','success'],

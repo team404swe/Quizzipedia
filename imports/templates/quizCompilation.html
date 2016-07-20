@@ -8,7 +8,7 @@
 		<div class="col s12 m6 offset-m3 l6 offset-l3 center" ng-hide="$ctrl.quizPlay">
           <div class="card blue-grey darken-1">
             <div class="card-content white-text">
-              <span class="card-title">{{$ctrl.miniModel.titolo}}</span>
+              <span class="card-title">{{$ctrl.miniModel.title}}</span>
               <p>{{$ctrl.miniModel.descrizione}}</p>
             </div>
             <div class="card-action">
@@ -20,7 +20,7 @@
 		<div class="qzcomp card-panel  col s12 m12 l12" ng-show="$ctrl.quizPlay">
 			<div class="qzcomphdr col s12 m12 ">
 				<div class="col s12 m l9 card">
-					<p class="col s6 ">	{{$ctrl.miniModel.titolo}} </p>
+					<p class="col s6 ">	{{$ctrl.miniModel.title}} </p>
 					<p class="col s2" > {{$ctrl.idx + 1}}/{{$ctrl.myQuiz.length}} </p>
 					<p class="col s3 offset-s1 right"> 	
 					<i class="material-icons">av_timer</i> 
@@ -146,7 +146,7 @@
     </div>
 	<div class="card blue-grey darken-1">
             <div class="card-content white-text">
-              <span class="card-title">{{$ctrl.miniModel.titolo}}</span>
+              <span class="card-title">{{$ctrl.miniModel.title}}</span>
               <p>{{$ctrl.miniModel.descrizione}}</p>
             </div>
             <div class="card-action">

@@ -23,6 +23,12 @@ class QuizListController{
 			}
 		});
 	}
+	
+	setQuiz(qid){
+		var tempQuiz = Quizzes.find({_id: qid}).fetch();
+		quizComp = tempQuiz[0];
+		
+	}
 }
 
 export default angular.module('quizList', [

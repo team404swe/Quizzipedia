@@ -33,13 +33,14 @@ class QuizListController{
 		});	
 	}
 	
-	setQuiz(qid){
+	setQuiz(qid)
+	{ debugger;
 		var tempQuiz = Quizzes.find({_id: qid}).fetch();
 		quizComp = tempQuiz[0];
 		for (var i = 0; i< quizComp.questions.length; i++ )
 		{ var quest =Questions.find( { _id: quizComp.questions[i]}).fetch();
 			quizComp.questions[i] = undefined;
-			quizComp.questions[i] = checkAnswer(quest[0][0].QMLtext);
+			quizComp.questions[i] = checkAnswer(quest[0].QMLtext);
 		}
 		
 	}

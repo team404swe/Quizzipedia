@@ -72,7 +72,7 @@ export default function checkAnswer(testo)
                         type: m[1],
                         text: m[2],
                         ans: checkM(),
-                        rightAns: answer
+                        rightAns: getRightAnsObj() //answer
                     }; 
                 }
                 else 
@@ -84,7 +84,7 @@ export default function checkAnswer(testo)
                     type: m[1],
                     text: m[2],
                     ans: checkM(),
-                    rightAns: getRightAns()
+                    rightAns: getRightAnsObj()
                     }; 
                 break;
 
@@ -171,8 +171,8 @@ function checkA()
 
 
 function checkM()
-{
-    var re = /((\{X?[\s]*\}[\s]*\S{1,}.*[\s]*){2,})/;
+{debugger;
+    var re = /{(X?[\s]*)\}[\s]*(\S{1,}.*)[\s]*/;
     var s;
 
     var lines = m[3].split('\n');
@@ -187,8 +187,14 @@ function checkM()
     for (var i = 0; i < lines.length; i++)
     {
         if ((s = re.exec(lines[i])) !== null)
+		{
             if (s.index === re.lastIndex) 
-                re.lastIndex++;
+			{ re.lastIndex++; }
+		
+			lines[i] = {text: s[2], id: i };
+			
+		}
+		
 
     }
     return lines;
@@ -196,8 +202,8 @@ function checkM()
 }
 
 function checkMX(){
-
-    var re = /((\{X?[\s]*\}[\s]*\S{1,}.*[\s]*){2,})/;
+debugger;
+    var re = /{(X?[\s]*)\}[\s]*(\S{1,}.*)[\s]*/;
     var s;
 
     var lines = m[3].split('\n');
@@ -212,9 +218,13 @@ function checkMX(){
     for (var i = 0; i < lines.length; i++)
     {
         if ((s = re.exec(lines[i])) !== null)
+        {
             if (s.index === re.lastIndex) 
-                re.lastIndex++;
-
+			{ re.lastIndex++; }
+		
+			lines[i] = {text: s[2], id: i };
+			
+		}
     }
     return lines;
 }
@@ -242,6 +252,39 @@ function getRightAns()
             if (s.index === re.lastIndex) 
                 re.lastIndex++;
             rAns.push(s[1]);
+        }
+            
+    }
+
+    return rAns;
+}
+
+function getRightAnsObj()
+{   
+
+    var re = /{(X?[\s]*)\}[\s]*(\S{1,}.*)[\s]*/;
+    var s; 
+
+    var lines = m[3].split('\n');
+
+    var j = 0; 
+    for (var i = 0; i < lines.length; i++) {
+        if(lines[i] == null)
+            j = i; 
+    }
+    lines.pop(j); 
+
+    var rAns={} ;// = [];
+    for (var i = 0; i < lines.length; i++)
+    {
+        if ((s = re.exec(lines[i])) !== null)
+        {
+            if (s.index === re.lastIndex) 
+                re.lastIndex++;
+           // rAns.push(s[1]);
+			if(s[1] == 'X') 
+			{ rAns[i] = true; 	
+			}else rAns[i] = false;  
         }
             
     }

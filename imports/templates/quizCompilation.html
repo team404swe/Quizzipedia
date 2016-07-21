@@ -41,7 +41,7 @@
 			<div class="qzdmd col s12 m12 l12  " >
 				<div class="row">
 					<div class="col s12 m9 l8 offset-l1  card ">
-						<p>{{$ctrl.myQuiz[$ctrl.idx].ask}}</p>
+						<p>{{$ctrl.myQuiz[$ctrl.idx].text}}</p>
 					</div>
 					<div class="col s12 m2 offset-m1 l2    ">
 						<p class="center"  ng-if="$ctrl.myQuiz[$ctrl.idx].image != undefined">
@@ -51,11 +51,11 @@
 				</div>
 				<div class="row">
 				<div class="divider col s12"></div>
-				<div ng-switch="$ctrl.myQuiz[$ctrl.idx].tipo">
+				<div ng-switch="$ctrl.myQuiz[$ctrl.idx].type">
 					
 					<div class="section vero col s12 l8 offset-l2 " ng-switch-when="VF">
-						<a class="waves-effect waves-light btn col s12 l6 offset-l3 card"  ng-click="$ctrl.setAnswer('V')" ng-class="{'grey lighten-3 black-text ': 'V' != $ctrl.myQuiz[$ctrl.idx].risp}">VERO</a>	
-						<a class="waves-effect waves-light btn col s12 l6 offset-l3 card"  ng-click="$ctrl.myQuiz[$ctrl.idx].risp = 'F' " ng-class="{'grey lighten-3 black-text': 'F' != $ctrl.myQuiz[$ctrl.idx].risp}">FALSO</a>
+						<a class="waves-effect waves-light btn col s12 l6 offset-l3 card"  ng-click="$ctrl.setAnswer(true)" ng-class="{'grey lighten-3 black-text ': true != $ctrl.myQuiz[$ctrl.idx].risp}">VERO</a>	
+						<a class="waves-effect waves-light btn col s12 l6 offset-l3 card"  ng-click="$ctrl.setAnswer(false)" ng-class="{'grey lighten-3 black-text': false != $ctrl.myQuiz[$ctrl.idx].risp}">FALSO</a>
 						
 						
 						
@@ -65,14 +65,14 @@
 						<div class="col s12">
 							<p class=" col s12 m6 l6"  ng-repeat="rad in $ctrl.myQuiz[$ctrl.idx].ans">
 								<input class="with-gap" type="radio" ng-model="$ctrl.myQuiz[$ctrl.idx].risp" value="{{rad.id}}" id="radio{{rad.id}}" name="group{{$ctrl.idx}}"  />
-     							 <label for="radio{{rad.id}}">{{rad.testo}}</label>
+     							 <label for="radio{{rad.id}}">{{rad.text}}</label>
     						</p>
     					</div>	  						
 					</div>
 					<div class="section sceltamultipla col s12 l8 offset-l2 " ng-switch-when="MX">
 						<p class=" col s12 m6 l6"  ng-repeat="chk in $ctrl.myQuiz[$ctrl.idx].ans">
 							<input type="checkbox" id="check{{chk.id}}"  ng-model="$ctrl.myQuiz[$ctrl.idx].risp[chk.id]" />
-      						<label for="check{{chk.id}}">{{chk.testo}}</label>
+      						<label for="check{{chk.id}}">{{chk.text}}</label>
     					</p>
     					
     						 
@@ -83,14 +83,14 @@
 						<div class="card-panel col s12">
 						<p class="col s12 " ng-repeat="(adx,asa) in $ctrl.myQuiz[$ctrl.idx].ans.a" >
 							<span class="col s12 m6 l5  ">
-								{{asa.testo}}
+								{{asa.text}}
 							</span>
 							<span class=" col s12 m6 l6 offset-l1">
 							<select ng-model="$ctrl.myQuiz[$ctrl.idx].risp[asa.id]"  class="browser-default">
 								<option  disabled value="">Choose your option</option>
 								<option ng-repeat="asb in $ctrl.myQuiz[$ctrl.idx].ans.b"  
 								value="{{ asb.id }}"
-								ng-class="{'selected':asa.risp == asb.id}">{{asb.testo}}</option>
+								ng-class="{'selected':asa.risp == asb.id}">{{asb.text}}</option>
 							</select>		
 							
 							{{asa.risp}}
@@ -110,7 +110,7 @@
 							<select ng-model="$ctrl.myQuiz[$ctrl.idx].risp[zdx + 1]" class="col s10  l11 browser-default" name="singleSelect" >
 								<option value="" disabled >Choose your option</option>
 								<option ng-repeat="p1 in $ctrl.myQuiz[$ctrl.idx].ans" value="{{p1.id}}"
-								ng-class="{'selected':selectedItem == p1}" >{{p1.testo}}</option>
+								ng-class="{'selected':selectedItem == p1}" >{{p1.text}}</option>
 							</select>							
 							</span>
 						</div>

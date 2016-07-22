@@ -23,19 +23,14 @@ if (Meteor.isServer)
 	return UsersStatistics.find();
 	});
 }
-/*
-function UpdateQuestionStatitics()
-{
-	
-}
 
-function UpdateQuizStatitics()
-{
-	
-}
-
-function UpdateUserStatitics()
-{
-	
-}
-*/
+Meteor.methods({
+	"statistics.QuizExecutionStats" (QuizID, ArrayRisultato, UserID) {
+		QuizzesStatistics.insert({
+			QuizID,
+			UserID,
+			ArrayRisultato,
+			doneAt: new Date()
+		});	
+	}
+});

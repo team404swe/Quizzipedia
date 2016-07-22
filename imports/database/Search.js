@@ -4,7 +4,7 @@ import { Questions } from "../publishers/questionPublisher.js";
 
 Meteor.methods({
 	"quizzes.search" (string) {
-		return Quizzes.find({titolo : {$regex : ".*" . string . "*"}});
+		return Quizzes.find({titolo : {$regex : ".*" . string . "*"}, desc : {$regex : ".*" . string . "*"}});
 	},
 	
 	"question.search" (string) {

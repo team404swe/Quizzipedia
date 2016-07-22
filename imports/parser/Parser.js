@@ -4,13 +4,16 @@ Meteor.methods({
 	
 	"parser.check" (QMLTesto) {
 		
-		if(checkAnswer(QMLTesto) != null)
+		if(checkQML(QMLTesto) != null)
 			return true;
 		else
 			return false;
 
-		//ritorna true se trova il match completo (senza controllare se esiste almeno una risposta giusta)
-		// il controllo della presenza della risposta giusta è fatto dalla funzione checkAnswer()
+		//questa funzione ritorna true o false controllando sia sintassi QML che la coerenza delle risposte.
+		//la sintassi QML generale viene controllata effettivamente da checkText() mentre checkAnswer fa due lavori, chiama
+		// checkText() e poi fa il controllo delle risposte. 
+		// checkText quindi è una funzione secondaria, la funzione principale è checkAnswer(), ma mi sa che devo cambiare i nomi 
+		// per rendere la cosa più intuitiva
 	}
 	
 });
@@ -27,13 +30,18 @@ var MX = /^[\s]*<question>\{(MX)\}[\s]*=>([^\{]*)[\s]*((\{(X?[\s]*)\}[\s]*(\S{1,
 var A = /^[\s]*<question>\{(AS)\}[\s]*=>(.*\s)((([abAB])->([a-zA-Z0-9])[\s]*(\S{1,}.*)[\s]*){2,})<fine>[\s]*/;
 
 var str; // stringa in cui viene memorizzato il testo di input compilato dall'utente
-var m; // array in cui viene memorizzata la domanda scomposta
+var m; // array in cui viene memorizzata la domanda scomposta secondo l'espressione regolare definita
+// per capire il funzionamento della funzione exec() e quindi la variabile m risultante, basta guardare questo sito:
+// https://regex101.com/ dove metti l'espressione regolare e il testo che vuoi controllare e vedi come viene suddiviso il testo.
+// l'array m quindi contiene tutti i gruppi definiti dalle parentesi tonde delle espressioni regolari
 
 function checkText(testo)
 {    
+	// AR è l'array che contiene le espressioni regolari definite globalmente fuori dalla funzione
     var AR = [VF, M, A, MX];
     var match = false;
-
+    // questo ciclo controlla tramite il metodo exec() se il testo matcha
+    // con una delle espressioni regolari definite dell'array AR
     for (var i = 0; i < AR.length && !match; i++)
     {
         if ((m = AR[i].exec(testo)) !== null)
@@ -48,9 +56,13 @@ function checkText(testo)
 
 //controlla il tipo della domanda e in base a quello chiama le funzioni seguenti per controllare se c'è almeno una risposta giusta
 
-export default function checkAnswer(testo)
+export default function checkQML(testo)
 {
     var question;
+    //in pratica prima di fare il controllo sulla coerenza delle risposte controlla che 
+    //la sintassi QML sia giusta. Questo è necessario in quanto con le sole espressioni regolari non
+    //riesco a fare controlli ulteriori sulle risposte (cioè se per esempio una domanda a risposta multipla a più risposte giuste ha
+    // almeno due risposte giuste e non una come la risposta multipla singola)
     if(checkText(testo))
     {
         switch (m[1])
@@ -76,7 +88,7 @@ export default function checkAnswer(testo)
                     }; 
                 }
                 else 
-                    window.alert("errore in checkAnswer");
+                    window.alert("errore in checkQML");
                 break;
 
             case "MX":
@@ -96,10 +108,11 @@ export default function checkAnswer(testo)
                 }; 
                 break;
             default:
-                window.alert("errore in checkAnswer");
+                window.alert("errore in checkQML");
         }
     }
-
+    // la variabile question sarà un elemento con dei campi dipendenti dal tipo di domanda,
+    // nello switch precedente si capisce che tipo di elemento viene ritornato
     if(question)
         return question;
     else

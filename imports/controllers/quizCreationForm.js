@@ -57,6 +57,7 @@ class NewQuizController{
 			QzMessage.showText(0, "Select at least a question and a category");
 		}
 		else{
+			debugger;
 			categories=  this.categories.map(function(item){ return item.category});
 			Meteor.call("quizzes.insert", title, questions, categories, time);
 			QzMessage.showText(2,'Your Quiz has been saved!');		

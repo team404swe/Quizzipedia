@@ -84,7 +84,7 @@ export default function checkQML(testo)
                         type: m[1],
                         text: m[2],
                         ans: checkM(),
-                        rightAns: getRightAnsObj() //answer
+                        rightAns: getRightAnsObj('MU') //answer
                     }; 
                 }
                 else 
@@ -96,11 +96,12 @@ export default function checkQML(testo)
                     type: m[1],
                     text: m[2],
                     ans: checkM(),
-                    rightAns: getRightAnsObj()
+                    rightAns: getRightAnsObj('MX')
                     }; 
                 break;
 
             case "AS":
+				debugger;
                 question = {
                   type: m[1],
                   text: m[2],
@@ -272,7 +273,7 @@ function getRightAns()
     return rAns;
 }
 
-function getRightAnsObj()
+function getRightAnsObj(ztipo)
 {   
 
     var re = /{(X?[\s]*)\}[\s]*(\S{1,}.*)[\s]*/;
@@ -296,7 +297,8 @@ function getRightAnsObj()
                 re.lastIndex++;
            // rAns.push(s[1]);
 			if(s[1] == 'X') 
-			{ rAns[i] = true; 	
+			{ 	if(ztipo === 'MU') { return i;}
+				rAns[i] = true; 	
 			}else rAns[i] = false;  
         }
             

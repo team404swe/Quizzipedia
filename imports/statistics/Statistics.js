@@ -41,7 +41,7 @@ Meteor.methods({
 			if(err) {}
 			if(result) {new1 = vecchi_dati[0].AnsweredQuestions; new2 = vecchi_dati[0].CorrectAnswers;}
 			else {}
-		};
+		});
 		UsersStatistics.update(
 			{"_id" : UserID},
 			{"AnsweredQuestions" : new1 + QuestionAnswered, "CorrectAnswers" : new2 + QuestionCorrectAnswered},
@@ -56,7 +56,7 @@ Meteor.methods({
 			if(err) {}
 			if(result) {new1 = res[0].rispCorrette; new2 = res[0].voltePresentatavvvv;}
 			else {}
-		};
+		});
 		
 		
 		QuestionsStatistics.update(

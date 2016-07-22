@@ -1,0 +1,17 @@
+index.html -> non mancano cose basilari tipo <html></html> e i tag meta?
+nella cartella public ci sono solo immagini, quale dovrebbe essere la differenza tra le cartelle public e client? quali sono i loro scopi e perchè sono diversi?
+account-config -> c'è ancora il login senza password
+metà dei file nella cartella controllers non esistono nella definizione (es navbar)
+c'è in particolare il file principale, quizzipedia.js, come dovrebbe essere definito nella definizione? era solo temporaneo per il prototipo?
+quizzipedia.js -> da riga 14 a riga 51, tutte quelle cose servono davvero o erano istruzioni di prova?
+quizCreationForm.js -> riga 19 non rispetta i requisiti che ci eravamo prefissati per l'ordinamento
+questionForm.js -> riga 55 se è precondizione del metodo SaveQuestion che la domanda considerata sia corretta secondo il parser, a che serve questo else? inoltre ci sono dei console.log qui e li da togliere quando non serviranno più per i test
+quizList.js -> siamo sicuri che setQuiz() funzioni? sembra pseudocodice
+questions.js, quiz.js -> il nome del file non dovrebbe essere uguale alla classe contenuta?
+cartella database -> tutto commentato (?)
+parser.js -> espressioni regolari togliere <fine> e mettere </question>
+non ho ben chiaro il senso dell'if in riga 39 ma ne discuterò con chi l'ha fatto
+in che punto è precisamente che viene scomposta la domanda in vari pezzi salvati poi nell'array m? e quali sono questi pezzi?
+questo codice è difficilmente estendibile nel senso che se aggiungo nuove tipologie di domande devo praticamente riscrivere intere funzioni nuove, questa cosa a cardin non piace, tuttavia non saprei come correggerla manco io
+statistics.js -> non rispecchia quello che era stato definito nella definizione di prodotto, quindi o cambiamo quella o cambiamo il codice, andrea che si fa?
+riga 57 perchè voltePresentatavvvv con 4 v? poi, forse era stato definito nelle norme, sarebbe meglio adottare nomi di variabili e metodi tutti in inglese o tutti in italiano

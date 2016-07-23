@@ -4,7 +4,7 @@ import template from '../templates/questionList.html';
 import Question from './question';
 
 import { Questions } from '../publishers/questionPublisher.js';
-import checkAnswer from '../parser/Parser.js'
+import checkQML from '../parser/Parser.js'
 
 class QuestionListController{
 	constructor($scope) {
@@ -27,14 +27,12 @@ class QuestionListController{
 	}
 	
 	getQuestionDetails(QMLtext){		
-		var question = checkAnswer(QMLtext);
+		var question = checkQML(QMLtext);
 		if(question)
 			return question;
 		else
 			console.log("Error retrieving question details");
-	}
-	
-	getQuestionType(QMLText){}
+	}		
 	
 }
 

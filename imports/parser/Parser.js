@@ -87,8 +87,7 @@ export default function checkQML(testo)
                         ans: checkM(),
                         rightAns: getRightAnsObj('MU') //answer
                     }; 
-                }
-               // else     window.alert("errore in checkQML");
+                }               
                 break;
 
             case "MX":
@@ -97,7 +96,7 @@ export default function checkQML(testo)
                     text: m[2],
                     ans: checkM(),
                     rightAns: getRightAnsObj('MX')
-                    }; 
+                }; 
                 break;
 
             case "AS":
@@ -109,13 +108,14 @@ export default function checkQML(testo)
 				  rightAns: getRightAnsObj('AS') //DA FARE restituisce oggetto: {idA:"idB", idA:"idB"}
                 }; 
                 break;
+                
 			case "OD":
                 question = {
                     type: m[1],
                     text: m[2],
                     ans: checkM(),
                     rightAns: getRightAnsObj('OD')  //DA FARE restituisce oggetto: {1:"id1", 2:"id2"}
-                    }; 
+                }; 
                 break;	
            
         }

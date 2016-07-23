@@ -8,6 +8,7 @@ Meteor.methods({
 	   	   var ok;
 	   	   
 		   Meteor.call("parser.check", QMLtext, function(error, result) {
+			   debugger;
 			   if(error){
 				   QzMessage.showText(0, error);
 				   return false;
@@ -20,10 +21,11 @@ Meteor.methods({
 					else{
 						
 						Questions.insert({
+							owner: Meteor.userId(),
 							QMLtext,
 							category,
-							createdAt: new Date(),
-							owner: Meteor.userId()
+							createdAt: new Date()
+							
 						});												
 						ok= true;
 					}

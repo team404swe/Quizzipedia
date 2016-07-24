@@ -26,8 +26,8 @@ Meteor.methods({
 		
 var VF = /^[\s]*<question>\{(VF|vf|Vf|vF)\}[\s]*[aA][sS][kK]{(.*)[}][\s]*\{(V|v|f|F)\}[\s]*<\/question>[\s]*$/;
 var MU = /^[\s]*<question>\{(MU)\}[\s]*[aA][sS][kK]{([^\{]*)}[\s]*((\{(X?[\s]*)\}[\s]*(\S{1,}.*)[\s]*){2,})<\/question>[\s]*$/;
-var MX = /^[\s]*<question>\{(MU)\}[\s]*[aA][sS][kK]{([^\{]*)}[\s]*((\{(X?[\s]*)\}[\s]*(\S{1,}.*)[\s]*){2,})<\/question>[\s]*$/
-var AS = /^[\s]*<question>\{(AS)\}[\s]*[aA][sS][kK]{(.*\s)}((([abAB])->([a-zA-Z0-9])[\s]*(\S{1,}.*)[\s]*){2,})<\/question>[\s]*$/;
+var MX = /^[\s]*<question>\{(MX)\}[\s]*[aA][sS][kK]{([^\{]*)}[\s]*((\{(X?[\s]*)\}[\s]*(\S{1,}.*)[\s]*){2,})<\/question>[\s]*$/
+var AS = /^[\s]*<question>\{(AS)\}[\s]*ask{(.*)}[\s]*((([abAB])->([a-zA-Z0-9])[\s]*(\S{1,}.*)[\s]*){2,})<\/question>[\s]*$/;
 var OD = /^[\s]*<question>\{(OD)\}[\s]*[aA][sS][kK]{([^\{]*)}[\s]*((\{(\d[\s]*)\}[\s]*(\S{1,}.*)[\s]*){2,})<\/question>[\s]*$/;
 
 var str; // stringa in cui viene memorizzato il testo di input compilato dall'utente
@@ -194,7 +194,13 @@ function checkAS()
 
 function checkM()
 {debugger;
-    var re = /{(X?[\s]*)\}[\s]*(\S{1,}.*)[\s]*/;
+    var re ;
+	if(m[1] == "OD")
+	{ re = /{(\d[\s]*)\}[\s]*(\S{1,}.*)[\s]*/; }
+	else
+	{ re = /{(X?[\s]*)\}[\s]*(\S{1,}.*)[\s]*/; }
+	
+	
     var s;
 
     var lines = m[3].split('\n');
@@ -212,9 +218,14 @@ function checkM()
 		{
             if (s.index === re.lastIndex) 
 			{ re.lastIndex++; }
-		
-			lines[i] = {text: s[2], id: i };
-			
+			if(m[1] == "OD")
+			{
+				lines[i] = {text: s[2], id: s[1] };
+			}
+			else
+			{
+				lines[i] = {text: s[2], id: i };
+			}
 		}
 		
 
@@ -283,8 +294,13 @@ function getRightAns()
 
 function getRightAnsObj(ztipo)
 {   
+    var re ;
+	if(ztipo == "OD")
+	{  re = /{(\d[\s]*)\}[\s]*(\S{1,}.*)[\s]*/; }
+	else
+	{  re = /{(X?[\s]*)\}[\s]*(\S{1,}.*)[\s]*/; }
 
-    var re = /{(X?[\s]*)\}[\s]*(\S{1,}.*)[\s]*/;
+   // var re = /{(X?[\s]*)\}[\s]*(\S{1,}.*)[\s]*/;
     var s; 
 
     var lines = m[3].split('\n');
@@ -304,7 +320,12 @@ function getRightAnsObj(ztipo)
             if (s.index === re.lastIndex) 
                 re.lastIndex++;
            // rAns.push(s[1]);
-			if(s[1] == 'X') 
+			
+			if(ztipo == "OD")
+			{
+				rAns[s[1]] = s[1];
+			}
+			else if(s[1] == 'X') 
 			{ 	if(ztipo === 'MU') { return i;} //se siamo su una domanda di tipo MU si esce solo con l'indice la risposta giusta.
 				rAns[i] = true; 	
 			}else rAns[i] = false;  

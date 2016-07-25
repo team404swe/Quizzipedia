@@ -81,14 +81,14 @@
 					<div class="section associazione col s12 l8 offset-l2 " ng-switch-when="AS">
 				
 						<div class="card-panel col s12">
-						<p class="col s12 " ng-repeat="(adx,asa) in $ctrl.myQuiz[$ctrl.idx].ans.a" >
+						<p class="col s12 " ng-repeat="(adx,asa) in $ctrl.myQuiz[$ctrl.idx].ans.A" >
 							<span class="col s12 m6 l5  ">
 								{{asa.text}}
 							</span>
 							<span class=" col s12 m6 l6 offset-l1">
 							<select ng-model="$ctrl.myQuiz[$ctrl.idx].risp[asa.id]"  class="browser-default">
 								<option  disabled value="">Choose your option</option>
-								<option ng-repeat="asb in $ctrl.myQuiz[$ctrl.idx].ans.b"  
+								<option ng-repeat="asb in $ctrl.myQuiz[$ctrl.idx].ans.B"  
 								value="{{ asb.id }}"
 								ng-class="{'selected':asa.risp == asb.id}">{{asb.text}}</option>
 							</select>		

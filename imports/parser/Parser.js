@@ -100,12 +100,11 @@ export default function checkQML(testo)
                 break;
 
             case "AS":
-				debugger;
                 question = {
                   type: m[1],
                   text: m[2],
                   ans: checkAS(),
-				  rightAns: getRightAnsObj('AS') //DA FARE restituisce oggetto: {idA:"idB", idA:"idB"}
+				  rightAns: getRightAnsObj('AS') //restituisce oggetto: {idA:"idB", idA:"idB"}
                 }; 
                 break;
                 
@@ -114,7 +113,7 @@ export default function checkQML(testo)
                     type: m[1],
                     text: m[2],
                     ans: checkM(),
-                    rightAns: getRightAnsObj('OD')  //DA FARE restituisce oggetto: {1:"id1", 2:"id2"}
+                    rightAns: getRightAnsObj('OD')  //restituisce oggetto: {1:"id1", 2:"id2"}
                 }; 
                 break;	
            
@@ -147,8 +146,8 @@ function checkVF()
 
 function checkAS()
 {
-    var A = [],
-        B = [];
+    var AA = [],
+        BB = [];
     
     var re = /([abAB])->([a-zA-Z0-9])[\s]*(\S{1,}.*)/;
     var s;
@@ -168,40 +167,36 @@ function checkAS()
                 re.lastIndex++;
         
        
+		//ans: {A:[{text:"banana",id:3,risp:""},{text:"fragola",id:5,risp:""}],B:[{text:"giallo",id:3},{text:"viola",id:1},{text:"rosso",id:5}]}
+        var element = { text:s[3], id:s[2] };
 
-        var element = [
-            s[1],
-            s[2],
-            s[3]
-        ];
-
-
-        switch(element[0])
+        switch(s[1])
         {
             case ('A'):
-                A.push(element);
+                AA.push(element);
                 break;
             case ('B'):
-                B.push(element);
+                BB.push(element);
                 break;
-                }
+        }
+		
     }
-	
-    var groups = [A, B];
+	var groups = {};
+	if(AA.length < BB.length){ groups.A = AA; groups.B = BB; }
+	else { groups.A = BB; groups.B = AA; }
     return groups;
 }
 
 
 function checkM()
-{debugger;
+{
     var re ;
-	if(m[1] == "OD")
+	if(m[1] == "OD") //Per domande di tipo Ordinamento 'OD'
 	{ re = /{(\d[\s]*)\}[\s]*(\S{1,}.*)[\s]*/; }
-	else
+	else    		// Per domande di tipo multipla con unica risposta 'MU' 
 	{ re = /{(X?[\s]*)\}[\s]*(\S{1,}.*)[\s]*/; }
 	
-	
-    var s;
+	var s;
 
     var lines = m[3].split('\n');
     
@@ -234,8 +229,8 @@ function checkM()
 
 }
 
-function checkMX(){
-debugger;
+function checkMX()
+{
     var re = /{(X?[\s]*)\}[\s]*(\S{1,}.*)[\s]*/;
     var s;
 
@@ -297,6 +292,8 @@ function getRightAnsObj(ztipo)
     var re ;
 	if(ztipo == "OD")
 	{  re = /{(\d[\s]*)\}[\s]*(\S{1,}.*)[\s]*/; }
+	else if(ztipo == "AS")
+	{ re = /([abAB])->([a-zA-Z0-9])[\s]*(\S{1,}.*)[\s]*/;	}
 	else
 	{  re = /{(X?[\s]*)\}[\s]*(\S{1,}.*)[\s]*/; }
 
@@ -304,15 +301,16 @@ function getRightAnsObj(ztipo)
     var s; 
 
     var lines = m[3].split('\n');
-
     var j = 0; 
+	debugger;
     for (var i = 0; i < lines.length; i++) {
         if(lines[i] == null)
             j = i; 
     }
     lines.pop(j); 
-
+	
     var rAns={} ;// = [];
+	var rBns={};
     for (var i = 0; i < lines.length; i++)
     {
         if ((s = re.exec(lines[i])) !== null)
@@ -322,8 +320,13 @@ function getRightAnsObj(ztipo)
            // rAns.push(s[1]);
 			
 			if(ztipo == "OD")
-			{
+			{	
 				rAns[s[1]] = s[1];
+			}
+			else if(ztipo == "AS")
+			{	if(s[1] == 'A'){ rAns[s[2]] = s[2]; }
+				else { rBns[s[2]] = s[2]; }
+				
 			}
 			else if(s[1] == 'X') 
 			{ 	if(ztipo === 'MU') { return i;} //se siamo su una domanda di tipo MU si esce solo con l'indice la risposta giusta.
@@ -332,6 +335,7 @@ function getRightAnsObj(ztipo)
         }
             
     }
-
+	if(ztipo == "AS" )
+	{	if( Object.keys(rBns).length < Object.keys(rAns).length){ return rBns; } } // L'insieme con più elementi contiene il disturbatore
     return rAns;
 }

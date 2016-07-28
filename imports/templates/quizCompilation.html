@@ -24,7 +24,7 @@
 					<p class="col s2" > {{$ctrl.idx + 1}}/{{$ctrl.myQuiz.length}} </p>
 					<p class="col s3 offset-s1 right"> 	
 					<i class="material-icons">av_timer</i> 
-					<p ng-bind="$ctrl.myClock.tempo"></p>
+					<span id="viewTimer" >{{ $ctrl.pageTime.tempo | date:'mm:ss'}}</span>
 					</p>
 				</div>				
 				<div class="col s12 m3 offset-m1 l2 offset-l1"> 

@@ -2,20 +2,37 @@ import angular from 'angular';
 import angularMeteor from 'angular-meteor';
 import template from '../templates/quizCompilation.html';
 
+
 class QuizCompilationController{
-	constructor($scope) {
-		$scope.viewModel(this);   
+	constructor($scope,$interval) {
+		$scope.viewModel(this);  
+			this.quizPlay = false; 
 			this.punti=0;
 			this.idx= 0;
-			this.myClock = {tempo:""};
+			this.pageTime = undefined;
+			this.helpers({
+			'wTime' : function() {return QzTimer.tempo; }					
+		});	
+			this.myClock = {tempo:150000, format: 'mm:ss', timerID: undefined,
+				CheckTimee: function()
+				{  debugger;	
+					if(QzTimer.tempo === 0)
+					{
+						Meteor.clearInterval(QzTimer.timerID);
+					}
+					else{ 
+							if(QzTimer.quizPlay) QzTimer.tempo = QzTimer.tempo - 1000; $scope.$apply() ;
+							//else  Meteor.clearInterval(QzTimer.timerID);
+							}
+				}  
+			};
 			this.link = "qzcustom/p1.gif";
-			this.quizPlay = false;
 			this.myQuiz = [];
 			this.miniModel = {
 			_id:"test",
 			title: "Patente"	,
 			descrizione:"Questo quiz di prova simula la prova teorica proposta all'esame per il conseguimento della patente",
-			time: 100,
+			time: 10000,
 			questions:
 				[	{_id:"1", type: "VF", image:"qzcustom/p9.gif", text: "La striscia bianca laterale discontinua in figura divide la carreggiata da una corsia di accelerazione", ans:true}	,
 					{_id:"2", type: "VF", image:"qzcustom/p6.gif", text: "Il segnale raffigurato obbliga a rallentare per essere pronti a fermarsi in caso di segnalazione da parte degli agenti",	ans:false}	,
@@ -36,6 +53,7 @@ class QuizCompilationController{
 			};
 			
 			this.setQuiz();
+			
 		/*	
 		Meteor.call("", QMLtext, function(error, result) {
 				if (error)
@@ -53,7 +71,7 @@ class QuizCompilationController{
 	}
 	
 	activeSelect(){
-		debugger;
+		
 		//JQuery per caricare correttamente la select
 		$(document).ready(function() {
 			$('select').material_select();
@@ -64,7 +82,7 @@ class QuizCompilationController{
 		$('#modal1').openModal();
 	}
 	setClass()
-	{ debugger;
+	{ 
 		for(var i = 0; i < this.myQuiz.length; i++)
 		{	
 			if(i === this.idx){
@@ -80,28 +98,34 @@ class QuizCompilationController{
 	{
 		if ( quizComp !== undefined )
 		{
+		debugger;
 			this.miniModel = quizComp;
-		}
-		
+			QzTimer.tempo = this.miniModel.time * 60000;
+			QzTimer.timerID = Meteor.setInterval(this.CheckTime,1000);
+			myTimer = QzTimer.tempo;
+			this.pageTime = QzTimer;
+		}		
 	}
+	CheckTime()
+				{ // debugger;	
+					if(QzTimer.tempo === 0)
+					{
+						Meteor.clearInterval(QzTimer.timerID);
+					}
+					else{ 
+							if(QzTimer.quizPlay) QzTimer.tempo = QzTimer.tempo - 1000; var element = angular.element($('#viewTimer'));
+element.scope().$apply();;
+							//else  Meteor.clearInterval(QzTimer.timerID);
+							}
+				}
 	startQuiz()
 	{	
 		this.quizPlay = true;
+		QzTimer.quizPlay = true;
 		this.myQuiz = this.miniModel.questions;
-		this.goIndex(0);
-		$interval(this.startTimer(this),1000);
+		this.goIndex(0);	
 	}	
-	startTimer(capo)
-	{	if(capo.miniModel.time === 0)
-		{
-			//	fine del timer
-		}
-		capo.myClock.ora = (capo.miniModel.time / 60) >> 0;
-		capo.myClock.min = capo.miniModel.time % 60;
-		capo.myClock.tempo = (capo.myClock.ora< 10 ? "0"+capo.myClock.ora : capo.myClock.ora) +":"+(capo.myClock.min < 10 ? "0"+capo.myClock.min : capo.myClock.min );
-		capo.miniModel.time--;
-		
-	}
+	
 	prevQuestion(lista)
 	{			
 		if( this.idx > 0 )
@@ -145,7 +169,7 @@ class QuizCompilationController{
 		QzMessage.showText(2, "Punteggio attuale: " + this.punti);
 	}
 	setAnswer(rispo)
-	{	debugger;
+	{	
 		switch (this.myQuiz[this.idx].type)
         {
             case "VF": 
@@ -178,7 +202,7 @@ class QuizCompilationController{
 		}
 	}
 	setAnswerMU(rispoMU)
-	{	debugger;
+	{	
 		this.myQuiz[this.idx].risp = rispoMU;
 	}
 	
@@ -247,6 +271,6 @@ export default angular.module('quizCompilation', [
 ])
   .component('quizCompilation', {
     templateUrl: 'imports/templates/quizCompilation.html',
-    controller: ['$scope', QuizCompilationController]
+    controller: ['$scope','$interval', QuizCompilationController]
   });
  

@@ -13,6 +13,7 @@ import quizCompilation from '../controllers/quizCompilation';
 
 uteto = 'tetipo';
 utente ={nome:'Tino', cognome:'MBO'};
+QzTimer = {tempo:150000, format: 'mm:ss', timerID: undefined,quizPlay: false};
 
 class Quizzipedia {
 	constructor($scope){

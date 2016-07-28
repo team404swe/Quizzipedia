@@ -302,7 +302,6 @@ function getRightAnsObj(ztipo)
 
     var lines = m[3].split('\n');
     var j = 0; 
-	debugger;
     for (var i = 0; i < lines.length; i++) {
         if(lines[i] == null)
             j = i; 

@@ -10,11 +10,12 @@ import quizCreationForm from '../controllers/quizCreationForm';
 import questionForm from '../controllers/questionForm';
 import searchForm from '../controllers/searchForm';
 import quizCompilation from '../controllers/quizCompilation';
+import quizResults from '../controllers/quizResults';
+import quizHome from '../controllers/quizHome';
 
-uteto = 'tetipo';
-utente ={nome:'Tino', cognome:'MBO'};
-QzTimer = {tempo:150000, format: 'mm:ss', timerID: undefined,quizPlay: false};
 
+QzTimer = {tempo:0, format: 'mm:ss', timerID: undefined,quizPlay: false};
+QzFine = { QzPunti : 0,	QzConferma : false}
 class Quizzipedia {
 	constructor($scope){
 		debugger;
@@ -64,6 +65,8 @@ export default angular.module('quizzipedia', [
   questionForm.name,
   searchForm.name,
   quizCompilation.name,
+  quizResults.name,
+  quizHome.name,
   'accounts.ui'
 ]).component('quizzipedia', {
   templateUrl: 'imports/templates/quizzipedia.html',  
@@ -101,5 +104,13 @@ export default angular.module('quizzipedia', [
 		$stateProvider.state('quizCompilation', {
 						url: '/quizCompilation',
 						template: '<quiz-Compilation></quiz-Compilation>'
+		});
+		$stateProvider.state('quizResults', {
+						url: '/quizResults',
+						template: '<quiz-results></quiz-results>'
+		});
+		$stateProvider.state('quizHome', {
+						url: '/quizHome',
+						template: '<quiz-home></quiz-home>'
 		});
 	}

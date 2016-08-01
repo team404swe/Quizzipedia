@@ -15,7 +15,7 @@ class QuizCompilationController{
 		});	
 			this.myClock = {tempo:150000, format: 'mm:ss', timerID: undefined,
 				CheckTimee: function()
-				{  debugger;	
+				{  	
 					if(QzTimer.tempo === 0)
 					{
 						Meteor.clearInterval(QzTimer.timerID);
@@ -66,7 +66,17 @@ class QuizCompilationController{
 						QzMessage.showText(1, "QML text has sintax errors");
 				}
 			});
-		*/
+		*/	
+		$scope.$on('$locationChangeStart', function( event,QzFine ) {
+			if(QzFine.QzConferma == true)
+			{
+				var answer = confirm("Are you sure you want to leave this page?")
+				if (!answer) 
+				{
+					event.preventDefault();
+				}
+			}
+});
 		
 	}
 	
@@ -78,8 +88,8 @@ class QuizCompilationController{
 		}); 
 	}
 	activeModal()
-	{		
-		$('#modal1').openModal();
+	{		debugger;
+		$('#beginQuiz').openModal();
 	}
 	setClass()
 	{ 
@@ -98,32 +108,46 @@ class QuizCompilationController{
 	{
 		if ( quizComp !== undefined )
 		{
-		debugger;
+		
 			this.miniModel = quizComp;
-			QzTimer.tempo = this.miniModel.time * 60000;
-			QzTimer.timerID = Meteor.setInterval(this.CheckTime,1000);
-			myTimer = QzTimer.tempo;
-			this.pageTime = QzTimer;
+
 		}		
 	}
 	CheckTime()
-				{ // debugger;	
+				{ 
 					if(QzTimer.tempo === 0)
 					{
 						Meteor.clearInterval(QzTimer.timerID);
 					}
 					else{ 
-							if(QzTimer.quizPlay) QzTimer.tempo = QzTimer.tempo - 1000; var element = angular.element($('#viewTimer'));
-element.scope().$apply();;
-							//else  Meteor.clearInterval(QzTimer.timerID);
+							if(QzTimer.quizPlay) 
+							{
+								QzTimer.tempo = QzTimer.tempo - 1000; var element = angular.element($('#viewTimer'));
+								element.scope().$apply();
+								
 							}
+						}
 				}
 	startQuiz()
-	{	
-		this.quizPlay = true;
-		QzTimer.quizPlay = true;
-		this.myQuiz = this.miniModel.questions;
-		this.goIndex(0);	
+	{	if(this.miniModel.questions != null)
+		{
+			this.quizPlay = true;
+			QzTimer.quizPlay = true;
+			this.myQuiz = this.miniModel.questions;
+			this.goIndex(0);	
+			QzTimer.tempo = this.miniModel.time * 60000;
+			QzTimer.timerID = Meteor.setInterval(this.CheckTime,1000);
+			myTimer = QzTimer.tempo;
+			this.pageTime = QzTimer;			
+		}else
+		{
+			alert("nessun quiz caricato");
+			//Meteor.Router.to("/quizlist");
+			debugger;
+			//var percorso = $location.path();
+			window.location=('/quizResults');
+			
+		}
 	}	
 	
 	prevQuestion(lista)
@@ -164,9 +188,13 @@ element.scope().$apply();;
 	}
 	
 	submitQuiz(){		
-	
+		
 		this.punti = this.contaPunti();
+		QzFine.QzPunti = this.punti;
+		QzFine.QzConferma = true;
+		debugger;
 		QzMessage.showText(2, "Punteggio attuale: " + this.punti);
+		//window.location=('/quizResults');
 	}
 	setAnswer(rispo)
 	{	

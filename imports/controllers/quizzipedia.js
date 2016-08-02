@@ -12,6 +12,7 @@ import searchForm from '../controllers/searchForm';
 import quizCompilation from '../controllers/quizCompilation';
 import quizResults from '../controllers/quizResults';
 import quizHome from '../controllers/quizHome';
+import quizStatistics from '../controllers/quizStatistics';
 
 
 QzTimer = {tempo:0, format: 'mm:ss', timerID: undefined,quizPlay: false};
@@ -22,7 +23,7 @@ class Quizzipedia {
 		$scope.viewModel(this);		
 		
 		//attivazione del menu mobile
-		$(".button-collapse").sideNav();
+		//$(".button-collapse").sideNav();
 	}	
 	
 	
@@ -66,7 +67,8 @@ export default angular.module('quizzipedia', [
   searchForm.name,
   quizCompilation.name,
   quizResults.name,
-  quizHome.name,
+  quizHome.name,  
+  quizStatistics.name,
   'accounts.ui'
 ]).component('quizzipedia', {
   templateUrl: 'imports/templates/quizzipedia.html',  
@@ -112,5 +114,9 @@ export default angular.module('quizzipedia', [
 		$stateProvider.state('quizHome', {
 						url: '/quizHome',
 						template: '<quiz-home></quiz-home>'
+		});
+		$stateProvider.state('quizStatistics', {
+						url: '/quizStatistics',
+						template: '<quiz-statistics></quiz-statistics>'
 		});
 	}

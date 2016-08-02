@@ -25,10 +25,10 @@ input #submit{
 	max-height:100px;
 }
 
-/*Per spostare il contenuto rispetto alla NavBar*/
+/*Per spostare il contenuto rispetto alla NavBar*
 header, main, footer {
       padding-left: 5%;
-    }
+    } */
 
 @media only screen and (max-width : 992px) {
   header, main, footer {

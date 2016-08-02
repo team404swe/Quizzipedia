@@ -11,14 +11,15 @@ class NavbarController {
 				return !!Meteor.userId();
 			}
 		});
+		this.pippo = "pippo";
 		this.slideMenu();
 		
-		$('.collapsible').collapsible();
+		
 	}
 	
 	slideMenu(){
 		$('.button-collapse').sideNav({
-      menuWidth: 300, // Default is 240
+     // menuWidth: 300, // Default is 240
       closeOnClick: true // Closes side-nav on <a> clicks, useful for Angular/Meteor
     }
   );

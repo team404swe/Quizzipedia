@@ -1,6 +1,21 @@
 
-<ul id="slide-out" class="side-nav fixed">
-	<li>
+<nav class="top-nav">
+	<div class="container">
+	<div class="nav-wrapper" >	
+		<a href="#" data-activates="nav-mobile" class="button-collapse top-nav full hide-on-large-only left">
+			<i class="material-icons">menu</i>
+		</a>
+		<a href="/quizHome" class="page-title center">Quizzipedia</a>
+		<ul id="nav-mobile2" class="right hide-on-med-and-down"  >  
+			<li><a href="#!">Possibile Menu 1</a></li>
+			<li><a href="#!">Possibile Menu 2</a></li>
+		</ul>
+	</div>
+	</div>
+</nav>
+
+<ul id="nav-mobile" class="side-nav fixed">
+	<li  >
 		<a href="/" id="logo"><img class="responsive-img " id="logo" src="images/q.png"></a>
 	</li>
 	<li><login-buttons></login-buttons></li>
@@ -11,8 +26,8 @@
 		<li class="bold"><a href="/questionlist" class="waves-effect waves-teal">Question List</a></li>
 		<li class="bold"><a href="/questionForm" class="waves-effect waves-teal">Create Question</a></li>
 		<li class="bold"><a href="/quizCreationForm" class="waves-effect waves-teal">Create Quiz</a></li>
-		<li ng-class="$ctrl.slideMenu()"></li>
+		
 	</div>	
 </ul>
-<a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+
 

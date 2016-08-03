@@ -166,11 +166,18 @@ header, main, footer {
 
 /**********************************************************/
 
-/*Login Buttons adjust*/
+.question-header{
+	padding: 0.25em;
+}
 
-.quiz-list, .question-list{
-	padding: 1em;
+.quiz-list, .question-details{
+	padding: 0.5em;
 	margin-left: 1em;
+}
+
+.delete-button{
+	margin-top: 0.25em;
+	margin-right: 1em;
 }
 
 /**********************************************************/

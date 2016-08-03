@@ -1,6 +1,6 @@
 import { Meteor } from "meteor/meteor";
 import { Questions } from "../publishers/questionPublisher.js";
-//import { Statistics } from "../statistics/Statistics.js";
+import { QuestionStatistics } from "../statistics/Statistics.js";
 
 Meteor.methods({
 	"questions.insert" (QMLtext, category) {       
@@ -31,12 +31,12 @@ Meteor.methods({
 					}
 				}
 		   });
-		   
-		   return ok;
-		
+		   		  		
 			/*var lastQuestion = Questions.find().sort({createdAt : -1}).limit(1);
-			QuestionsStatistics.insert({lastQuestion._id});	*/		
-},
+			QuestionsStatistics.insert({lastQuestion._id});*/
+			
+			return ok;
+	},
 	
 	/*"questions.update" (questionID, QMLtext, category){
 		Questions.update({'questionID': questionID}, {set {'QMLtext': QMLtext, 'category': category}});
@@ -44,7 +44,7 @@ Meteor.methods({
     
 	"questions.remove" (questionId)
 	{
-        Questions.remove(questionId);
+        return Questions.remove({"_id" : questionId});
 		//QuestionsStatistics.remove(questionId);
     }
 });

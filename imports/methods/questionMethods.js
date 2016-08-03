@@ -1,11 +1,11 @@
 import { Meteor } from "meteor/meteor";
 import { Questions } from "../publishers/questionPublisher.js";
-import { QuestionStatistics } from "../statistics/Statistics.js";
+import { QuestionsStatistics } from "../statistics/Statistics.js";
 
 Meteor.methods({
 	"questions.insert" (QMLtext, category) {       
 	   	   
-	   	   var ok;
+	   	   var ok;	   	   
 	   	   
 		   Meteor.call("parser.check", QMLtext, function(error, result) {
 			   debugger;
@@ -19,23 +19,22 @@ Meteor.methods({
 						
 						ok= false;
 					else{
-						
-						Questions.insert({
+						var toInsert = {
 							owner: Meteor.userId(),
 							QMLtext,
 							category,
-							createdAt: new Date()
-							
+							createdAt: new Date()						
+						};
+						
+						Questions.insert(toInsert,function(err,docsInserted){
+							if(docsInserted)
+								QuestionsStatistics.insert({"_id": docsInserted, "rispCorrette" : 0 , "voltePresentata" : 0});
 						});												
 						ok= true;
 					}
 				}
-		   });
-		   		  		
-			/*var lastQuestion = Questions.find().sort({createdAt : -1}).limit(1);
-			QuestionsStatistics.insert({lastQuestion._id});*/
-			
-			return ok;
+		   });		   		  											
+		return ok;
 	},
 	
 	/*"questions.update" (questionID, QMLtext, category){

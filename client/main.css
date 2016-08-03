@@ -1,3 +1,31 @@
+/* questo permette di avere il footer sempre in fondo*/
+body, quizzipedia {
+     display: flex;
+     min-height: 100vh;
+     flex-direction: column;
+ }
+ main {
+     flex: 1 0 auto;
+ }
+ /* qui sotto si può impostare css per schermi Large(Desktop) */
+@media (min-width: 992px)  {
+    .contenitore {
+         margin-left: 240px;
+    }	
+	.container {
+		
+	}
+}
+ /* qui sotto si può impostare css per schermi Medium(Tablet) */
+@media (max-width: 992px)  {
+    
+	
+}
+ /* qui sotto si può impostare css per schermi Small(Phone) */
+@media (max-width: 600px)  {
+   
+   
+}
 fieldset{
 	border: 0px;
 	padding: 0px;
@@ -11,17 +39,16 @@ fieldset{
 input #submit{
 	margin-top: 2em;
 }
-
+/* Per limitare la dimensione del logo nel menu a sinistra*/
 #logo{
 	text-decoration: none;
 	margin-top: 5px;
 	margin-bottom: 5px;
 	max-height: 55px;
 }
+/* Per limitare l'altezza dell'immagine in quizCompilation*/
 #qzimg{
-	text-decoration: none;
-	
-	
+	text-decoration: none;	
 	max-height:100px;
 }
 

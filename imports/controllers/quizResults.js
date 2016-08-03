@@ -7,6 +7,13 @@ class quizResultsController{
 		$scope.viewModel(this);    
 		debugger;
 		this.punti = QzFine.QzPunti;
+		this.quizObj = quizComp;
+		this.jsonQuiz = angular.toJson(quizComp);
+	}
+	
+	getQuiz(){
+		debugger;
+		this.quizObj = quizComp;
 	}
 }
 

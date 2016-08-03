@@ -3,7 +3,88 @@
 </header>
 
 <div class="row">
+<div class="row">
+    <div class="col s12">
+      <ul class="tabs">
+        <li class="tab col s2"><a href="#qzIntuitivo">Intuitivo</a></li>
+        <li class="tab col s2"><a class="active" href="#qzQMLCode">QML code</a></li>
+      </ul>
+    </div>
+    <div id="qzIntuitivo" class="col s12">
 	<form ng-submit="$ctrl.saveQuestion($ctrl.QMLtext, $ctrl.category)">
+		<fieldset>
+			<legend class="hidden">Create your question</legend>
+			 <div >
+				<fieldset>	
+					<div class="input-field col s12 m6  ">
+						<select class="browser-default" ng-model="$ctrl.tipoDomanda">
+							<option value="" disabled selected>Choose your option</option>
+							<option value="VF">VF - Vero o Falso</option>
+							<option value="MU">MU - Scelta multipla unica</option>
+							<option value="MX">MX - Scelta multipla</option>
+							<option value="AS">AS - Associazione</option>
+							<option value="OD">OD - Ordinamento</option>
+						</select>						
+					</div>
+
+					<div class="input-field col s12 m6 ">
+						<i class="material-icons prefix">account_circle</i>
+						<input type="text" name="category" id="category" class="validate" ng-model="$ctrl.category"/>
+						<label for="category"  data-error="wrong" data-success="right" >Category</label>
+					</div>
+					
+					<div class="input-field col s10">
+						<label for="Domanda">Domanda</label>
+						<textarea id="Domanda" class="materialize-textarea" ng-model="$ctrl.QMLtext"></textarea>							
+					</div>	
+					<div class="file-field input-field col s10">
+						<div class="btn">
+							<span>File</span>
+							<input type="file">
+						</div>
+						<div class="file-path-wrapper">
+							<input class="file-path validate" type="text" placeholder="Carica un immagine per la domanda">
+						</div>
+					</div>
+					<div ng-switch="$ctrl.tipoDomanda" class="col s12">
+						<div  ng-switch-when="VF">
+							<p>
+								Qui vanno VF
+							</p>
+						</div>
+						<div  ng-switch-when="MU">
+							<p>
+								Qui vanno MU
+							</p>
+						</div>
+						<div  ng-switch-when="MX">
+							<p>
+								Qui vanno MX
+							</p>
+						</div>
+						<div  ng-switch-when="AS">
+							<p>
+								Qui vanno AS
+							</p>
+						</div>
+						<div  ng-switch-when="OD">
+							<p>
+								Qui vanno OD
+							</p>
+						</div>
+						<br>
+					</div>
+				</fieldset>
+					
+			</div>
+		<input type="submit" id="submit" value="Save Question" class="waves-effect waves-light btn"/>				
+		</fieldset>
+	
+	</form>
+	
+	</div>
+    <div id="qzQMLCode" class="col s12">
+		<form ng-submit="$ctrl.saveQuestion($ctrl.QMLtext, $ctrl.category)">
 		<fieldset>
 			<legend class="hidden">Create your question</legend>
 			 <div >
@@ -36,6 +117,9 @@
 			<input type="submit" id="submit" value="Save Question" class="waves-effect waves-light btn"/>				
 		</fieldset>
 	</form>
+	</div>
+  </div>
+
 	<div class="col s12">
 		<br>
 	<h4>Examples</h4>

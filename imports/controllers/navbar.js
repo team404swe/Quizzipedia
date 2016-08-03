@@ -14,17 +14,24 @@ class NavbarController {
 		this.pippo = "pippo";
 		this.slideMenu();
 		
+		$('.collapsible').collapsible();
 		
+	
+	}
+	navVisible(val){
+		$('.button-collapse').sideNav(val);
 	}
 	
 	slideMenu(){
+		debugger;
 		$('.button-collapse').sideNav({
-     // menuWidth: 300, // Default is 240
-      closeOnClick: true // Closes side-nav on <a> clicks, useful for Angular/Meteor
-    }
-  );
+			//menuWidth: 300, // Default is 240
+			//closeOnClick: true // Closes side-nav on <a> clicks, useful for Angular/Meteor
+			}
+		);
+		$('.collapsible').collapsible();
    
-	}
+	} 
 }
 
 

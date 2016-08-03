@@ -1,5 +1,8 @@
+import angular from 'angular';
 import { Meteor } from 'meteor/meteor';
 import { Mongo } from 'meteor/mongo';
+import { Quizzes } from "../publishers/quizPublisher";
+import { Questions } from "../publishers/questionPublisher.js";
 
 export const QuizzesStatistics = new Mongo.Collection('QuizzesStatistics');
 export const QuestionsStatistics = new Mongo.Collection('QuestionsStatistics');
@@ -25,47 +28,85 @@ if (Meteor.isServer)
 }
 
 Meteor.methods({
-	"statistics.QuizExecutionStats" (QuizID, ArrayRisultato, UserID) {
+	"statistics.QuizExecutionStats" (QuizObject, UserID) {
 		QuizzesStatistics.insert({
-			QuizID,
+			QuizObject,
 			UserID,
-			ArrayRisultato,
 			doneAt: new Date()
 		});	
+		
+		Quizzes.update(
+			{ "_id" : QuizObject._id },
+			{ $inc: { "esecuzioni" : 1 } }
+		);
+		
+		for (var i = 0, len = arr.length; i < len; i++) {
+			var conta = 0;
+			if (QuizObject.questions[i].type === "VF")
+			{	if(QuizObject.questions[i].ans === QuizObject.questions[i].risp)
+				{
+					conta = 1; 
+				}
+				
+			}
+			else if (this.myQuiz[i].type === "MU")
+			{	if(QuizObject.questions[i].rightAns == QuizObject.questions[i].risp )
+				{
+					conta = 1; 
+				}
+				
+			}
+			else if (QuizObject.questions[i].type === "MX")
+			{	var sentinella = true;
+				var lo_quiz = QuizObject.questions[i];
+				var lo_ans = lo_quiz.ans;
+				if(lo_quiz.risp !== undefined)
+				{				
+					for(var j = 0; j < lo_ans.length; j++)
+					{	
+						if(  lo_quiz.risp[lo_ans[j].id] === undefined )
+						{
+							lo_quiz.risp[lo_ans[j].id] = false;
+						}
+						if( lo_quiz.rightAns[lo_ans[j].id] !== lo_quiz.risp[lo_ans[j].id] )
+						{
+							sentinella = false;
+						}
+					}							
+					if( sentinella === true ){ conta = 1;}
+				}
+			}
+			else if (QuizObject.questions[i].type === "AS")
+			{
+				if ( angular.equals( QuizObject.questions[i].rightAns , QuizObject.questions[i].risp ) )
+				{
+					conta = 1;
+				}
+			}
+			else if (QuizObject.questions[i].type === "OD")
+			{
+				if ( angular.equals( QuizObject.questions[i].rightAns , QuizObject.questions[i].risp ) )
+				{
+					conta = 1;
+				}
+			}
+			
+			Meteor.call("statistics.QuestionExecutionStats", QuizObject.questions[i]._id, conta);
+			Meteor.call("statistics.UserExecutionStats", QuizObject._idUser, 1, conta);
+		}
 	},
 		   
 	"statistics.UserExecutionStats" (UserID, QuestionAnswered, QuestionCorrectAnswered) {
-		var new1 = 0;
-		var new2 = 0;
-		UserStatistics.findOne({"_id" : UserID}, function(err, res) {
-			if(err) {}
-			if(result) {new1 = vecchi_dati[0].AnsweredQuestions; new2 = vecchi_dati[0].CorrectAnswers;}
-			else {}
-		});
 		UsersStatistics.update(
 			{"_id" : UserID},
-			{"AnsweredQuestions" : new1 + QuestionAnswered, "CorrectAnswers" : new2 + QuestionCorrectAnswered},
-			{upsert: true}
+			{ $inc: { "AnsweredQuestions" : QuestionAnswered, "CorrectAnswers" : QuestionCorrectAnswered} }
 		);	
 	},
 		   
-	"statistics.QuestionExecutionStats" (QuestionID, Correct) {
-		var new1 = 0;
-		var new2 = 0;
-		QuestionsStatistics.find({"_id" : QuestionID}, function (err, res) {
-			if(err) {}
-			if(result) {new1 = res[0].rispCorrette; new2 = res[0].voltePresentatavvvv;}
-			else {}
-		});
-		
-		
+	"statistics.QuestionExecutionStats" (QuestionID, Correct) {		
 		QuestionsStatistics.update(
 			{"_id" : QuestionID},
-			{
-				"rispCorrette" : new1 + Correct,
-				"voltePresentata" : new2 + 1
-			},
-			{upsert: true}
+			{ $inc: { "rispCorrette" : Correct, "voltePresentata" : 1 } }
 		);	
 	}
 });

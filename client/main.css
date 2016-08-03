@@ -188,3 +188,105 @@ header, main, footer {
     height: 3rem;
 }
 
+/**********************************************************/
+
+/*homepage*/
+
+.jumbotron {
+    background-color: #ee6e73;
+    color: white;
+}
+
+.jumbotron h1 {
+    margin: 0 auto;
+    padding-top: 1em;
+    padding-bottom: 1em;
+}
+
+.jumbotron .quote {
+    font-style: italic;
+    font-size: 2em;
+    width: 60%;
+    margin: 0 auto;
+    position: relative;
+}
+
+.jumbotron .quote:before {
+    display: block;
+    padding-left: 10px;
+    content: "\201C";
+    font-size: 80px;
+    position: absolute;
+    left: -30px;
+    top: -30px;
+}
+
+.jumbotron .quote:after {
+    display: block;
+    padding-left: 10px;
+    content: "\201D";
+    font-size: 80px;
+    position: absolute;
+    right: -30px;
+    top: -30px;
+}
+
+.jumbotron .quote .author {
+    display: block;
+    font-size: 0.75em;
+    width: 60%;
+    margin: 0 auto;
+    padding-top: 1em;
+    padding-bottom: 1em;
+}
+
+.promo .promo-title {
+    font-size: 1.3em;
+    font-weight: 500;
+}
+
+.promo a.btn {
+    margin: 1em auto;
+}
+
+.devs {
+    background-color: #eeeeee;
+    margin-bottom: 0;
+}
+
+.dev {
+    padding: 1em 3em !important;
+}
+
+.dev .dev-photo {
+    width: 100%;
+}
+
+.dev .name {
+    font-size: 1.3em;
+    font-weight: 500;
+}
+
+.dev2:nth-child(even) {
+    background-color: #eeeeee;
+}
+
+.dev2 p {
+    padding-left: 2.5em;
+    padding-right: 2.5em;
+}
+
+.dev2 .dev-photo {
+    width: 100%;
+    max-width: 200px;
+    padding: 1em;
+}
+
+.dev2:nth-child(odd) .photo {
+    float: right;
+}
+
+.dev2 .name {
+    font-size: 1.3em;
+    font-weight: 500;
+}

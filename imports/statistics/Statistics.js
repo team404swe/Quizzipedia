@@ -1,4 +1,3 @@
-import angular from 'angular';
 import { Meteor } from 'meteor/meteor';
 import { Mongo } from 'meteor/mongo';
 import { Quizzes } from "../publishers/quizPublisher";

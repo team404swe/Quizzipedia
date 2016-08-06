@@ -240,7 +240,7 @@ header, main, footer {
 .jumbotron .quote {
     font-style: italic;
     font-size: 2em;
-    width: 60%;
+    width: 40%;
     margin: 0 auto;
     position: relative;
 }
@@ -249,20 +249,20 @@ header, main, footer {
     display: block;
     padding-left: 10px;
     content: "\201C";
-    font-size: 80px;
+    font-size: 5em;
     position: absolute;
-    left: -30px;
-    top: -30px;
+    left: -1em;
+    top: -.5em;
 }
 
 .jumbotron .quote:after {
     display: block;
     padding-left: 10px;
     content: "\201D";
-    font-size: 80px;
+    font-size: 5em;
     position: absolute;
-    right: -30px;
-    top: -30px;
+    right: -1em;
+    top: -.5em;
 }
 
 .jumbotron .quote .author {
@@ -303,6 +303,7 @@ header, main, footer {
 
 .dev2:nth-child(even) {
     background-color: #eeeeee;
+    padding: 20px 0;
 }
 
 .dev2 p {

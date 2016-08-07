@@ -22,15 +22,15 @@ class QuestionListController{
 	
 		this.helpers({
 			questions() {
-				return Questions.find({}, {"sort" : [['createdAt', 'desc']]});
+				return Questions.find({"owner" : Meteor.userId()}, {"sort" : [['createdAt', 'desc']]});
 			}					
 		});		
 	}
 	
 	getQuestionDetails(QMLtext){		
-		var question = checkQML(QMLtext);
-		if(question)
-			return question;
+		var questionDetails = checkQML(QMLtext);
+		if(questionDetails)
+			return questionDetails;
 		else
 			console.log("Error retrieving question details");
 	}		

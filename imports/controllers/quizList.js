@@ -10,11 +10,8 @@ class QuizListController{
 	constructor($scope) {
 		$scope.viewModel(this);     
 		
-		this.category;
+		this.category = "";
 		this.inputCategories = [
-            {
-                name: 'Tutte'
-            },
             {
                 name: 'Geografia'
             },
@@ -34,20 +31,18 @@ class QuizListController{
 			$('.collapsible').collapsible({
 			  accordion : true 
 			});
-		});     
-		
-		/*Materialize select initialization*/
-		$(document).ready(function() {
-			$('select').material_select();
-		}); 
+		});     		
 		
 		this.subscribe('quizzes');
-		this.subscribe('questions');
+		this.subscribe('questions');				          
 	
 		this.helpers({
 			quizzes(){
+				
+				this.category = this.getReactively('category');
+					
 				console.log(this.category);
-				if(this.category == "Tutte"){
+				if(this.category == ""){
 					console.log("machecazzo");
 					return Quizzes.find({}, {"sort" : [['createdAt', 'desc']]});
 				}
@@ -73,10 +68,6 @@ class QuizListController{
 			quizComp.questions[i] = checkAnswer(quest[0].QMLtext);
 		}
 		
-	}
-	
-	reload(){
-		this.quizzes();
 	}
 }
 

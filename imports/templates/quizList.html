@@ -1,14 +1,11 @@
 <div>
-	<header>
-		<h1>Quiz List</h1>
-	</header>
 	<div class="row">
-		<div class="input-field col s12 m6">			
-			<select ng-model="$ctrl.category">
-				<option value="" selected disabled>Seleziona una categoria</option>			
+		<div class="input-field col s12 m6">		
+			<h3>Categoria</h3>
+			<select ng-model="$ctrl.category" class="browser-default">
+				<option value="" selected>Tutte le categorie</option>			
 				<option ng-repeat="c in $ctrl.inputCategories" value="{{c.name}}">{{c.name}}</option>			
-			</select>						
-			<label>Categoria</label>
+			</select>									
 		</div>
 		<div class="col s12">		
 			<ul class="collapsible popout">		

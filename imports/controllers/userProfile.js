@@ -1,15 +1,31 @@
 import angular from 'angular';
 import angularMeteor from 'angular-meteor';
 import template from '../templates/userProfile.html';
+import questionList from '../controllers/questionList';
+import quizList from '../controllers/quizList';
 
 class UserProfileController{
 	constructor($scope) {
-		$scope.viewModel(this);          
+		$scope.viewModel(this);     
+		
+		/*Materilize collapsible initialization*/
+		$(document).ready(function(){
+			$('.collapsible').collapsible({
+			  accordion : true 
+			});
+		});     
+		
+		/*Materialize select initialization*/
+		$(document).ready(function() {
+			$('select').material_select();
+		});      
 	}
 }
 
 export default angular.module('userProfile', [
-  angularMeteor
+  angularMeteor,
+  questionList.name,
+  quizList.name
 ])
   .component('userProfile', {
     templateUrl: 'imports/templates/userProfile.html',

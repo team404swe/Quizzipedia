@@ -3,7 +3,6 @@
 </header>
 
 <div class="row">
-<div class="row">
     <div class="col s12">
       <ul class="tabs">
         <li class="tab col s2"><a href="#qzIntuitivo">Intuitivo</a></li>
@@ -116,113 +115,112 @@
 			<span id="check" ng-click="$ctrl.check($ctrl.QMLtext)" class="waves-effect waves-light btn">Check QML</span>
 			<input type="submit" id="submit" value="Save Question" class="waves-effect waves-light btn"/>				
 		</fieldset>
-	</form>
+		</form>
 	</div>
-  </div>
+ </div>
 
-	<div class="col s12">
-		<br>
+<div class="col s12">
+	<br>
 	<h4>Examples</h4>
-		<ul class="collapsible popout" data-collapsible="accordion">
-			<li> 
-				<div class="collapsible-header">
-					<div class="col s10">
-						<i class="material-icons">info</i>
-						Domanda Vero/Falso
-					</div> 					
-				</div>
-			
-				<div class="collapsible-body">
-					<p><code>
-						&lt;question&gt;{VF} <br>
-						ask{Napoleone morì a Sant'Elena. } <br>
-						{V} <br>
-						&lt;/question&gt;
-						</code></p>					
-				</div>
-			</li>
-			<li>
-				<div class="collapsible-header">
-					<div class="col s10">
-						<i class="material-icons">info</i>
-						Domanda a risposta multipla, unica risposta esatta
-					</div> 					
-				</div>
-				<div class="collapsible-body">
-					<p><code>
-						&lt;question&gt;{MU} <br>
-						ask{Il colore del cielo. }<br>
-						{}rosso <br>
-						{X}blu <br>
-						{}giallo <br>
-						{}verde <br>
-						&lt;/question&gt; 
-						</code>
-					</p>					
-				</div>
-			</li>
-			<li>
-				<div class="collapsible-header">
-					<div class="col s10">
-						<i class="material-icons">info</i>
-						Domanda a risposta multipla, più risposte esatte
-					</div> 					
-				</div>
-				<div class="collapsible-body">
-					<p><code>
-						&lt;question&gt;{MX} <br>
-						ask{scegli i frutti. }<br>
-						{}mais <br>
-						{X}mango <br>
-						{}fagioli <br>
-						{X}pera <br>
-						&lt;/question&gt; 
-						</code>
-					</p>					
-				</div>
-			</li>
-			<li>
-				<div class="collapsible-header">
-					<div class="col s10">
-						<i class="material-icons">info</i>
-						Domanda ad associazione
-					</div> 					
-				</div>
-				<div class="collapsible-body">
-					<p><code>
-						&lt;question&gt;{AS}  <br>
-						ask{collega gli insiemi.} <br>
-						A->X	banana <br>
-						A->2	fragola <br>
-						B->X    giallo <br> 
-						B->2	rosso <br>
-						A->3  	arancia <br>
-						&lt;/question&gt;
-						</code>
-					</p>					
-				</div>
-			</li>
-			<li>
-				<div class="collapsible-header">
-					<div class="col s10">
-						<i class="material-icons">info</i>
-						Domanda di ordinamento
-					</div> 					
-				</div>
-				<div class="collapsible-body">
-					<p><code>
-						&lt;question&gt;{OD} <br>
-						ask{Ordina le seguenti regioni dalla più grande  alla più piccola. } <br>
-						{1} Lombardia <br>
-						{2} Toscana  <br>
-						{3} Puglia  <br>
-						{4} Veneto  <br>
-						{5} Lazio  <br>
-						&lt;/question&gt; 
-						</code>
-					</p>					
-				</div>
-			</li>
-		</ul>
-	</div>
-</div>	
+	<ul class="collapsible popout" data-collapsible="accordion">
+		<li> 
+			<div class="collapsible-header">
+				<div class="col s10">
+					<i class="material-icons">info</i>
+					Domanda Vero/Falso
+				</div> 					
+			</div>
+		
+			<div class="collapsible-body">
+				<p><code>
+					&lt;question&gt;{VF} <br>
+					ask{Napoleone morì a Sant'Elena. } <br>
+					{V} <br>
+					&lt;/question&gt;
+					</code></p>					
+			</div>
+		</li>
+		<li>
+			<div class="collapsible-header">
+				<div class="col s10">
+					<i class="material-icons">info</i>
+					Domanda a risposta multipla, unica risposta esatta
+				</div> 					
+			</div>
+			<div class="collapsible-body">
+				<p><code>
+					&lt;question&gt;{MU} <br>
+					ask{Il colore del cielo. }<br>
+					{}rosso <br>
+					{X}blu <br>
+					{}giallo <br>
+					{}verde <br>
+					&lt;/question&gt; 
+					</code>
+				</p>					
+			</div>
+		</li>
+		<li>
+			<div class="collapsible-header">
+				<div class="col s10">
+					<i class="material-icons">info</i>
+					Domanda a risposta multipla, più risposte esatte
+				</div> 					
+			</div>
+			<div class="collapsible-body">
+				<p><code>
+					&lt;question&gt;{MX} <br>
+					ask{scegli i frutti. }<br>
+					{}mais <br>
+					{X}mango <br>
+					{}fagioli <br>
+					{X}pera <br>
+					&lt;/question&gt; 
+					</code>
+				</p>					
+			</div>
+		</li>
+		<li>
+			<div class="collapsible-header">
+				<div class="col s10">
+					<i class="material-icons">info</i>
+					Domanda ad associazione
+				</div> 					
+			</div>
+			<div class="collapsible-body">
+				<p><code>
+					&lt;question&gt;{AS}  <br>
+					ask{collega gli insiemi.} <br>
+					A->X	banana <br>
+					A->2	fragola <br>
+					B->X    giallo <br> 
+					B->2	rosso <br>
+					A->3  	arancia <br>
+					&lt;/question&gt;
+					</code>
+				</p>					
+			</div>
+		</li>
+		<li>
+			<div class="collapsible-header">
+				<div class="col s10">
+					<i class="material-icons">info</i>
+					Domanda di ordinamento
+				</div> 					
+			</div>
+			<div class="collapsible-body">
+				<p><code>
+					&lt;question&gt;{OD} <br>
+					ask{Ordina le seguenti regioni dalla più grande  alla più piccola. } <br>
+					{1} Lombardia <br>
+					{2} Toscana  <br>
+					{3} Puglia  <br>
+					{4} Veneto  <br>
+					{5} Lazio  <br>
+					&lt;/question&gt; 
+					</code>
+				</p>					
+			</div>
+		</li>
+	</ul>
+</div>

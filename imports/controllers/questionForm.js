@@ -5,7 +5,10 @@ import template from '../templates/questionForm.html';
 
 class NewQuestionController{
 	constructor($scope) {
-		$scope.viewModel(this);   				
+		$scope.viewModel(this);   
+		
+		this.QMLText;
+		this.category;				
 		
 		/*Materialize collapsible initialization*/
 		$(document).ready(function(){
@@ -13,6 +16,11 @@ class NewQuestionController{
 			  accordion : true 
 			});
 		});		
+		
+		/* Materialize tabs initilization*/
+		$(document).ready(function(){
+			$('ul.tabs').tabs();
+		});
 	}	
 	
 	check(QMLtext){		
@@ -47,9 +55,9 @@ class NewQuestionController{
 					console.log(result);
 					if(result)
 					{
-						QzMessage.showText(2, "Your question has been saved!");
 						this.QMLtext="";
 						this.category="";
+						QzMessage.showText(2, "Your question has been saved!");						
 					}
 					else
 						QzMessage.showText(0, "QML text has sintax errors");											

@@ -325,3 +325,13 @@ header, main, footer {
     font-size: 1.3em;
     font-weight: 500;
 }
+
+
+/*------------------------------------------------------------------*/
+/* Resize dei popup*/
+
+.modal { width: 30% !important  } 
+.modal-footer a{
+	margin-right: 1em !important;
+}
+

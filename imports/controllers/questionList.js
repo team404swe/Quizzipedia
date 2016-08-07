@@ -11,19 +11,26 @@ class QuestionListController{
 	constructor($scope) {
 		$scope.viewModel(this);     
 		
+		this.toDelete;
+		
 		/*Materilize collapsible initialization*/
 		$(document).ready(function(){
 			$('.collapsible').collapsible({
 			  accordion : true 
 			});
-		});      
+		});      		
+		
+        $(document).ready(function(){
+			// the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+			$('.modal-trigger').leanModal();
+		});				
 		
 		this.subscribe('questions');
 	
 		this.helpers({
 			questions() {
 				return Questions.find({"owner" : Meteor.userId()}, {"sort" : [['createdAt', 'desc']]});
-			}					
+			}							
 		});		
 	}
 	
@@ -41,20 +48,29 @@ class QuestionListController{
 			Meteor.call("questions.remove", question, function(error, result) {
 				if (error)
 					QzMessage.showText(0, error);
-				else
+				else{
 					console.log(result);
 					if(result)
-					{
+					{						
 						QzMessage.showText(2, "Your question has been removed!");
 					}
 					else
 						QzMessage.showText(0, "Can't remove question");											
+					
+					this.toDelete = undefined;
+				}
 			});
 		}
 		else{
 			console.log("Error removing question");
 		}
 	}
+	
+	openAlert(questionId){		
+		this.toDelete = questionId;					
+		$('#modal').openModal();
+	}
+		
 }
 
 export default angular.module('questionList', [

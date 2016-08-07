@@ -3,12 +3,26 @@
 		<li ng-repeat="question in $ctrl.questions">
 			<div class="collapsible-header question-header">
 				<i class="material-icons">live_help</i> <strong>{{ $ctrl.getQuestionDetails(question.QMLtext).text }}</strong> 
-				<span class="waves-effect waves-light btn right delete-button" ng-click="$ctrl.deleteQuestion(question._id)">X</span> <br>						
+				<!-- Alert Trigger -->  
+				<button data-target="modal" class="waves-effect waves-light btn right delete-button modal-trigger" ng-click="$ctrl.openAlert(question._id)">X</button>								
 			</div>
 			<div class="collapsible-body question-details">				
 				Categoria: {{question.category}}<br>
-				Type: {{ $ctrl.getQuestionDetails(question.QMLtext).type }}			
-			</div>
+				Tipo: {{ $ctrl.getQuestionDetails(question.QMLtext).type }}			
+			</div>			  
 		</li>
-	</ul>
-</div>
+	</ul>		
+  
+</div>		
+
+<!-- Alert Structure -->
+<div id="modal" class="modal">
+	<div class="modal-content">
+	  <h4>Conferma</h4>
+	  <p>Sei sicuro di voler eliminare la domanda?</p>
+	</div>
+	<div class="modal-footer">
+	  <a href="#" class=" modal-action modal-close waves-effect waves-green btn" ng-click="$ctrl.deleteQuestion($ctrl.toDelete)">Elimina</a>
+	  <a href="#" class=" modal-action modal-close waves-effect waves-green btn" ng-click="$ctrl.toDelete = undefined;">Annulla</a>
+	</div>
+</div>	

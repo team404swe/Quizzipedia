@@ -13,7 +13,11 @@
 			<div class="input-field col s4">
 				<label for="time" class="active">Quiz time</label>
 				<input type="number" min="5" max="30" id="time"  placeholder="5" ng-model="$ctrl.time"/>
-			</div>					
+			</div>				
+			<div class="input-field col s8">
+				<label for="description">Descrizione</label>
+				<textarea id="description" class="materialize-textarea" ng-model="$ctrl.description"></textarea>							
+			</div>		
 			
 			<div class="col s12" ng-show="$ctrl.categories.length != 0">
 				<ul class="collection with-header">

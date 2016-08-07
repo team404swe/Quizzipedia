@@ -8,7 +8,7 @@ import { Questions } from '../publishers/questionPublisher.js';
 
 class UserProfileController{
 	constructor($scope) {
-		$scope.viewModel(this);     
+		$scope.viewModel(this);   
 		
 		/*Materilize collapsible initialization*/
 		$(document).ready(function(){

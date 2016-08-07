@@ -11,6 +11,7 @@ class NewQuizController{
 		
 		this.questions = [];	
 		this.categories= [];
+		this.description;
 				
 		this.subscribe('questions');
 		   

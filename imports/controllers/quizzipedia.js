@@ -13,6 +13,7 @@ import quizCompilation from '../controllers/quizCompilation';
 import quizResults from '../controllers/quizResults';
 import quizHome from '../controllers/quizHome';
 import quizStatistics from '../controllers/quizStatistics';
+import userProfile from '../controllers/userProfile';
 
 
 QzTimer = {tempo:0, format: 'mm:ss', timerID: undefined,quizPlay: false};
@@ -25,8 +26,7 @@ class Quizzipedia {
 		//attivazione del menu mobile
 		//$(".button-collapse").sideNav();
 	}	
-	
-	
+		
 }
 
  cambia = function(){
@@ -69,6 +69,7 @@ export default angular.module('quizzipedia', [
   quizResults.name,
   quizHome.name,  
   quizStatistics.name,
+  userProfile.name,
   'accounts.ui'
 ]).component('quizzipedia', {
   templateUrl: 'imports/templates/quizzipedia.html',  
@@ -118,5 +119,9 @@ export default angular.module('quizzipedia', [
 		$stateProvider.state('quizStatistics', {
 						url: '/quizStatistics',
 						template: '<quiz-statistics></quiz-statistics>'
+		});
+		$stateProvider.state('userProfile', {
+						url: '/userProfile',
+						template: '<user-profile></user-profile>'
 		});
 	}

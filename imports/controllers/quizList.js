@@ -10,6 +10,25 @@ class QuizListController{
 	constructor($scope) {
 		$scope.viewModel(this);     
 		
+		this.category;
+		this.inputCategories = [
+            {
+                name: 'Tutte'
+            },
+            {
+                name: 'Geografia'
+            },
+            {
+                name: 'Storia'
+            },
+            {
+                name: 'SWE'
+            },
+            {
+                name: 'Informatica'
+            }
+        ];
+		
 		/*Materilize collapsible initialization*/
 		$(document).ready(function(){
 			$('.collapsible').collapsible({
@@ -17,20 +36,31 @@ class QuizListController{
 			});
 		});     
 		
+		/*Materialize select initialization*/
+		$(document).ready(function() {
+			$('select').material_select();
+		}); 
+		
 		this.subscribe('quizzes');
-	
-		this.helpers({
-			quizzes(){
-				return Quizzes.find({}, {"sort" : [['createdAt', 'desc']]});
-			}
-		});
 		this.subscribe('questions');
 	
 		this.helpers({
+			quizzes(){
+				console.log(this.category);
+				if(this.category == "Tutte"){
+					console.log("machecazzo");
+					return Quizzes.find({}, {"sort" : [['createdAt', 'desc']]});
+				}
+				else{
+					console.log("machecazzo cetogory");
+					return Quizzes.find({ "categories" : this.category}, {"sort" : [['createdAt', 'desc']]});
+				}
+			},
+			
 			questions() {
 				return Questions.find({}, {"sort" : [['createdAt', 'desc']]});
-			}					
-		});	
+			}	
+		});			
 	}
 	
 	setQuiz(qid)
@@ -43,6 +73,10 @@ class QuizListController{
 			quizComp.questions[i] = checkAnswer(quest[0].QMLtext);
 		}
 		
+	}
+	
+	reload(){
+		this.quizzes();
 	}
 }
 

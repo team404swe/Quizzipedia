@@ -10,8 +10,7 @@ class NavbarController {
 			isLoggedIn(){
 				return !!Meteor.userId();
 			}
-		});
-		this.pippo = "pippo";
+		});		
 		this.slideMenu();
 		
 		$('.collapsible').collapsible();

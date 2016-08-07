@@ -7,12 +7,12 @@ class NewQuestionController{
 	constructor($scope) {
 		$scope.viewModel(this);   				
 		
-		/*Materilize collapsible initialization*/
+		/*Materialize collapsible initialization*/
 		$(document).ready(function(){
 			$('.collapsible').collapsible({
 			  accordion : true 
 			});
-		}); 
+		});		
 	}	
 	
 	check(QMLtext){		

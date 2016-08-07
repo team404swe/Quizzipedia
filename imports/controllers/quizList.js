@@ -10,21 +10,8 @@ class QuizListController{
 	constructor($scope) {
 		$scope.viewModel(this);     
 		
-		this.category = "";
-		this.inputCategories = [
-            {
-                name: 'Geografia'
-            },
-            {
-                name: 'Storia'
-            },
-            {
-                name: 'SWE'
-            },
-            {
-                name: 'Informatica'
-            }
-        ];
+		this.category = "";		
+		this.userOnly = false;
 		
 		/*Materilize collapsible initialization*/
 		$(document).ready(function(){
@@ -34,28 +21,50 @@ class QuizListController{
 		});     		
 		
 		this.subscribe('quizzes');
-		this.subscribe('questions');				          
+		this.subscribe('questions');			
 	
 		this.helpers({
 			quizzes(){
 				
 				this.category = this.getReactively('category');
-					
-				console.log(this.category);
-				if(this.category == ""){
-					console.log("machecazzo");
+									
+				if(this.category == ""){					
 					return Quizzes.find({}, {"sort" : [['createdAt', 'desc']]});
 				}
-				else{
-					console.log("machecazzo cetogory");
+				else{					
 					return Quizzes.find({ "categories" : this.category}, {"sort" : [['createdAt', 'desc']]});
 				}
 			},
 			
 			questions() {
 				return Questions.find({}, {"sort" : [['createdAt', 'desc']]});
-			}	
+			},
+			
+			// Recupera tutte le categorie dei quiz per popolare la select, senza inserire duplicati
+			inputCategories (){
+				var resultArrays = [];
+				Quizzes.find().forEach(function(quiz) { resultArrays.push(quiz.categories) });				
+				var resultCategories = [];
+				resultArrays.forEach(function(arr) { 
+					for ( i=0; i<arr.length; i++){
+						var duplicate = false;
+						resultCategories.forEach(function(inserted){
+							if(inserted == arr[i]){
+								duplicate = true;
+							}
+						});
+						if(!duplicate){
+							resultCategories.push(arr[i]);
+						}
+					}										
+				});				
+				return resultCategories;
+			}
 		});			
+	}
+	
+	getAuthor(quizOwnerId){		
+		return Meteor.users.findOne({"_id" : quizOwnerId}).username;				
 	}
 	
 	setQuiz(qid)

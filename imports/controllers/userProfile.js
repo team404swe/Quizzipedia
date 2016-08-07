@@ -13,12 +13,7 @@ class UserProfileController{
 			$('.collapsible').collapsible({
 			  accordion : true 
 			});
-		});     
-		
-		/*Materialize select initialization*/
-		$(document).ready(function() {
-			$('select').material_select();
-		});      
+		});     		
 	}
 }
 

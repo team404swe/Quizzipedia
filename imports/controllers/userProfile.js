@@ -3,6 +3,8 @@ import angularMeteor from 'angular-meteor';
 import template from '../templates/userProfile.html';
 import questionList from '../controllers/questionList';
 import quizList from '../controllers/quizList';
+import { Quizzes } from '../publishers/quizPublisher.js';
+import { Questions } from '../publishers/questionPublisher.js';
 
 class UserProfileController{
 	constructor($scope) {
@@ -14,6 +16,16 @@ class UserProfileController{
 			  accordion : true 
 			});
 		});     		
+		
+		this.subscribe("questions");
+	}
+	
+	getQuestionsNum(){
+		return Questions.find({"owner" : Meteor.userId()}).count();
+	}
+	
+	getQuizNum(){
+		return Quizzes.find({"owner" : Meteor.userId()}).count();
 	}
 }
 

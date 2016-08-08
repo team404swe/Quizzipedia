@@ -2,11 +2,11 @@
 <div class="row">			
 	<div class="col s12">			
 	
-	{{quiz.title}} - Category:{{question.category}}
+	{{$ctrl.quizObj.title}}
 	
 </div>
 <div class="col s12">
-	Questions:{{quiz.questionsNum}} - Author:{{quiz.author}}
+	Questions: {{$ctrl.quizObj.questions.length}} - Author:{{$ctrl.quizObj._author}}
 	<br> <br> <br>
 	HAI FATTO: <strong> {{$ctrl.punti}} </strong> punti.
 	<h1> GRAZIE MILLE RAGAZZE </h1>

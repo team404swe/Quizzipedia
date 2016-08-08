@@ -235,64 +235,15 @@ class QuizCompilationController{
 	}
 	
 	contaPunti()
-	{ 	var conta = 0;
+	{ 	
+		var conta = 0;
 		for(var i = 0; i < this.myQuiz.length; i++)
-		{	
-			if (this.myQuiz[i].type === "VF")
-			{	if(this.myQuiz[i].ans === this.myQuiz[i].risp)
-				{
-					conta += 1; 
-				}
-				
-			}
-			else if (this.myQuiz[i].type === "MU")
-			{	if(this.myQuiz[i].rightAns == this.myQuiz[i].risp )
-				{
-					conta += 1; 
-				}
-				
-			}
-			else if (this.myQuiz[i].type === "MX")
-			{	var sentinella = true;
-				var lo_quiz = this.myQuiz[i];
-				var lo_ans = lo_quiz.ans;
-				if(lo_quiz.risp !== undefined)
-				{				
-					for(var j = 0; j < lo_ans.length; j++)
-					{	
-						if(  lo_quiz.risp[lo_ans[j].id] === undefined )
-						{
-							lo_quiz.risp[lo_ans[j].id] = false;
-						}
-						if( lo_quiz.rightAns[lo_ans[j].id] !== lo_quiz.risp[lo_ans[j].id] )
-						{
-							sentinella = false;
-						}
-					}							
-					if( sentinella === true ){ conta += 1;}
-				}
-			}
-			else if (this.myQuiz[i].type === "AS")
-			{
-				if ( angular.equals( this.myQuiz[i].rightAns , this.myQuiz[i].risp ) )
-				{
-					conta += 1;
-				}
-			}
-			else if (this.myQuiz[i].type === "OD")
-			{
-				if ( angular.equals( this.myQuiz[i].rightAns , this.myQuiz[i].risp ) )
-				{
-					conta += 1;
-				}
-			}
-			
-		}	
+		{
+			if(QuestionResult(this.myQuiz[i])) {conta += 1;}
+		}
 		return conta;
-		
 	}
-	
-} 
+}
 
 export default angular.module('quizCompilation', [
   angularMeteor
@@ -301,4 +252,86 @@ export default angular.module('quizCompilation', [
     templateUrl: 'imports/templates/quizCompilation.html',
     controller: ['$scope','$interval', QuizCompilationController]
   });
- 
+
+export default function QuestionResult(question)
+{
+	if (this.myQuiz[i].type === "VF")
+	{	if(ResultVF(this.myQuiz[i]))
+		{
+			return true;
+		}
+		
+	}
+	else if (this.myQuiz[i].type === "MU")
+	{	if(ResultMU(this.myQuiz[i]))
+		{
+			return true;
+		}
+		
+	}
+	else if (this.myQuiz[i].type === "MX")
+	{
+		if(ResultMX(this.myQuiz[i]))
+		{
+			return true;
+		}
+	}
+	else if (this.myQuiz[i].type === "AS")
+	{
+		if ( angular.equals( this.myQuiz[i].rightAns , this.myQuiz[i].risp ) )
+		{
+			return true;
+		}
+	}
+	else if (this.myQuiz[i].type === "OD")
+	{
+		if ( angular.equals( this.myQuiz[i].rightAns , this.myQuiz[i].risp ) )
+		{
+			return true;
+		}
+	}
+	return false;
+}	
+
+
+
+function ResultVF(question) { if(question.ans === question.risp) {return true;} return false; }
+function ResultMX(question) { if(question.rightAns == question.risp) {return true;} return false; }
+function ResultMU(question) 
+{
+	var sentinella = true;
+	var lo_quiz = question;
+	var lo_ans = lo_quiz.ans;
+	if(lo_quiz.risp !== undefined)
+	{				
+		for(var j = 0; j < lo_ans.length; j++)
+		{	
+			if(  lo_quiz.risp[lo_ans[j].id] === undefined )
+			{
+				lo_quiz.risp[lo_ans[j].id] = false;
+			}
+			if( lo_quiz.rightAns[lo_ans[j].id] !== lo_quiz.risp[lo_ans[j].id] )
+			{
+				sentinella = false;
+			}
+		}
+	}
+	if( sentinella === true) { return true; }
+	return false;
+}
+function ResultAS(question)
+{
+	if ( angular.equals( question.rightAns , question.risp ) )
+	{
+		return true;
+	}
+	return false;
+}
+function ResultOD(question)
+{
+	if ( angular.equals( question.rightAns , question.risp ) )
+	{
+		return true;
+	}
+	return false;
+}

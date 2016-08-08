@@ -11,15 +11,14 @@ class QuizListController{
 		$scope.viewModel(this);     
 		
 		this.category = "";		
-		this.userOnly = false;
 		this.toDelete;
-		
+						
 		/*Materilize collapsible initialization*/
 		$(document).ready(function(){
 			$('.collapsible').collapsible({
 			  accordion : true 
 			});
-		});     
+		});
 		
 		$(document).ready(function(){
 			// the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
@@ -77,6 +76,10 @@ class QuizListController{
 		return Meteor.userId() == ownerId;
 	}
 	
+	log(x){
+		console.log(x);
+	}
+	
 	setQuiz(qid)
 	{ debugger;
 		var tempQuiz = Quizzes.find({_id: qid}).fetch();
@@ -86,7 +89,7 @@ class QuizListController{
 			quizComp.questions[i] = undefined;
 			quizComp.questions[i] = checkAnswer(quest[0].QMLtext);
 		}
-		quizComp._author = getAuthor(quizComp.owner);
+		quizComp._author = this.getAuthor(quizComp.owner);
 	}
 	
 	deleteQuiz(quiz){

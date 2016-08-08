@@ -1,6 +1,7 @@
 import angular from 'angular';
 import angularMeteor from 'angular-meteor';
 import template from '../templates/quizResults.html';
+import ResultQuestion from './quizCompilation.js';
 
 class quizResultsController{
 	constructor($scope) {

@@ -2,19 +2,29 @@
 <div class="row">			
 	<div class="col s12">			
 	
-	{{$ctrl.quizObj.title}}
+		Nome del Quiz: {{$ctrl.quizObj.title}}
 	
-</div>
-<div class="col s12">
-	Questions: {{$ctrl.quizObj.questions.length}} - Author:{{$ctrl.quizObj._author}}
-	<br> <br> <br>
-	HAI FATTO: <strong> {{$ctrl.punti}} </strong> punti.
-	<h1> GRAZIE MILLE RAGAZZE </h1>
-	<div >
-		{{$ctrl.quizObj}}
-		<br>
-		{{$ctrl.jsonQuiz}}
 	</div>
+	<div class="col s12">
+		Domande totali: {{$ctrl.quizObj.questions.length}}
+	</div>
+	<div class="col s12">
+		Autore: {{$ctrl.quizObj._author}}
+	</div>
+	<div class="col s12">
+		<br>
+		HAI REALIZZATO: <strong> {{$ctrl.punti}} </strong> punti.
+		<h1> RISULTATO DELLE DOMANDE </h1>
+		<div id="lista_risposte">
+			<div ng-repeat="question in $ctrl.quizObj.questions">
+				<div>
+					<p>{{question.text}}</p>
+				</div>
+				<div>
+					<!--<p class={true: 'corretta', false: 'sbagliata'}[QuestionResult(question)]}> {{{true: "Corretta", false: "Sbagliata"}[QuestionResult(question)]}} </p>-->
+				</div>
+			</div>
+		</div>
 	</div>
 	
 </div>

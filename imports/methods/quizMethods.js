@@ -20,7 +20,7 @@ Meteor.methods({
    },
     
     "quizzes.remove" (quizId){        
-        Quizzes.remove(quizId);
+        return Quizzes.remove(quizId);
     }
     
 });

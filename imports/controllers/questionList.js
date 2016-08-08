@@ -43,13 +43,11 @@ class QuestionListController{
 	}		
 	
 	deleteQuestion(question){
-		if(question){
-			console.log(question);
+		if(question){			
 			Meteor.call("questions.remove", question, function(error, result) {
 				if (error)
 					QzMessage.showText(0, error);
-				else{
-					console.log(result);
+				else{					
 					if(result)
 					{						
 						QzMessage.showText(2, "Your question has been removed!");
@@ -62,13 +60,13 @@ class QuestionListController{
 			});
 		}
 		else{
-			console.log("Error removing question");
+			QzMessage.showText(0,"Error removing question");
 		}
 	}
 	
-	openAlert(questionId){		
+	openAlertQuestion(questionId){		
 		this.toDelete = questionId;					
-		$('#modal').openModal();
+		$('#questionModal').openModal();
 	}
 		
 }

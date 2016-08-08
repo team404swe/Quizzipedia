@@ -12,13 +12,19 @@ class QuizListController{
 		
 		this.category = "";		
 		this.userOnly = false;
+		this.toDelete;
 		
 		/*Materilize collapsible initialization*/
 		$(document).ready(function(){
 			$('.collapsible').collapsible({
 			  accordion : true 
 			});
-		});     		
+		});     
+		
+		$(document).ready(function(){
+			// the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+			$('.modal-trigger').leanModal();
+		});			
 		
 		this.subscribe('quizzes');
 		this.subscribe('questions');			
@@ -67,6 +73,10 @@ class QuizListController{
 		return Meteor.users.findOne({"_id" : quizOwnerId}).username;				
 	}
 	
+	isOwner(ownerId){
+		return Meteor.userId() == ownerId;
+	}
+	
 	setQuiz(qid)
 	{ debugger;
 		var tempQuiz = Quizzes.find({_id: qid}).fetch();
@@ -76,7 +86,33 @@ class QuizListController{
 			quizComp.questions[i] = undefined;
 			quizComp.questions[i] = checkAnswer(quest[0].QMLtext);
 		}
-		
+		quizComp._author = getAuthor(quizComp.owner);
+	}
+	
+	deleteQuiz(quiz){
+		if(quiz){			
+			Meteor.call("quizzes.remove", quiz, function(error, result) {
+				if (error)
+					QzMessage.showText(0, error);
+				else{					
+					if(result){						
+						QzMessage.showText(2, "Your quiz has been removed!");
+					}
+					else{
+						QzMessage.showText(0, "Can't remove quiz");											
+					}
+					this.toDelete = undefined;
+				}
+			});
+		}
+		else{
+			QzMessage.showText(0,"Error removing quiz");
+		}
+	}
+	
+	openAlertQuiz(quizId){		
+		this.toDelete = quizId;					
+		$('#quizModal').openModal();
 	}
 }
 

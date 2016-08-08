@@ -27,6 +27,10 @@ class UserProfileController{
 	getQuizNum(){
 		return Quizzes.find({"owner" : Meteor.userId()}).count();
 	}
+	
+	getUsername(){
+		return Meteor.users.findOne({"_id" : Meteor.userId()}).username;
+	}
 }
 
 export default angular.module('userProfile', [

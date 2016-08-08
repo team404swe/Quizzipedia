@@ -12,7 +12,7 @@
 				<div class="collapsible-header quiz-item">
 					<i class="circle material-icons quiz-icon">assignment</i>
 					<strong>{{quiz.title}}</strong>					
-					<a href="quizCompilation" class="secondary-content right" ng-click="$ctrl.log($parent)"><span class="left">Svolgi </span><i class="material-icons">send</i></a>
+					<a href="quizCompilation" class="secondary-content right" ng-click="$ctrl.setQuiz(quiz._id)"><span class="left">Svolgi </span><i class="material-icons">send</i></a>
 					<!-- Alert Trigger -->
 					<button data-target="quizModal" class="waves-effect waves-light right btn delete-button modal-trigger" ng-show="$parent.$parent.$ctrl.allowDelete && $ctrl.isOwner(quiz.owner)" ng-click="$ctrl.openAlertQuiz(quiz._id)">X</button>
 				</div>

@@ -278,14 +278,14 @@ export default function QuestionResult(question)
 	}
 	else if (question.type === "AS")
 	{
-		if ( angular.equals( question.rightAns , question.risp ) )
+		if(ResultAS(question))
 		{
 			return true;
 		}
 	}
 	else if (question.type === "OD")
 	{
-		if ( angular.equals( question.rightAns , question.risp ) )
+		if(ResultOD(question))
 		{
 			return true;
 		}

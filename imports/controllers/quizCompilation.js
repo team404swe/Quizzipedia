@@ -255,37 +255,37 @@ export default angular.module('quizCompilation', [
 
 export default function QuestionResult(question)
 {
-	if (this.myQuiz[i].type === "VF")
-	{	if(ResultVF(this.myQuiz[i]))
+	if (question.type === "VF")
+	{	if(ResultVF(question))
 		{
 			return true;
 		}
 		
 	}
-	else if (this.myQuiz[i].type === "MU")
-	{	if(ResultMU(this.myQuiz[i]))
+	else if (question.type === "MU")
+	{	if(ResultMU(question))
 		{
 			return true;
 		}
 		
 	}
-	else if (this.myQuiz[i].type === "MX")
+	else if (question.type === "MX")
 	{
-		if(ResultMX(this.myQuiz[i]))
+		if(ResultMX(question))
 		{
 			return true;
 		}
 	}
-	else if (this.myQuiz[i].type === "AS")
+	else if (question.type === "AS")
 	{
-		if ( angular.equals( this.myQuiz[i].rightAns , this.myQuiz[i].risp ) )
+		if ( angular.equals( question.rightAns , question.risp ) )
 		{
 			return true;
 		}
 	}
-	else if (this.myQuiz[i].type === "OD")
+	else if (question.type === "OD")
 	{
-		if ( angular.equals( this.myQuiz[i].rightAns , this.myQuiz[i].risp ) )
+		if ( angular.equals( question.rightAns , question.risp ) )
 		{
 			return true;
 		}

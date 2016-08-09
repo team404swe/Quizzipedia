@@ -20,11 +20,13 @@
 				<div>
 					<p>{{question.text}}</p>
 				</div>
-				<div>
-					<!--<p class={true: 'corretta', false: 'sbagliata'}[QuestionResult(question)]}> {{{true: "Corretta", false: "Sbagliata"}[QuestionResult(question)]}} </p>-->
+				<div ng-if="QuestionResult(question) == true">
+					<p> Corretta </p>
+				</div>
+				<div ng-if="QuestionResult(question) == false">
+					<p> Sbagliata </p>
 				</div>
 			</div>
 		</div>
 	</div>
-	
 </div>

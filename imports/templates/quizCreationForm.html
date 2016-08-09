@@ -28,19 +28,25 @@
 				</ul>
 			</div>
 			
-			<div class="input-field col s12">						
+			<div class="input-field col s12">	
 				<ul class="collection with-header">
 					<li class="collection-header"><h4>Add questions to your quiz</h4></li>
-					<li ng-repeat="question in $ctrl.questionList" class="collection-item">
-						<div>									
-							<input type="checkbox" id="{{$index}}" class="filled-in" ng-checked="$ctrl.questions.indexOf(question._id) > -1"  ng-click="$ctrl.toggleSelection(question)" value="{{question._id}}" />								
-							<label for="{{$index}}"></label>
-							Categoria: {{question.category}}	<br>
-							<span style="padding-left: 2.8em;">QML: {{question.QMLtext}}</span>
-													
-						</div>
-					</li>						
-				</ul>
+					<li class="collection-item">
+						<ul class="collapsible pop-out">
+							<li ng-repeat="question in $ctrl.questionList">
+								<div class="collapsible-header">
+									<input type="checkbox" id="{{$index}}" class="filled-in" ng-checked="$ctrl.questions.indexOf(question._id) > -1"  ng-click="$ctrl.toggleSelection(question)" value="{{question._id}}" />
+									<label for="{{$index}}"></label>			
+									Categoria: {{question.category}}				
+								</div>
+								<div class="collapsible-body">																
+									<span style="padding-left: 2.7em;">Tipologia: {{ $ctrl.getQuestionDetails(question.QMLtext).type }}</span> <br>
+									<span style="padding-left: 2.7em;">Domanda: {{ $ctrl.getQuestionDetails(question.QMLtext).text }} </span>																
+								</div>						
+							</li>
+						</ul>
+					</li>
+				</ul>					
 			</div>			
 			<div class="col s7 right">
 				<input type="submit" id="submit" value="Save Quiz" class="waves-effect waves-light btn"/>	

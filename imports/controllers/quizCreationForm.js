@@ -4,10 +4,18 @@ import { Meteor } from 'meteor/meteor'
 import template from '../templates/quizCreationForm.html';
 
 import { Questions } from '../publishers/questionPublisher.js';
+import checkQML from '../parser/Parser.js';
 
 class NewQuizController{
 	constructor($scope) {
-		$scope.viewModel(this);     						
+		$scope.viewModel(this);  
+		
+		/*Materilize collapsible initialization*/
+		$(document).ready(function(){
+			$('.collapsible').collapsible({
+			  accordion : false 
+			});
+		});      						
 		
 		this.questions = [];	
 		this.categories= [];
@@ -69,6 +77,14 @@ class NewQuizController{
 			this.description = "";
 		}
 	}
+	
+	getQuestionDetails(QMLtext){		
+		var questionDetails = checkQML(QMLtext);
+		if(questionDetails)
+			return questionDetails;
+		else
+			console.log("Error retrieving question details");
+	}	
 }
 
 export default angular.module('quizCreationForm', [

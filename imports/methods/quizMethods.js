@@ -2,7 +2,7 @@ import { Meteor } from "meteor/meteor";
 import { Quizzes } from "../publishers/quizPublisher";
 
 Meteor.methods({
-   "quizzes.insert" (title, questions, categories, time){
+   "quizzes.insert" (title, questions, categories, description, time){
 	   
 	   if (!Meteor.userId()){
            throw new Meteor.Error('non-authorized');
@@ -12,6 +12,7 @@ Meteor.methods({
            title,
            questions,
            categories,
+           description,
            time,
            createdAt: new Date(),
            owner: Meteor.userId(),

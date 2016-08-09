@@ -49,19 +49,24 @@ class NewQuizController{
 		}
 	}
 	
-	saveQuiz(title, questions, categories, time){			
-		
-		if(title==undefined || time==undefined ){
-			QzMessage.showText(0, "Please fill all the form data");
+	saveQuiz(title, questions, categories, description, time){			
+				
+		if(title == undefined || time == undefined ){
+			QzMessage.showText(0, "Inserisci tutti i dati necessari");
 		}
 		else if(questions.length == 0 || categories.length==0){
-			QzMessage.showText(0, "Select at least a question and a category");
+			QzMessage.showText(0, "Seleziona almeno una domanda");
 		}
-		else{
-			debugger;
+		else{			
+			if(description == "" || description == null){
+				QzMessage.showText(1, "La descrizione del Quiz è vuota");
+			}
 			categories=  this.categories.map(function(item){ return item.category});
-			Meteor.call("quizzes.insert", title, questions, categories, time);
-			QzMessage.showText(2,'Your Quiz has been saved!');		
+			Meteor.call("quizzes.insert", title, questions, categories, description, time);
+			QzMessage.showText(2,'Il tuo quiz è stato salvato!');	
+			this.questions = [];
+			this.categories = [];
+			this.description = "";
 		}
 	}
 }

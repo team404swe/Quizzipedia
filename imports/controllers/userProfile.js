@@ -14,8 +14,6 @@ class UserProfileController{
 			init();
 		});
 		this.allowDelete = true;
-		this.questionNum;
-		this.quizNum;
 		
 		/*Materialize collapsible initialization*/
 		$(document).ready(function(){
@@ -26,15 +24,11 @@ class UserProfileController{
 	}
 	
 	getQuestionsNum(){
-		var num = Questions.find({"owner" : Meteor.userId()}).count();		
-		this.questionNum = num;
-		return num;
+		return Questions.find({"owner" : Meteor.userId()}).count();		
 	}
 	
 	getQuizNum(){
-		var num = Quizzes.find({"owner" : Meteor.userId()}).count();
-		this.questionNum = num;
-		return num;
+		return Quizzes.find({"owner" : Meteor.userId()}).count();
 	}
 	
 	getUsername(){

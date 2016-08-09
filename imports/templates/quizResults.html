@@ -1,5 +1,6 @@
 
-<div class="row">			
+<div class="row">
+	<br/>
 	<div class="col s12">			
 	
 		Nome del Quiz: {{$ctrl.quizObj.title}}
@@ -19,12 +20,6 @@
 			<div ng-repeat="question in $ctrl.quizObj.questions">
 				<div>
 					<p>{{question.text}}</p>
-				</div>
-				<div ng-if="QuestionResult(question) == true">
-					<p> Corretta </p>
-				</div>
-				<div ng-if="QuestionResult(question) == false">
-					<p> Sbagliata </p>
 				</div>
 			</div>
 		</div>

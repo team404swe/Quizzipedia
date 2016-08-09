@@ -9,29 +9,38 @@ import { Questions } from '../publishers/questionPublisher.js';
 class UserProfileController{
 	constructor($scope) {
 		$scope.viewModel(this);
-		this.allowDelete = true;
 		
-		/*Materilize collapsible initialization*/
+		$scope.$on('$viewContentLoaded', function() {
+			init();
+		});
+		this.allowDelete = true;
+		this.questionNum;
+		this.quizNum;
+		
+		/*Materialize collapsible initialization*/
 		$(document).ready(function(){
 			$('.collapsible').collapsible({
 			  accordion : true 
 			});
-		});     		
-		
-		this.subscribe("questions");
+		});     						
 	}
 	
 	getQuestionsNum(){
-		return Questions.find({"owner" : Meteor.userId()}).count();
+		var num = Questions.find({"owner" : Meteor.userId()}).count();		
+		this.questionNum = num;
+		return num;
 	}
 	
 	getQuizNum(){
-		return Quizzes.find({"owner" : Meteor.userId()}).count();
+		var num = Quizzes.find({"owner" : Meteor.userId()}).count();
+		this.questionNum = num;
+		return num;
 	}
 	
 	getUsername(){
 		return Meteor.users.findOne({"_id" : Meteor.userId()}).username;
-	}
+	}	
+	
 }
 
 export default angular.module('userProfile', [

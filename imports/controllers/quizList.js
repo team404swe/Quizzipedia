@@ -74,11 +74,7 @@ class QuizListController{
 	
 	isOwner(ownerId){
 		return Meteor.userId() == ownerId;
-	}
-	
-	log(x){
-		console.log(x);
-	}
+	}	
 	
 	setQuiz(qid)
 	{ debugger;

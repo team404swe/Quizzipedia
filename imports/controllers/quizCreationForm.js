@@ -10,7 +10,7 @@ class NewQuizController{
 	constructor($scope) {
 		$scope.viewModel(this);  
 		
-		/*Materilize collapsible initialization*/
+		/*Materialize collapsible initialization*/
 		$(document).ready(function(){
 			$('.collapsible').collapsible({
 			  accordion : false 
@@ -60,7 +60,7 @@ class NewQuizController{
 	saveQuiz(title, questions, categories, description, time){			
 				
 		if(title == undefined || time == undefined ){
-			QzMessage.showText(0, "Inserisci tutti i dati necessari");
+			QzMessage.showText(0, "Compila tutti i campi");
 		}
 		else if(questions.length == 0 || categories.length==0){
 			QzMessage.showText(0, "Seleziona almeno una domanda");
@@ -85,6 +85,31 @@ class NewQuizController{
 		else
 			console.log("Error retrieving question details");
 	}	
+	
+	getFullQuestionType(shortType){
+		var fullType;
+		switch(shortType){
+			case "VF":
+				fullType = "Vero o Falso";
+				break;
+			case "MU":
+				fullType = "Risposta multipla (unica risposta esatta)";
+				break;
+			case "MX":
+				fullType = "Risposta multipla (più risposte esatte)";
+				break;
+			case "AS":
+				fullType = "Associazione";
+				break;
+			case "OD":
+				fullType = "Ordinamento";
+				break;
+			default:
+				fullType =shortType;
+				break;
+		}
+		return fullType;
+	}
 }
 
 export default angular.module('quizCreationForm', [

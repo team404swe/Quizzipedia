@@ -28,7 +28,7 @@
 				</ul>
 			</div>
 			
-			<div class="input-field col s12">	
+			<div class="input-field col s10">	
 				<ul class="collection with-header">
 					<li class="collection-header"><h4>Add questions to your quiz</h4></li>
 					<li class="collection-item">
@@ -36,12 +36,13 @@
 							<li ng-repeat="question in $ctrl.questionList">
 								<div class="collapsible-header">
 									<input type="checkbox" id="{{$index}}" class="filled-in" ng-checked="$ctrl.questions.indexOf(question._id) > -1"  ng-click="$ctrl.toggleSelection(question)" value="{{question._id}}" />
-									<label for="{{$index}}"></label>			
-									Categoria: {{question.category}}				
+									<label for="{{$index}}"></label>		
+									<span style="font-weight: bold;">{{ $ctrl.getQuestionDetails(question.QMLtext).text }} </span>	
+									<span class="right">{{question.category}}</span>
 								</div>
 								<div class="collapsible-body">																
-									<span style="padding-left: 2.7em;">Tipologia: {{ $ctrl.getQuestionDetails(question.QMLtext).type }}</span> <br>
-									<span style="padding-left: 2.7em;">Domanda: {{ $ctrl.getQuestionDetails(question.QMLtext).text }} </span>																
+									<span class="add-question-details">Tipologia: {{ $ctrl.getFullQuestionType($ctrl.getQuestionDetails(question.QMLtext).type) }}</span> <br>	
+									<span class="add-question-details">Risposte: {{$ctrl.getQuestionDetails(question.QMLtext).ans}} </span>																								
 								</div>						
 							</li>
 						</ul>

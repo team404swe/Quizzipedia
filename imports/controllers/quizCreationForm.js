@@ -110,6 +110,42 @@ class NewQuizController{
 		}
 		return fullType;
 	}
+	
+	getCorrectAnswer(question)
+	{
+		var answer = "";
+		//return question.QMLtext.substring(11, 13);
+		switch(question.QMLtext.substring(11, 13)){
+			case "VF":
+				if(question.QMLtext.indexOf("{V}") > 0)
+					answer = "Vero";
+				else
+					answer = "Falso";
+				break;
+			case "MU":
+				answer = question.QMLtext.substring(question.QMLtext.search("{X}")+3, question.QMLtext.indexOf("{}", question.QMLtext.search("{X}")+3));
+				break;
+			case "MX":
+				var index = 0;
+				for(var i = 0; i < (question.QMLtext.match(/{X}/g) || []).length; i++)
+				{
+					answer += question.QMLtext.substring(question.QMLtext.search("{X}")+3+index, question.QMLtext.indexOf("{}", question.QMLtext.search("{X}")+3+index));
+					index = question.QMLtext.search("{X}")+3+1;
+				}
+				break;
+			case "AS":
+			
+				break;
+			case "OD":
+			
+				break;
+			default:
+				answer = "";
+				break;
+		}
+		
+		return answer;
+	}
 }
 
 export default angular.module('quizCreationForm', [

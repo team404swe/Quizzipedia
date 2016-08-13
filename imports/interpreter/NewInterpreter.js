@@ -1,7 +1,7 @@
 import { Meteor } from 'meteor/meteor'
 
 Meteor.methods({
-    
+    // DA CAMBIARE
     "parser.check" (QMLTesto) {
         
         if(!checkQML(QMLTesto))
@@ -49,12 +49,7 @@ export default function checkQML(QMLtesto)
         }
         else match = false; 
     }
-    if(!match) return false; 
-
-   // dopo il match generale serve un controllo sulla coerenza delle risposte date:
-   // 
-   
-    //var ok = false; 
+    if(!match) return false;
    
     switch (m[1])
     {   case "VF":
@@ -102,8 +97,7 @@ export default function checkQML(QMLtesto)
     //console.log(element);
     return element;    
 }  
-//funzione che controlla se la domanda di tipo MU ha solo una risposta giusta
-//ritorna un bool
+
 function getRightAnsMU()
 {
     var re = /[\s]*isRight[\s]*=[\s]*\"yes\"[\s]*>(.*)<\/answer>[\s]*/;
@@ -165,8 +159,6 @@ function getRightAnsMX()
     if (counter >= 1) return rAns;
     return null;
 }
-//funzione che controlla se la domanda di tipo MX ha almeno una risposta giusta
-//ritorna un bool
 
 
 function getAnswersAS()

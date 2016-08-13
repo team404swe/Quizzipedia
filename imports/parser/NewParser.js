@@ -1,16 +1,16 @@
 import { Meteor } from 'meteor/meteor'
 
 Meteor.methods({
-	
-	"parser.check" (QMLTesto) {
-		
-		if(!checkQML(QMLTesto))
-			return false;
-		else
-			return true;
+    
+    "parser.check" (QMLTesto) {
+        
+        if(!checkQML(QMLTesto))
+            return false;
+        else
+            return true;
 
-	}
-	
+    }
+    
 });
 
 /***** DEFINIZIONE ESPRESSIONI REGOLARI PER I QUATTRO TIPI DI DOMANDE: *****/
@@ -33,7 +33,7 @@ var m; // array in cui viene memorizzata la domanda scomposta secondo l'espressi
 
 export default function checkQML(QMLtesto)
 {    
-	// AR è l'array che contiene le espressioni regolari definite globalmente fuori dalla funzione
+    // AR è l'array che contiene le espressioni regolari definite globalmente fuori dalla funzione
     var AR = [VF, MU, AS, MX, OD];
     var match = false;
     // questo ciclo controlla tramite il metodo exec() se il testo matcha
@@ -185,7 +185,7 @@ function checkAS()
     if(matchA && matchB) return true; 
     else return false; 
     
-}
+} 
 
 //ritorna true se trova che una posizione di quell'insieme è già stata usata
 function checkPos(A, val)

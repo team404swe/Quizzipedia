@@ -63,7 +63,7 @@ export default function QML2HTML(QMLtesto)
         case "AS":
             debugger;
             var sets = getAnswersAS(); 
-            var rightAns = getRightAnsAS(sets[0], sets[1]);
+            var rightAns = getRightAnsAS(sets.A, sets.B);
             var element = {
                 type: m[1],
                 text: m[2],

@@ -132,12 +132,16 @@
 			</div>
 		
 			<div class="collapsible-body">
-				<p><code>
-					&lt;question&gt;{VF} <br>
-					ask{Napoleone morì a Sant'Elena. } <br>
-					{V} <br>
-					&lt;/question&gt;
-					</code></p>					
+				<p>
+				<code>
+					&lt;question type="VF"&gt;<br>
+    					&lt;text&gt;<br>
+    					testo della domanda<br>
+    					&lt;/text&gt;<br>
+    					&lt;answer isRight="yes"&gt;&lt;/answer&gt;<br>
+    				&lt;/question&gt;<br>
+				</code>
+				</p>					
 			</div>
 		</li>
 		<li>
@@ -149,13 +153,14 @@
 			</div>
 			<div class="collapsible-body">
 				<p><code>
-					&lt;question&gt;{MU} <br>
-					ask{Il colore del cielo. }<br>
-					{}rosso <br>
-					{X}blu <br>
-					{}giallo <br>
-					{}verde <br>
-					&lt;/question&gt; 
+					&lt;question type="MU"&gt;<br>
+    					&lt;text&gt;<br>
+    					testo della domanda<br>
+    					&lt;/text&gt;<br>
+    					&lt;answer isRight="yes"> risp1 &lt;/answer&gt;<br>
+    					&lt;answer isRight="no"> risp2 &lt;/answer&gt;<br>
+    					&lt;answer isRight="no"> risp3 &lt;/answer&gt;<br>
+					&lt;/question&gt;<br>
 					</code>
 				</p>					
 			</div>
@@ -169,13 +174,14 @@
 			</div>
 			<div class="collapsible-body">
 				<p><code>
-					&lt;question&gt;{MX} <br>
-					ask{scegli i frutti. }<br>
-					{}mais <br>
-					{X}mango <br>
-					{}fagioli <br>
-					{X}pera <br>
-					&lt;/question&gt; 
+					&lt;question type="MX"&gt;<br>
+    					&lt;text&gt;<br>
+    					testo della domanda<br>
+    					&lt;/text&gt;<br>
+    					&lt;answer isRight="yes"> risp1 &lt;/answer&gt;<br>
+    					&lt;answer isRight="yes"> risp2 &lt;/answer&gt;<br>
+    					&lt;answer isRight="no"> risp3 &lt;/answer&gt;<br>
+					&lt;/question&gt;<br>
 					</code>
 				</p>					
 			</div>
@@ -188,16 +194,19 @@
 				</div> 					
 			</div>
 			<div class="collapsible-body">
-				<p><code>
-					&lt;question&gt;{AS}  <br>
-					ask{collega gli insiemi.} <br>
-					A->X	banana <br>
-					A->2	fragola <br>
-					B->X    giallo <br> 
-					B->2	rosso <br>
-					A->3  	arancia <br>
-					&lt;/question&gt;
-					</code>
+				<p>
+				<code>
+					&lt;question type="AS"&gt;<br> 
+						&lt;text&gt;<br>
+    						testo della domanda<br>
+    					&lt;/text&gt;<br>
+    					&lt;answer set="A" pos="1"&gt; risp &lt;/answer&gt; <br>
+    					&lt;answer set="A" pos="2"&gt; risp &lt;/answer&gt; <br>
+   						&lt;answer set="B" pos="1"&gt; risp &lt;/answer&gt; <br>
+    					&lt;answer set="B" pos="2"&gt; risp &lt;/answer&gt; <br>
+    					&lt;answer set="B" pos="3"&gt; risp &lt;/answer&gt; <br>
+					&lt;/question&gt;<br>
+				</code>
 				</p>					
 			</div>
 		</li>
@@ -210,14 +219,16 @@
 			</div>
 			<div class="collapsible-body">
 				<p><code>
-					&lt;question&gt;{OD} <br>
-					ask{Ordina le seguenti regioni dalla più grande  alla più piccola. } <br>
-					{1} Lombardia <br>
-					{2} Toscana  <br>
-					{3} Puglia  <br>
-					{4} Veneto  <br>
-					{5} Lazio  <br>
-					&lt;/question&gt; 
+					&lt;question type="OD"&gt;<br> 
+						&lt;text&gt;<br>
+    						testo della domanda<br>
+    					&lt;/text&gt;<br>
+    					&lt;answer pos="1"&gt; risp &lt;/answer&gt; <br>
+    					&lt;answer pos="2"&gt; risp &lt;/answer&gt; <br>
+   						&lt;answer pos="5"&gt; risp &lt;/answer&gt; <br>
+    					&lt;answer pos="7"&gt; risp &lt;/answer&gt; <br>
+    					&lt;answer pos="3"&gt; risp &lt;/answer&gt; <br>
+					&lt;/question&gt;<br>
 					</code>
 				</p>					
 			</div>

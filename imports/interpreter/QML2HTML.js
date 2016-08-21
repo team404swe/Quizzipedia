@@ -45,19 +45,21 @@ export default function QML2HTML(QMLtesto)
                 }; 
             break; 
         case "MU":
+            var rightAns = getRightAnsMU();
             var element = {
                 type: m[1],
                 text: m[2],
                 ans: m[6],
-                rightAns: getRightAnsMU()
+                rightAns: rightAns
             };
             break;
         case "MX":
+            var rightAns = getRightAnsMX();
             var element = {
                 type: m[1],
                 text: m[2],
                 ans: m[6],
-                rightAns: getRightAnsMX()
+                rightAns: rightAns
             };
             break; 
         case "AS":
@@ -240,7 +242,6 @@ function getRightAnsAS(A, B)
                 var temp = [first[i].text, second[j].text];
                 set.push(temp);
             }
-                
         }
     }
     console.log(set);

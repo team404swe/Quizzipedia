@@ -78,9 +78,9 @@ export default function QML2HTML(QMLtesto)
             var element = {
                 type: m[1],
                 text: m[2],
-                ans: ans,
+                ans: ans
                 //orderedSet:
-            }
+            };
             //ok = checkOD(); // OD -> si controlla che ogni elemento abbia una posizione diversa
             break; 
         default:
@@ -95,7 +95,7 @@ function getRightAnsMU()
 {
     var re = /[\s]*isRight[\s]*=[\s]*\"yes\"[\s]*>(.*)<\/answer>[\s]*/;
     var s;
-    var rAns = [];
+    var rAns;
 
     var lines = m[3].split('\n');
     var j = 0; 
@@ -113,7 +113,7 @@ function getRightAnsMU()
             if (s.index === re.lastIndex) 
                 re.lastIndex++;
 
-            rAns.push(s[1]);  
+            rAns = i;  
             counter++;
         }
     }
@@ -124,7 +124,7 @@ function getRightAnsMU()
 
 function getRightAnsMX()
 {
-    var re = /[\s]*isRight[\s]*=[\s]*\"yes\"[\s]*>(.*)<\/answer>[\s]*/;
+    var re = /[\s]*isRight[\s]*=[\s]*\"(yes|no)\"[\s]*>(.*)<\/answer>[\s]*/;
     var s;
     var rAns = [];
 
@@ -141,13 +141,20 @@ function getRightAnsMX()
     {
         if ((s = re.exec(lines[i])) !== null)
         {
+            var element;
             if (s.index === re.lastIndex) 
                 re.lastIndex++;
 
-            rAns.push(s[1]);  
-            counter++;
+            if(s[1]==="yes"){
+                counter++;
+                element = { i: true };
+            }
+            else 
+                element = { i: false };
         }
+        rAns.push(element);
     }
+
     //debugger;
     if (counter >= 1) return rAns;
     return null;

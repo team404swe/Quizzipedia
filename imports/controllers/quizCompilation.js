@@ -296,8 +296,8 @@ export default function QuestionResult(question)
 
 
 function ResultVF(question) { if(question.ans === question.risp) {return true;} return false; }
-function ResultMX(question) { if(question.rightAns == question.risp) {return true;} return false; }
-function ResultMU(question) 
+function ResultMU(question) { if(question.rightAns == question.risp) {return true;} return false; }
+function ResultMX(question) 
 {
 	var sentinella = true;
 	var lo_quiz = question;
@@ -315,8 +315,9 @@ function ResultMU(question)
 				sentinella = false;
 			}
 		}
+		if( sentinella === true) { return true; }
 	}
-	if( sentinella === true) { return true; }
+	
 	return false;
 }
 function ResultAS(question)

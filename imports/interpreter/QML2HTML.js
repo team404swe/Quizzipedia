@@ -5,8 +5,8 @@
 // AS = DOMANDA ASSOCIAZIONE
 // OD = DOMANDA ORDINAMENTO
 var VF = /^[\s]*<question [\s]*type[\s]*=[\s]*"(VF)">[\s]*<text>[\s]*(.*)[\s]*<\/text>[\s]*<answer [\s]*isRight[\s]*=[\s]*"(yes|no)"[\s]*>(.*)<\/answer>[\s]*<\/question>[\s]*$/;
-var MU = /^[\s]*<question [\s]*type[\s]*=[\s]*"(MU)">[\s]*<text>[\s]*(.*)[\s]*<\/text>(([\s]*<answer [\s]*isRight[\s]*=[\s]*"(yes|no)"[\s]*>(.*)<\/answer>[\s]*){2,})<\/question>[\s]*$/;
-var MX = /^[\s]*<question [\s]*type[\s]*=[\s]*"(MX)">[\s]*<text>[\s]*(.*)[\s]*<\/text>(([\s]*<answer [\s]*isRight[\s]*=[\s]*"(yes|no)"[\s]*>(.*)<\/answer>[\s]*){2,})<\/question>[\s]*$/;
+var MU = /^[\s]*<question [\s]*type[\s]*=[\s]*"(MU)">[\s]*<text>[\s]*(.*)[\s]*<\/text>[\s]*((<answer [\s]*isRight[\s]*=[\s]*"(yes|no)"[\s]*>(.*)<\/answer>[\s]*){2,})<\/question>[\s]*$/;
+var MX = /^[\s]*<question [\s]*type[\s]*=[\s]*"(MX)">[\s]*<text>[\s]*(.*)[\s]*<\/text>[\s]*((<answer [\s]*isRight[\s]*=[\s]*"(yes|no)"[\s]*>(.*)<\/answer>[\s]*){2,})<\/question>[\s]*$/;
 var AS = /^[\s]*<question [\s]*type[\s]*=[\s]*"(AS)">[\s]*<text>[\s]*(.*)[\s]*<\/text>[\s]*((<answer [\s]*set[\s]*=[\s]*"(A|B)" [\s]*pos[\s]*=[\s]*"(\d)"[\s]*>(.*)<\/answer>[\s]*){2,})<\/question>[\s]*$/;
 var OD = /^[\s]*<question [\s]*type[\s]*=[\s]*"(OD)">[\s]*<text>[\s]*(.*)[\s]*<\/text>[\s]*((<answer [\s]*pos[\s]*=[\s]*"(\d)"[\s]*>(.*)<\/answer>[\s]*){2,})<\/question>[\s]*$/;
 
@@ -41,7 +41,7 @@ export default function QML2HTML(QMLtesto)
             var element = {
                   type: m[1],
                   text: m[2],
-                  ans: m[3]
+                  ans: getAnswerVF() //m[3]
                 }; 
             break; 
         case "MU":
@@ -49,7 +49,7 @@ export default function QML2HTML(QMLtesto)
             var element = {
                 type: m[1],
                 text: m[2],
-                ans: m[6],
+                ans: getAnswerMU(), //m[6],
                 rightAns: rightAns
             };
             break;
@@ -58,7 +58,7 @@ export default function QML2HTML(QMLtesto)
             var element = {
                 type: m[1],
                 text: m[2],
-                ans: m[6],
+                ans: getAnswerMX(), // m[6],
                 rightAns: rightAns
             };
             break; 
@@ -82,7 +82,8 @@ export default function QML2HTML(QMLtesto)
                 type: m[1],
                 text: m[2],
                 ans: ans,
-                rightAns: rightAns
+                rightAns: rightAns,
+				risp: {}
                 //orderedSet:
             };
             //ok = checkOD(); // OD -> si controlla che ogni elemento abbia una posizione diversa
@@ -95,6 +96,11 @@ export default function QML2HTML(QMLtesto)
     return element;    
 }  
 
+function getAnswerVF()
+{
+	if (m[3] === "yes") return true;
+	else return false;
+}
 function getRightAnsMU()
 {
     var re = /[\s]*isRight[\s]*=[\s]*\"yes\"[\s]*>(.*)<\/answer>[\s]*/;
@@ -130,7 +136,7 @@ function getRightAnsMX()
 {
     var re = /[\s]*isRight[\s]*=[\s]*\"(yes|no)\"[\s]*>(.*)<\/answer>[\s]*/;
     var s;
-    var rAns = [];
+    var rAns = {};
 
     var lines = m[3].split('\n');
     var j = 0; 
@@ -151,12 +157,12 @@ function getRightAnsMX()
 
             if(s[1]==="yes"){
                 counter++;
-                element = { i: true };
+                rAns[i] =  true; // element = { i: true };
             }
             else 
-                element = { i: false };
+                rAns[i] =  false;// element = { i: false };
         }
-        rAns.push(element);
+        //rAns.push(element);
     }
 
     //debugger;
@@ -218,7 +224,7 @@ function getAnswersAS()
 
 function getRightAnsAS(A, B)
 {   
-    var set = [];
+    var set = {};
     var first,
         second;
 
@@ -234,15 +240,15 @@ function getRightAnsAS(A, B)
     }
 
     for (var i = 0; i < first.length; i++)
-    {
+    {	
         for (var j = 0; j < second.length; j++)
         {
-            if(first[i].pos === second[j].pos)
+            if(first[i].id === second[j].id)
             {
                 var temp = [first[i].text, second[j].text];
-                set.push(temp);
+                set[first[i].id] = second[i].id;
             }
-        }
+        } 
     }
     console.log(set);
     return set; 
@@ -289,10 +295,71 @@ function getAnsOD()
 
 function getRightAnsOD(ans)
 {
-    var rAns = [ans.length];
+    var rAns ={}; //[ans.length];
+	var tmp = [];
 
     for (var i = 0; i < ans.length; i++) 
-        rAns[ans[i].id] = ans[i].id;
+		tmp.push(ans[i].id);
+	tmp.sort();
+	for (var i = 0; i < tmp.length; i++) 
+        rAns[i+1] = tmp[i];
     
     return rAns;
+}
+
+function getAnswerMU()
+{
+    var re ;
+	re = /<answer [\s]*isRight[\s]*=[\s]*"(yes|no)"[\s]*>(.*)<\/answer>/ ; 	
+	var s;
+
+    var lines = m[3].split('\n');
+    
+    var j = 0; 
+    for (var i = 0; i < lines.length; i++) {
+        if(lines[i] == null)
+            j = i; 
+    }
+    lines.pop(j); 
+
+    for (var i = 0; i < lines.length; i++)
+    {
+        if ((s = re.exec(lines[i])) !== null)
+		{
+            if (s.index === re.lastIndex) 
+			{ re.lastIndex++; }
+			
+			lines[i] = {text: s[2], id: i };
+			
+		}
+    }
+    return lines;
+}
+function getAnswerMX()
+{
+    var re ;
+	re = /<answer [\s]*isRight[\s]*=[\s]*"(yes|no)"[\s]*>(.*)<\/answer>/ ; 	
+	var s;
+
+    var lines = m[3].split('\n');
+    
+    var j = 0; 
+    for (var i = 0; i < lines.length; i++) {
+        if(lines[i] == null)
+            j = i; 
+    }
+    lines.pop(j); 
+
+    for (var i = 0; i < lines.length; i++)
+    {
+        if ((s = re.exec(lines[i])) !== null)
+		{
+            if (s.index === re.lastIndex) 
+			{ re.lastIndex++; }
+			
+			lines[i] = {text: s[2], id: i };
+			
+		}
+    }
+    return lines;
 }

@@ -4,7 +4,7 @@ import template from '../templates/quizList.html';
 
 import { Quizzes } from '../publishers/quizPublisher.js';
 import { Questions } from '../publishers/questionPublisher.js';
-import checkAnswer from '../parser/Parser.js'
+import QML2HTML from '../interpreter/QML2HTML.js';
 
 class QuizListController{
 	constructor($scope) {
@@ -83,7 +83,7 @@ class QuizListController{
 		for (var i = 0; i< quizComp.questions.length; i++ )
 		{ var quest =Questions.find( { _id: quizComp.questions[i]}).fetch();
 			quizComp.questions[i] = undefined;
-			quizComp.questions[i] = checkAnswer(quest[0].QMLtext);
+			quizComp.questions[i] = QML2HTML(quest[0].QMLtext);
 		}
 		quizComp._author = this.getAuthor(quizComp.owner);
 	}

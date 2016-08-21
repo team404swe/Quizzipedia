@@ -4,7 +4,7 @@ import { Meteor } from 'meteor/meteor'
 import template from '../templates/quizCreationForm.html';
 
 import { Questions } from '../publishers/questionPublisher.js';
-import checkQML from '../parser/Parser.js';
+import QML2HTML from '../interpreter/QML2HTML.js';
 
 class NewQuizController{
 	constructor($scope) {
@@ -79,7 +79,7 @@ class NewQuizController{
 	}
 	
 	getQuestionDetails(QMLtext){		
-		var questionDetails = checkQML(QMLtext);
+		var questionDetails = QML2HTML(QMLtext);
 		if(questionDetails)
 			return questionDetails;
 		else

@@ -73,6 +73,7 @@ export default function QML2HTML(QMLtesto)
             
             break;
         case "OD": // DA FARE
+            var set = getA
             //ok = checkOD(); // OD -> si controlla che ogni elemento abbia una posizione diversa
             break; 
         default:
@@ -227,7 +228,7 @@ function getRightAnsAS(A, B)
     return set; 
 }
 
-function checkOD()
+function getRightAnsOD()
 {
     var reA = /<answer [\s]*pos[\s]*=[\s]*"(\d)"[\s]*>(.*)<\/answer>/;
     var s;

@@ -288,7 +288,7 @@ function getAnsOD()
 
 function getRightAnsOD(ans)
 {
-    var rAns = [];
+    var rAns = [ans.length];
 
     for (var i = 0; i < ans.length; i++) 
         rAns[ans[i].id] = ans[i].id;

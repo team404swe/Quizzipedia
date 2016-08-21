@@ -1,34 +1,33 @@
 import { Meteor } from 'meteor/meteor'
 
 Meteor.methods({
-	
-	"parser.check" (QMLTesto) {
-		
-		if(checkQML(QMLTesto) != null)
-			return true;
-		else
-			return false;
+    
+    "parser.check" (QMLTesto) {
+        
+        if(!checkQML(QMLTesto))
+            return false;
+        else
+            return true;
 
-		//questa funzione ritorna true o false controllando sia sintassi QML che la coerenza delle risposte.
-		//la sintassi QML generale viene controllata effettivamente da checkText() mentre checkAnswer fa due lavori, chiama
-		// checkText() e poi fa il controllo delle risposte. 
-		// checkText quindi è una funzione secondaria, la funzione principale è checkAnswer(), ma mi sa che devo cambiare i nomi 
-		// per rendere la cosa più intuitiva
-	}
-	
+    }
+    
 });
 
-//DEFINIZIONE ESPRESSIONI REGOLARI PER I QUATTRO TIPI DI DOMANDE:
+/***** DEFINIZIONE ESPRESSIONI REGOLARI PER I QUATTRO TIPI DI DOMANDE: *****/
 // VF = DOMANDA VERO FALSO
 // MU = RISPOSTA MULTIPLA (CON UNA SOLA RISPOSTA ESATTA)
 // MX = RISPOSTA MULTIPLA (CON PIÙ RISPOSTE ESATTE)
 // AS = DOMANDA ASSOCIAZIONE
-		
-var VF = /^[\s]*<question>\{(VF|vf|Vf|vF)\}[\s]*[aA][sS][kK]{(.*)[}][\s]*\{(V|v|f|F)\}[\s]*<\/question>[\s]*$/;
-var MU = /^[\s]*<question>\{(MU)\}[\s]*[aA][sS][kK]{([^\{]*)}[\s]*((\{(X?[\s]*)\}[\s]*(\S{1,}.*)[\s]*){2,})<\/question>[\s]*$/;
-var MX = /^[\s]*<question>\{(MX)\}[\s]*[aA][sS][kK]{([^\{]*)}[\s]*((\{(X?[\s]*)\}[\s]*(\S{1,}.*)[\s]*){2,})<\/question>[\s]*$/
-var AS = /^[\s]*<question>\{(AS)\}[\s]*ask{(.*)}[\s]*((([abAB])->([a-zA-Z0-9])[\s]*(\S{1,}.*)[\s]*){2,})<\/question>[\s]*$/;
-var OD = /^[\s]*<question>\{(OD)\}[\s]*[aA][sS][kK]{([^\{]*)}[\s]*((\{(\d[\s]*)\}[\s]*(\S{1,}.*)[\s]*){2,})<\/question>[\s]*$/;
+// OD = DOMANDA ORDINAMENTO
+var VF = /^[\s]*<question [\s]*type[\s]*=[\s]*"(VF)">[\s]*<text>[\s]*(.*)[\s]*<\/text>[\s]*<answer [\s]*isRight[\s]*=[\s]*"(yes|no)"[\s]*>(.*)<\/answer>[\s]*<\/question>[\s]*$/;
+
+var MU = /^[\s]*<question [\s]*type[\s]*=[\s]*"(MU)">[\s]*<text>[\s]*(.*)[\s]*<\/text>(([\s]*<answer [\s]*isRight[\s]*=[\s]*"(yes|no)"[\s]*>(.*)<\/answer>[\s]*){2,})<\/question>[\s]*$/;
+
+var MX = /^[\s]*<question [\s]*type[\s]*=[\s]*"(MX)">[\s]*<text>[\s]*(.*)[\s]*<\/text>(([\s]*<answer [\s]*isRight[\s]*=[\s]*"(yes|no)"[\s]*>(.*)<\/answer>[\s]*){2,})<\/question>[\s]*$/;
+
+var AS = /^[\s]*<question [\s]*type[\s]*=[\s]*"(AS)">[\s]*<text>[\s]*(.*)[\s]*<\/text>[\s]*((<answer [\s]*set[\s]*=[\s]*"(A|B)" [\s]*pos[\s]*=[\s]*"(\d)"[\s]*>(.*)<\/answer>[\s]*){2,})<\/question>[\s]*$/;
+
+var OD = /^[\s]*<question [\s]*type[\s]*=[\s]*"(OD)">[\s]*<text>[\s]*(.*)[\s]*<\/text>[\s]*((<answer [\s]*pos[\s]*=[\s]*"(\d)"[\s]*>(.*)<\/answer>[\s]*){2,})<\/question>[\s]*$/;
 
 var str; // stringa in cui viene memorizzato il testo di input compilato dall'utente
 var m; // array in cui viene memorizzata la domanda scomposta secondo l'espressione regolare definita
@@ -36,122 +35,121 @@ var m; // array in cui viene memorizzata la domanda scomposta secondo l'espressi
 // https://regex101.com/ dove metti l'espressione regolare e il testo che vuoi controllare e vedi come viene suddiviso il testo.
 // l'array m quindi contiene tutti i gruppi definiti dalle parentesi tonde delle espressioni regolari
 
-function checkText(testo)
+export default function checkQML(QMLtesto)
 {    
-	// AR è l'array che contiene le espressioni regolari definite globalmente fuori dalla funzione
+    // AR è l'array che contiene le espressioni regolari definite globalmente fuori dalla funzione
     var AR = [VF, MU, AS, MX, OD];
     var match = false;
     // questo ciclo controlla tramite il metodo exec() se il testo matcha
     // con una delle espressioni regolari definite dell'array AR
     for (var i = 0; i < AR.length && !match; i++)
     {
-        if ((m = AR[i].exec(testo)) !== null)
+        //debugger;
+        if ((m = AR[i].exec(QMLtesto)) !== null)
         {
             match = true; 
             if (m.index === AR[i].lastIndex) 
                 AR[i].lastIndex++;
         }
+        else match = false; 
     }
-    return match;
-}
+    if(!match) return false; 
 
-//controlla il tipo della domanda e in base a quello chiama le funzioni seguenti per controllare se c'è almeno una risposta giusta
-
-export default function checkQML(testo)
+   // dopo il match generale serve un controllo sulla coerenza delle risposte date:
+   // 
+   
+    var ok = false; 
+   
+    switch (m[1])
+    {   case "VF":
+            ok = true;      // VF -> non si esegue nessun controllo perchè basta il parsing precedente in quanto non ci sono risposte a parte una
+            break; 
+        case "MU":
+            ok = checkMU(); // MU -> si controlla che ci sia solo una risposta giusta
+            break;
+        case "MX":
+            ok = checkMX(); // MX -> si controlla che ci siano almeno una risposta giusta (si può cambiare e mettere > 2)
+            break; 
+        case "AS":
+            ok = checkAS(); // AS -> si controlla che per ogni insieme non ci siano elementi con lo stesso indice
+            break;
+        case "OD":
+            ok = checkOD(); // OD -> si controlla che ogni elemento abbia una posizione diversa
+            break; 
+        default:
+            ok = false; 
+        }
+   return ok; 
+    
+}  
+//funzione che controlla se la domanda di tipo MU ha solo una risposta giusta
+//ritorna un bool
+function checkMU()
 {
-    var question;
-    //in pratica prima di fare il controllo sulla coerenza delle risposte controlla che 
-    //la sintassi QML sia giusta. Questo è necessario in quanto con le sole espressioni regolari non
-    //riesco a fare controlli ulteriori sulle risposte (cioè se per esempio una domanda a risposta multipla a più risposte giuste ha
-    // almeno due risposte giuste e non una come la risposta multipla singola)
-    if(checkText(testo))
+    var re = /[\s]*isRight[\s]*=[\s]*"(yes)"[\s]*/;
+    var s;
+    
+    var lines = m[3].split('\n');
+    var j = 0; 
+    for (var i = 0; i < lines.length; i++) {
+        if(lines[i] == null)
+            j = i; 
+    }
+    lines.pop(j); 
+    var counter = 0; 
+    for (var i = 0; i < lines.length; i++)
     {
-        switch (m[1])
+        if ((s = re.exec(lines[i])) !== null)
         {
-            case "VF":
+            if (s.index === re.lastIndex) 
+                re.lastIndex++;
                 
-                question = {
-                  type: m[1],
-                  text: m[2],
-                  ans: checkVF()
-                }; 
-                break;
-
-            case "MU":
-                var answer = getRightAns();
-                if(answer.length == 1) 
-                {
-                    question = {
-                        type: m[1],
-                        text: m[2],
-                        ans: checkM(),
-                        rightAns: getRightAnsObj('MU') //answer
-                    }; 
-                }               
-                break;
-
-            case "MX":
-                question = {
-                    type: m[1],
-                    text: m[2],
-                    ans: checkM(),
-                    rightAns: getRightAnsObj('MX')
-                }; 
-                break;
-
-            case "AS":
-                question = {
-                  type: m[1],
-                  text: m[2],
-                  ans: checkAS(),
-				  rightAns: getRightAnsObj('AS') //restituisce oggetto: {idA:"idB", idA:"idB"}
-                }; 
-                break;
-                
-			case "OD":
-                question = {
-                    type: m[1],
-                    text: m[2],
-                    ans: checkM(),
-                    rightAns: getRightAnsObj('OD')  //restituisce oggetto: {1:"id1", 2:"id2"}
-                }; 
-                break;	
-           
+            counter++;
+                //lines[i] = {text: s[1], id: i };
         }
     }
-    // la variabile question sarà un elemento con dei campi dipendenti dal tipo di domanda,
-    // nello switch precedente si capisce che tipo di elemento viene ritornato
-    if(question)
-        return question;
-    else
-        return null;    
+    //debugger;
+    if (counter == 1) return true;
+    return false;
 }
 
-function checkVF()
+//funzione che controlla se la domanda di tipo MX ha almeno una risposta giusta
+//ritorna un bool
+function checkMX()
 {
-    switch(m[3])
-    {
-        case ("V"):
-        case ("v"):
-            return true;
-            
-        case ("F"):
-        case ("f"):
-            return false;
-        default:
-			return "errore in checkVF";
+    var re = /[\s]*isRight[\s]*=[\s]*"(yes)"[\s]*/;
+    var s;
+    
+    var lines = m[3].split('\n');
+    var j = 0; 
+    for (var i = 0; i < lines.length; i++) {
+        if(lines[i] == null)
+            j = i; 
     }
-}
-
+    lines.pop(j); 
+    var counter = 0; 
+    for (var i = 0; i < lines.length; i++)
+    {
+        if ((s = re.exec(lines[i])) !== null)
+        {
+            if (s.index === re.lastIndex) 
+                re.lastIndex++;
+                
+            counter++;
+                //lines[i] = {text: s[1], id: i };
+        }
+    }
+    //debugger;
+    if (counter >= 1) return true;
+    return false;
+}  
 
 function checkAS()
 {
-    var AA = [],
-        BB = [];
-    
-    var re = /([abAB])->([a-zA-Z0-9])[\s]*(\S{1,}.*)/;
+    var reA = /<answer [\s]*set[\s]*=[\s]*"(A)" [\s]*pos[\s]*=[\s]*"(\d)"[\s]*>(.*)<\/answer>/;
+    var reB = /<answer [\s]*set[\s]*=[\s]*"(B)" [\s]*pos[\s]*=[\s]*"(\d)"[\s]*>(.*)<\/answer>/;
     var s;
-
+    //debugger;
     var lines = m[3].split('\n');
     var j = 0; 
     for (var i = 0; i < lines.length; i++) {
@@ -159,182 +157,83 @@ function checkAS()
             j = i; 
     }
     lines.pop(j); 
+    //debugger; 
+    var matchA = true,
+        matchB = true;
+    var A = [],
+        B = [];
 
     for (var i = 0; i < lines.length; i++)
     {
-        if ((s = re.exec(lines[i])) !== null)
-            if (s.index === re.lastIndex) 
-                re.lastIndex++;
+        if ((s = reA.exec(lines[i])) !== null) // cerco i match per l'insieme A
+        {   
+            if (s.index === reA.lastIndex) 
+                reA.lastIndex++;
+
+            if (!checkPos(A, s[2]))
+                A.push(s[2]);
+            else 
+                matchA = false;
+        }
+
+        if ((s = reB.exec(lines[i])) !== null) // cerco i match per l'insieme B
+        {
+            if (s.index === reB.lastIndex) 
+                reB.lastIndex++;
+            if (!checkPos(B, s[2]))
+                B.push(s[2]);
+            else 
+                matchB = false;
+        }
+    }
+    if(matchA && matchB) return true; 
+    else return false; 
+    
+} 
+
+//ritorna true se trova che una posizione di quell'insieme è già stata usata
+function checkPos(A, val)
+{
+    var match = false; 
+    for (var i = 0; i < A.length && !match; i++) 
+        if (A[i] === val)
+            match = true; 
+    //debugger; 
+    return match;
+    
+}
+
+function checkOD()
+{
+    var reA = /<answer [\s]*pos[\s]*=[\s]*"(\d)"[\s]*>(.*)<\/answer>/;
+    var s;
+    //debugger;
+    var lines = m[3].split('\n');
+    var j = 0; 
+    for (var i = 0; i < lines.length; i++) {
+        if(lines[i] == null)
+            j = i; 
+    }
+    lines.pop(j); 
+    //debugger; 
+    var matchA = true;
         
-       
-		//ans: {A:[{text:"banana",id:3,risp:""},{text:"fragola",id:5,risp:""}],B:[{text:"giallo",id:3},{text:"viola",id:1},{text:"rosso",id:5}]}
-        var element = { text:s[3], id:s[2] };
+    var A = [];
 
-        switch(s[1])
-        {
-            case ('A'):
-                AA.push(element);
-                break;
-            case ('B'):
-                BB.push(element);
-                break;
+    for (var i = 0; i < lines.length && matchA; i++)
+    {   
+        if ((s = reA.exec(lines[i])) !== null) // cerco i match per l'insieme A
+        {   
+            if (s.index === reA.lastIndex) 
+                reA.lastIndex++;
+
+            if (!checkPos(A, s[1]))
+                A.push(s[1]);
+            else 
+                matchA = false;
         }
-		
+        //debugger;
     }
-	var groups = {};
-	if(AA.length < BB.length){ groups.A = AA; groups.B = BB; }
-	else { groups.A = BB; groups.B = AA; }
-    return groups;
-}
-
-
-function checkM()
-{
-    var re ;
-	if(m[1] == "OD") //Per domande di tipo Ordinamento 'OD'
-	{ re = /{(\d[\s]*)\}[\s]*(\S{1,}.*)[\s]*/; }
-	else    		// Per domande di tipo multipla con unica risposta 'MU' 
-	{ re = /{(X?[\s]*)\}[\s]*(\S{1,}.*)[\s]*/; }
-	
-	var s;
-
-    var lines = m[3].split('\n');
-    
-    var j = 0; 
-    for (var i = 0; i < lines.length; i++) {
-        if(lines[i] == null)
-            j = i; 
-    }
-    lines.pop(j); 
-
-    for (var i = 0; i < lines.length; i++)
-    {
-        if ((s = re.exec(lines[i])) !== null)
-		{
-            if (s.index === re.lastIndex) 
-			{ re.lastIndex++; }
-			if(m[1] == "OD")
-			{
-				lines[i] = {text: s[2], id: s[1] };
-			}
-			else
-			{
-				lines[i] = {text: s[2], id: i };
-			}
-		}
-		
-
-    }
-    return lines;
-
-}
-
-function checkMX()
-{
-    var re = /{(X?[\s]*)\}[\s]*(\S{1,}.*)[\s]*/;
-    var s;
-
-    var lines = m[3].split('\n');
-    
-    var j = 0; 
-    for (var i = 0; i < lines.length; i++) {
-        if(lines[i] == null)
-            j = i; 
-    }
-    lines.pop(j); 
-
-    for (var i = 0; i < lines.length; i++)
-    {
-        if ((s = re.exec(lines[i])) !== null)
-        {
-            if (s.index === re.lastIndex) 
-			{ re.lastIndex++; }
-		
-			lines[i] = {text: s[2], id: i };
-			
-		}
-    }
-    return lines;
-}
-
-function getRightAns()
-{   
-
-    var re = /\{X[\s]*\}([\s]*\S{1,}.*[\s]*)/;
-    var s; 
-
-    var lines = m[3].split('\n');
-
-    var j = 0; 
-    for (var i = 0; i < lines.length; i++) {
-        if(lines[i] == null)
-            j = i; 
-    }
-    lines.pop(j); 
-
-    var rAns = [];
-    for (var i = 0; i < lines.length; i++)
-    {
-        if ((s = re.exec(lines[i])) !== null)
-        {
-            if (s.index === re.lastIndex) 
-                re.lastIndex++;
-            rAns.push(s[1]);
-        }
-            
-    }
-
-    return rAns;
-}
-
-function getRightAnsObj(ztipo)
-{   
-    var re ;
-	if(ztipo == "OD")
-	{  re = /{(\d[\s]*)\}[\s]*(\S{1,}.*)[\s]*/; }
-	else if(ztipo == "AS")
-	{ re = /([abAB])->([a-zA-Z0-9])[\s]*(\S{1,}.*)[\s]*/;	}
-	else
-	{  re = /{(X?[\s]*)\}[\s]*(\S{1,}.*)[\s]*/; }
-
-   // var re = /{(X?[\s]*)\}[\s]*(\S{1,}.*)[\s]*/;
-    var s; 
-
-    var lines = m[3].split('\n');
-    var j = 0; 
-    for (var i = 0; i < lines.length; i++) {
-        if(lines[i] == null)
-            j = i; 
-    }
-    lines.pop(j); 
-	
-    var rAns={} ;// = [];
-	var rBns={};
-    for (var i = 0; i < lines.length; i++)
-    {
-        if ((s = re.exec(lines[i])) !== null)
-        {
-            if (s.index === re.lastIndex) 
-                re.lastIndex++;
-           // rAns.push(s[1]);
-			
-			if(ztipo == "OD")
-			{	
-				rAns[s[1]] = s[1];
-			}
-			else if(ztipo == "AS")
-			{	if(s[1] == 'A'){ rAns[s[2]] = s[2]; }
-				else { rBns[s[2]] = s[2]; }
-				
-			}
-			else if(s[1] == 'X') 
-			{ 	if(ztipo === 'MU') { return i;} //se siamo su una domanda di tipo MU si esce solo con l'indice la risposta giusta.
-				rAns[i] = true; 	
-			}else rAns[i] = false;  
-        }
-            
-    }
-	if(ztipo == "AS" )
-	{	if( Object.keys(rBns).length < Object.keys(rAns).length){ return rBns; } } // L'insieme con più elementi contiene il disturbatore
-    return rAns;
+    if(matchA) return true; 
+    else return false; 
 }

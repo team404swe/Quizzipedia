@@ -67,13 +67,20 @@ export default function QML2HTML(QMLtesto)
             var element = {
                 type: m[1],
                 text: m[2],
-                sets: sets,
+                sets: sets, // 
                 rightAns: rightAns
             };
             
             break;
         case "OD": // DA FARE
-            var set = getA
+            var ans = getAnsOD();
+            //var orderedAns = getOrderedAnsOD(set);
+            var element = {
+                type: m[1],
+                text: m[2],
+                ans: ans,
+                //orderedSet:
+            }
             //ok = checkOD(); // OD -> si controlla che ogni elemento abbia una posizione diversa
             break; 
         default:
@@ -173,7 +180,7 @@ function getAnswersAS()
 
             var element  = {
                 text: s[3],
-                pos: s[2]
+                id: s[2]
             };
             A.push(element);
         }
@@ -185,14 +192,17 @@ function getAnswersAS()
             
             var element  = {
                 text: s[3],
-                pos: s[2]
+                id: s[2]
             };
             B.push(element);
         }
     }
     debugger;
-
-    return [A, B];  // ritorna un elemento con due array A e B con i rispettivi campi A.text e A.pos
+    var element = {
+        A: A,
+        B: B
+    }
+    return element;  // ritorna un elemento con due array A e B con i rispettivi campi A.text e A.id
 } 
 
 function getRightAnsAS(A, B)
@@ -228,7 +238,7 @@ function getRightAnsAS(A, B)
     return set; 
 }
 
-function getRightAnsOD()
+function getAnsOD()
 {
     var reA = /<answer [\s]*pos[\s]*=[\s]*"(\d)"[\s]*>(.*)<\/answer>/;
     var s;
@@ -245,21 +255,30 @@ function getRightAnsOD()
         
     var A = [];
 
-    for (var i = 0; i < lines.length && matchA; i++)
+    for (var i = 0; i < lines.length; i++)
     {   
         if ((s = reA.exec(lines[i])) !== null) // cerco i match per l'insieme A
         {   
             if (s.index === reA.lastIndex) 
                 reA.lastIndex++;
 
-            if (!checkPos(A, s[1]))
-                A.push(s[1]);
-            else 
-                matchA = false;
+            var element  = {
+                text: s[2],
+                id: s[1]
+            };
+            A.push(element);
         }
-        //debugger;
+        debugger;
     }
-    if(matchA) return true; 
-    else return false; 
+    for (var i = 0; i < A.length; i++) {
+        console.log(A[i].pos);
+    }
+    
+    return A;
 }
 
+function getOrderedAnsOD(A)
+{
+    console.log(A.sort());
+    return A;
+}

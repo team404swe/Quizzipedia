@@ -67,18 +67,20 @@ export default function QML2HTML(QMLtesto)
             var element = {
                 type: m[1],
                 text: m[2],
-                sets: sets, // 
+                ans: sets, // 
                 rightAns: rightAns
             };
             
             break;
         case "OD": // DA FARE
             var ans = getAnsOD();
+            var rightAns = getRightAnsOD(ans);
             //var orderedAns = getOrderedAnsOD(set);
             var element = {
                 type: m[1],
                 text: m[2],
-                ans: ans
+                ans: ans,
+                rightAns: rightAns
                 //orderedSet:
             };
             //ok = checkOD(); // OD -> si controlla che ogni elemento abbia una posizione diversa
@@ -284,8 +286,12 @@ function getAnsOD()
     return A;
 }
 
-function getOrderedAnsOD(A)
+function getRightAnsOD(ans)
 {
-    console.log(A.sort());
-    return A;
+    var rAns = [];
+
+    for (var i = 0; i < ans.length; i++) 
+        rAns[ans[i].id] = ans[i].id;
+    
+    return rAns;
 }

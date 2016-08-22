@@ -1,7 +1,24 @@
 <!--
-/^[\s]*<question [\s]*type[\s]*=[\s]*"(VF)">[\s]*<text>[\s]*(.*)[\s]*<\/text>[\s]*<answer [\s]*isRight[\s]*=[\s]*"(yes|no)"[\s]*>(.*)<\/answer>[\s]*<\/question>[\s]*$/;
+    NUOVE DEFINIZIONI
+var VF = /^[\s]*<question [\s]*type[\s]*=[\s]*"(VF)">[\s]*(<img>(.*)<\/img>){0,1}[\s]*<text>[\s]*(.*)[\s]*<\/text>[\s]*<answer [\s]*isRight[\s]*=[\s]*"(yes|no)"[\s]*>(.*)<\/answer>[\s]*<\/question>[\s]*$/;
+
+var MU = /[\s]*<question [\s]*type[\s]*=[\s]*"(MU)">[\s]*(<img>(.*)<\/img>){0,1}[\s]*<text>[\s]*(.*)[\s]*<\/text>(([\s]*<answer [\s]*isRight[\s]*=[\s]*"(yes|no)"[\s]*>(.*)<\/answer>[\s]*){2,})<\/question>[\s]*$/;
+
+var MX = /^[\s]*<question [\s]*type[\s]*=[\s]*"(MX)">[\s]*(<img>(.*)<\/img>){0,1}[\s]*<text>[\s]*(.*)[\s]*<\/text>(([\s]*<answer [\s]*isRight[\s]*=[\s]*"(yes|no)"[\s]*>(.*)<\/answer>[\s]*){2,})<\/question>[\s]*$/;
+
+var AS = /^[\s]*<question [\s]*type[\s]*=[\s]*"(AS)">[\s]*(<img>(.*)<\/img>){0,1}[\s]*<text>[\s]*(.*)[\s]*<\/text>[\s]*((<answer [\s]*set[\s]*=[\s]*"(A|B)" [\s]*pos[\s]*=[\s]*"(\d)"[\s]*>(.*)<\/answer>[\s]*){2,})<\/question>[\s]*$/;
+
+var OD = /^[\s]*<question [\s]*type[\s]*=[\s]*"(OD)">[\s]*(<img>(.*)<\/img>){0,1}[\s]*<text>[\s]*(.*)[\s]*<\/text>[\s]*((<answer [\s]*pos[\s]*=[\s]*"(\d)"[\s]*>(.*)<\/answer>[\s]*){2,})<\/question>[\s]*$/;
+
+-->
+
+
+
+<!--
+
 -->
 <question type="VF">
+    <img>path/to/image</img>
 	<text>
 		testo della domanda
 	</text>
@@ -9,9 +26,9 @@
 </question>
 
 <!--
-^[\s]*<question [\s]*type[\s]*=[\s]*"(MU)">[\s]*<text>[\s]*(.*)[\s]*<\/text>(([\s]*<answer [\s]*isRight[\s]*=[\s]*"(yes|no)"[\s]*>(.*)<\/answer>[\s]*){2,})<\/question>[\s]*$
 -->
 <question type="MU">
+    <img>path/to/image</img>
     <text>
     	testo della domanda
     </text>
@@ -22,9 +39,10 @@
 
 
 <!--
-^[\s]*<question [\s]*type[\s]*=[\s]*"(MX)">[\s]*<text>[\s]*(.*)[\s]*<\/text>(([\s]*<answer [\s]*isRight[\s]*=[\s]*"(yes|no)"[\s]*>(.*)<\/answer>[\s]*){2,})<\/question>[\s]*$
+
 -->
 <question type="MX"> 
+    <img>path/to/image</img>
 	<text>
     	testo della domanda
     </text>
@@ -35,9 +53,10 @@
 
 
 <!--
-^[\s]*<question [\s]*type[\s]*=[\s]*"(AS)">[\s]*<text>[\s]*(.*)[\s]*<\/text>[\s]*((<answer [\s]*set[\s]*=[\s]*"(A|B)" [\s]*pos[\s]*=[\s]*"(\d)"[\s]*>(.*)<\/answer>[\s]*){2,})<\/question>[\s]*$
+
 -->
-<question type="AS"> 
+<question type="AS">
+    <img>path/to/image</img>
 	<text>
     	testo della domanda
     </text>
@@ -49,9 +68,10 @@
 </question>
 
 <!--
-^[\s]*<question [\s]*type[\s]*=[\s]*"(OD)">[\s]*<text>[\s]*(.*)[\s]*<\/text>[\s]*((<answer [\s]*pos[\s]*=[\s]*"(\d)"[\s]*>(.*)<\/answer>[\s]*){2,})<\/question>[\s]*$
+
 -->
 <question type="OD">
+    <img>path/to/image</img>
 	<text>
     	testo della domanda
     </text>

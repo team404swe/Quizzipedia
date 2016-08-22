@@ -19,15 +19,15 @@ Meteor.methods({
 // MX = RISPOSTA MULTIPLA (CON PIÙ RISPOSTE ESATTE)
 // AS = DOMANDA ASSOCIAZIONE
 // OD = DOMANDA ORDINAMENTO
-var VF = /^[\s]*<question [\s]*type[\s]*=[\s]*"(VF)">[\s]*<text>[\s]*(.*)[\s]*<\/text>[\s]*<answer [\s]*isRight[\s]*=[\s]*"(yes|no)"[\s]*>(.*)<\/answer>[\s]*<\/question>[\s]*$/;
+var VF = /^[\s]*<question [\s]*type[\s]*=[\s]*"(VF)">[\s]*(<img>(.*)<\/img>){0,1}[\s]*<text>[\s]*(.*)[\s]*<\/text>[\s]*<answer [\s]*isRight[\s]*=[\s]*"(yes|no)"[\s]*>(.*)<\/answer>[\s]*<\/question>[\s]*$/;
 
-var MU = /^[\s]*<question [\s]*type[\s]*=[\s]*"(MU)">[\s]*<text>[\s]*(.*)[\s]*<\/text>(([\s]*<answer [\s]*isRight[\s]*=[\s]*"(yes|no)"[\s]*>(.*)<\/answer>[\s]*){2,})<\/question>[\s]*$/;
+var MU = /[\s]*<question [\s]*type[\s]*=[\s]*"(MU)">[\s]*(<img>(.*)<\/img>){0,1}[\s]*<text>[\s]*(.*)[\s]*<\/text>(([\s]*<answer [\s]*isRight[\s]*=[\s]*"(yes|no)"[\s]*>(.*)<\/answer>[\s]*){2,})<\/question>[\s]*$/;
 
-var MX = /^[\s]*<question [\s]*type[\s]*=[\s]*"(MX)">[\s]*<text>[\s]*(.*)[\s]*<\/text>(([\s]*<answer [\s]*isRight[\s]*=[\s]*"(yes|no)"[\s]*>(.*)<\/answer>[\s]*){2,})<\/question>[\s]*$/;
+var MX = /^[\s]*<question [\s]*type[\s]*=[\s]*"(MX)">[\s]*(<img>(.*)<\/img>){0,1}[\s]*<text>[\s]*(.*)[\s]*<\/text>(([\s]*<answer [\s]*isRight[\s]*=[\s]*"(yes|no)"[\s]*>(.*)<\/answer>[\s]*){2,})<\/question>[\s]*$/;
 
-var AS = /^[\s]*<question [\s]*type[\s]*=[\s]*"(AS)">[\s]*<text>[\s]*(.*)[\s]*<\/text>[\s]*((<answer [\s]*set[\s]*=[\s]*"(A|B)" [\s]*pos[\s]*=[\s]*"(\d)"[\s]*>(.*)<\/answer>[\s]*){2,})<\/question>[\s]*$/;
+var AS = /^[\s]*<question [\s]*type[\s]*=[\s]*"(AS)">[\s]*(<img>(.*)<\/img>){0,1}[\s]*<text>[\s]*(.*)[\s]*<\/text>[\s]*((<answer [\s]*set[\s]*=[\s]*"(A|B)" [\s]*pos[\s]*=[\s]*"(\d)"[\s]*>(.*)<\/answer>[\s]*){2,})<\/question>[\s]*$/;
 
-var OD = /^[\s]*<question [\s]*type[\s]*=[\s]*"(OD)">[\s]*<text>[\s]*(.*)[\s]*<\/text>[\s]*((<answer [\s]*pos[\s]*=[\s]*"(\d)"[\s]*>(.*)<\/answer>[\s]*){2,})<\/question>[\s]*$/;
+var OD = /^[\s]*<question [\s]*type[\s]*=[\s]*"(OD)">[\s]*(<img>(.*)<\/img>){0,1}[\s]*<text>[\s]*(.*)[\s]*<\/text>[\s]*((<answer [\s]*pos[\s]*=[\s]*"(\d)"[\s]*>(.*)<\/answer>[\s]*){2,})<\/question>[\s]*$/;
 
 var str; // stringa in cui viene memorizzato il testo di input compilato dall'utente
 var m; // array in cui viene memorizzata la domanda scomposta secondo l'espressione regolare definita
@@ -37,6 +37,7 @@ var m; // array in cui viene memorizzata la domanda scomposta secondo l'espressi
 
 export default function checkQML(QMLtesto)
 {    
+	console.log(QMLtesto); 
     // AR è l'array che contiene le espressioni regolari definite globalmente fuori dalla funzione
     var AR = [VF, MU, AS, MX, OD];
     var match = false;
@@ -44,7 +45,6 @@ export default function checkQML(QMLtesto)
     // con una delle espressioni regolari definite dell'array AR
     for (var i = 0; i < AR.length && !match; i++)
     {
-        //debugger;
         if ((m = AR[i].exec(QMLtesto)) !== null)
         {
             match = true; 
@@ -73,7 +73,15 @@ export default function checkQML(QMLtesto)
         case "AS":
             ok = checkAS(); // AS -> si controlla che per ogni insieme non ci siano elementi con lo stesso indice
             break;
-        case "OD":
+        case "OD": 
+            //var set = getAnsOD();
+            //var orderedAns = getOrderedAnsOD(set);
+            //var element = {
+            //    type: m[1],
+            //    text: m[2],
+            //    set: set,
+            //    orderedSet: orderedAns
+            //}
             ok = checkOD(); // OD -> si controlla che ogni elemento abbia una posizione diversa
             break; 
         default:
@@ -89,7 +97,7 @@ function checkMU()
     var re = /[\s]*isRight[\s]*=[\s]*"(yes)"[\s]*/;
     var s;
     
-    var lines = m[3].split('\n');
+    var lines = m[5].split('\n');
     var j = 0; 
     for (var i = 0; i < lines.length; i++) {
         if(lines[i] == null)
@@ -120,7 +128,7 @@ function checkMX()
     var re = /[\s]*isRight[\s]*=[\s]*"(yes)"[\s]*/;
     var s;
     
-    var lines = m[3].split('\n');
+    var lines = m[5].split('\n');
     var j = 0; 
     for (var i = 0; i < lines.length; i++) {
         if(lines[i] == null)
@@ -150,7 +158,7 @@ function checkAS()
     var reB = /<answer [\s]*set[\s]*=[\s]*"(B)" [\s]*pos[\s]*=[\s]*"(\d)"[\s]*>(.*)<\/answer>/;
     var s;
     //debugger;
-    var lines = m[3].split('\n');
+    var lines = m[5].split('\n');
     var j = 0; 
     for (var i = 0; i < lines.length; i++) {
         if(lines[i] == null)
@@ -208,7 +216,7 @@ function checkOD()
     var reA = /<answer [\s]*pos[\s]*=[\s]*"(\d)"[\s]*>(.*)<\/answer>/;
     var s;
     //debugger;
-    var lines = m[3].split('\n');
+    var lines = m[5].split('\n');
     var j = 0; 
     for (var i = 0; i < lines.length; i++) {
         if(lines[i] == null)
@@ -236,4 +244,60 @@ function checkOD()
     }
     if(matchA) return true; 
     else return false; 
+}
+
+function getAnsOD()
+{
+    var reA = /<answer [\s]*pos[\s]*=[\s]*"(\d)"[\s]*>(.*)<\/answer>/;
+    var s;
+    //debugger;
+    var lines = m[5].split('\n');
+    var j = 0; 
+    for (var i = 0; i < lines.length; i++) {
+        if(lines[i] == null)
+            j = i; 
+    }
+    lines.pop(j); 
+    //debugger; 
+    var matchA = true;
+        
+    var A = [];
+
+    for (var i = 0; i < lines.length; i++)
+    {   
+        if ((s = reA.exec(lines[i])) !== null) // cerco i match per l'insieme A
+        {   
+            if (s.index === reA.lastIndex) 
+                reA.lastIndex++;
+
+            var element  = {
+                text: s[2],
+                pos: s[1]
+            };
+            A.push(element);
+        }
+        debugger;
+    }
+    for (var i = 0; i < A.length; i++) {
+        console.log(A[i].pos);
+    }
+    
+    return A;
+}
+
+function getOrderedAnsOD(A)
+{
+    
+}
+
+function getMinPosValue(A)
+{   
+    var min = 0; 
+
+    for (var i = 0; i < A.length; i++)
+    {
+        if(A[i].pos <= min)
+            min = i;
+    }
+    return min;
 }

@@ -108,7 +108,7 @@
 							<span >
 							<label for="singleSelect"  class="col s1  l1  "   >{{$index + 1}}. </label>
 							<select ng-model="$ctrl.myQuiz[$ctrl.idx].risp[zdx + 1]" class="col s10  l11 browser-default" name="singleSelect" >
-								<option value="" disabled >Choose your option</option>
+								<option value="" disabled >Scegli un opzione</option>
 								<option ng-repeat="p1 in $ctrl.myQuiz[$ctrl.idx].ans" value="{{p1.id}}"
 								ng-class="{'selected':selectedItem == p1}" >{{p1.text}}</option>
 							</select>							
@@ -178,8 +178,8 @@
             </div>
         </div>
 		<div class="modal-footer">
-			<a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
-			<a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+			<a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">OK</a>
+			<a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">OK</a>
 		</div>
 	</div>
 

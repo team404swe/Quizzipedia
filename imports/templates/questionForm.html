@@ -1,23 +1,23 @@
 <header>
-	<h1>Question Creation</h1>
+	<h1>Crea Domanda</h1>
 </header>
 
 <div class="row">
     <div class="col s11">
       <ul class="tabs">
         <li class="tab col s2"><a href="#qzIntuitivo">Intuitivo</a></li>
-        <li class="tab col s2"><a class="active" href="#qzQMLCode">QML code</a></li>
+        <li class="tab col s2"><a class="active" href="#qzQMLCode">Codice QML</a></li>
       </ul>
     </div>
     <div id="qzIntuitivo" class="col s12">
 	<form ng-submit="$ctrl.saveQuestion($ctrl.QMLtext, $ctrl.category)">
 		<fieldset>
-			<legend class="hidden">Create your question</legend>
+			<legend class="hidden">Crea la tua domanda</legend>
 			 <div >
 				<fieldset>	
 					<div class="input-field col s12 m6  ">
 						<select class="browser-default" ng-model="$ctrl.tipoDomanda">
-							<option value="" disabled selected>Choose your option</option>
+							<option value="" disabled selected>Scegli un opzione</option>
 							<option value="VF">VF - Vero o Falso</option>
 							<option value="MU">MU - Scelta multipla unica</option>
 							<option value="MX">MX - Scelta multipla</option>
@@ -29,7 +29,7 @@
 					<div class="input-field col s12 m6 ">
 						<i class="material-icons prefix">account_circle</i>
 						<input type="text" name="category" id="category" class="validate" ng-model="$ctrl.category"/>
-						<label for="category"  data-error="wrong" data-success="right" >Category</label>
+						<label for="category"  data-error="wrong" data-success="right" >Categoria</label>
 					</div>
 					
 					<div class="input-field col s10">
@@ -85,35 +85,22 @@
     <div id="qzQMLCode" class="col s12">
 		<form ng-submit="$ctrl.saveQuestion($ctrl.QMLtext, $ctrl.category)">
 		<fieldset>
-			<legend class="hidden">Create your question</legend>
+			<legend class="hidden">Crea la tua domanda</legend>
 			 <div >
 				<fieldset>					
 					<div class="input-field col s4">
-						<label for="category" data-error="wrong" data-success="right">Category</label>
+						<label for="category" data-error="wrong" data-success="right">Categoria</label>
 						<input type="text" name="category" id="category" class="validate" ng-model="$ctrl.category"/>
 					</div>
-					<!--	
-					<div class="input-field col s4">
-						<label for="category" class="active">Category</label>
-						<select name="category" id="category" ng-model="$ctrl.category">
-						  <option value="" disabled selected>Choose a Category</option>
-						  <option value="Storia">Storia</option>
-						  <option value="Economia">Economia</option>
-						  <option value="SWE">SWE</option>
-						  <option value="Informatica">Informatica</option>
-						  <option value="Matematica">Matematica</option>
-						  <option value="Cultura_generale">Cultura generale</option>						  
-						</select>
-					</div>-->
 					<div class="input-field col s10">
-						<label for="qmlCode">QML Code</label>
+						<label for="qmlCode">Codice QML</label>
 						<textarea id="QMLCode" class="materialize-textarea" ng-model="$ctrl.QMLtext"></textarea>							
 					</div>				
 				</fieldset>
 			</div>						
 			
-			<span id="check" ng-click="$ctrl.check($ctrl.QMLtext)" class="waves-effect waves-light btn">Check QML</span>
-			<input type="submit" id="submit" value="Save Question" class="waves-effect waves-light btn"/>				
+			<span id="check" ng-click="$ctrl.check($ctrl.QMLtext)" class="waves-effect waves-light btn">Valida QML</span>
+			<input type="submit" id="submit" value="Salva Domanda" class="waves-effect waves-light btn"/>				
 		</fieldset>
 		</form>
 	</div>
@@ -121,7 +108,7 @@
 
 <div class="col s10">
 	<br>
-	<h4>Examples</h4>
+	<h4>Esempi</h4>
 	<ul class="collapsible popout" data-collapsible="accordion">
 		<li> 
 			<div class="collapsible-header">

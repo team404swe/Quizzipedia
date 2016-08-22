@@ -19,6 +19,8 @@ class NewQuizController{
 		
 		this.questions = [];	
 		this.categories= [];
+		this.time;
+		this.title;
 		this.description;
 				
 		this.subscribe('questions');
@@ -74,6 +76,8 @@ class NewQuizController{
 			QzMessage.showText(2,'Il tuo quiz è stato salvato!');	
 			this.questions = [];
 			this.categories = [];
+			this.time = null;
+			this.title = "";
 			this.description = "";
 		}
 	}
@@ -83,7 +87,7 @@ class NewQuizController{
 		if(questionDetails)
 			return questionDetails;
 		else
-			console.log("Error retrieving question details");
+			console.log("Error nel caricamento dei dettagli del quiz");
 	}	
 	
 	getFullQuestionType(shortType){

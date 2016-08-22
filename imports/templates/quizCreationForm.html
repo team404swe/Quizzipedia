@@ -1,17 +1,17 @@
 <div >
 	<header>
-		<h1>Quiz Creation</h1>
+		<h1>Crea Quiz</h1>
 	</header>
 	
 	<form ng-submit="$ctrl.saveQuiz($ctrl.title, $ctrl.questions, $ctrl.categories, $ctrl.description, $ctrl.time)" class="row">
-		<legend class="hidden">Create your quiz</legend>
+		<legend class="hidden">Crea il tuo Quiz</legend>
 		<fieldset>
 			<div class="input-field col s4">
-				<label for="title">Title</label>
+				<label for="title">Titolo</label>
 				<input type="text" id="title" ng-model="$ctrl.title"/>
 			</div>
 			<div class="input-field col s4">
-				<label for="time" class="active">Quiz time</label>
+				<label for="time" class="active">Tempo massimo</label>
 				<input type="number" min="5" max="30" id="time"  placeholder="5" ng-model="$ctrl.time"/>
 			</div>				
 			<div class="input-field col s8">
@@ -21,7 +21,7 @@
 			
 			<div class="col s12" ng-show="$ctrl.categories.length != 0">
 				<ul class="collection with-header">
-					<li class="collection-header"><h4>Quiz categories</h4></li>
+					<li class="collection-header"><h4>Categorie</h4></li>
 					<li ng-repeat="category in $ctrl.categories" class="collection-item">
 						{{category.category}} - {{category.counter}}					
 					</li>						
@@ -30,7 +30,7 @@
 			
 			<div class="input-field col s10">	
 				<ul class="collection with-header">
-					<li class="collection-header"><h4>Add questions to your quiz</h4></li>
+					<li class="collection-header"><h4>Aggiungi domande al tuo Quiz</h4></li>
 					<li class="collection-item">
 						<ul class="collapsible pop-out">
 							<li ng-repeat="question in $ctrl.questionList">
@@ -50,7 +50,7 @@
 				</ul>					
 			</div>			
 			<div class="col s7 right">
-				<input type="submit" id="submit" value="Save Quiz" class="waves-effect waves-light btn"/>	
+				<input type="submit" id="submit" value="Salva Quiz" class="waves-effect waves-light btn"/>	
 			</div>
 		</fieldset>														
 	</form>

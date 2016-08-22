@@ -25,7 +25,7 @@ class NewQuestionController{
 	
 	check(QMLtext){		
 		if(QMLtext=="" || QMLtext==undefined){
-				QzMessage.showText(0, "Missing QML text");
+				QzMessage.showText(0, "Inserisci codice QML");
 		}
 		else{
 			console.log(QMLtext);
@@ -35,9 +35,9 @@ class NewQuestionController{
 				else{
 					console.log(result);
 					if(result)
-						QzMessage.showText(2, "QML syntax is valid");
+						QzMessage.showText(2, "Il codice QML è valido");
 					else
-						QzMessage.showText(1, "QML text has sintax errors");
+						QzMessage.showText(1, "Il codice QML è sintatticamente errato");
 				}
 			});
 		}
@@ -45,7 +45,7 @@ class NewQuestionController{
 	
 	saveQuestion(QMLtext, category){
 		if(QMLtext=="" || category=="" || QMLtext==undefined || category==undefined){			
-			QzMessage.showText(0, "Please fill the form data");
+			QzMessage.showText(0, "Compila tutti i campi");
 		}
 		else{
 			Meteor.call("questions.insert",	QMLtext, category, function(error, result) {
@@ -57,10 +57,10 @@ class NewQuestionController{
 					{
 						this.QMLtext="";
 						this.category="";
-						QzMessage.showText(2, "Your question has been saved!");						
+						QzMessage.showText(2, "La tua domanda è stata salvata!");						
 					}
 					else
-						QzMessage.showText(0, "QML text has sintax errors");											
+						QzMessage.showText(0, "Il codice QML è sintatticamente errato");											
 			});
 		}
 	}

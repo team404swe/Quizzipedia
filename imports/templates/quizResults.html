@@ -14,11 +14,19 @@
 		<div class="card-panel teal white-text">				
 			<i class="material-icons">assignment</i><span class="card-title">        Risultati</span>
 			<h4>HAI REALIZZATO: <strong> {{$ctrl.punti}} </strong> punti</h4>
-			<p> RISULTATO DELLE DOMANDE </p>
+			<p> DOMANDE </p>
 			<div id="lista_risposte">
-				<div ng-repeat="question in $ctrl.quizObj.questions">
+				<div ng-repeat="question in $ctrl.quizObj.questions" class="card-panel black-text">
 					<div>
-						<p>{{question.text}}</p>
+						<p>Domanda: {{question.text}}</p>
+						<p>Categoria: {{$ctrl.getFullQuestionType(question.type)}}</p>
+						<div ng-repeat="ans in question.ans">
+							<p>Risposta: {{ans.text}}</p>
+						</div>
+						<!--<div ng-repeat="ans in question.rightAns">
+							<p>Risposte corrette: {{ans}}</p>
+						</div>-->
+						{{$ctrl.log(question)}}				
 					</div>
 				</div>
 			</div>		

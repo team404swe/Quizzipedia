@@ -4,11 +4,12 @@
 // MX = RISPOSTA MULTIPLA (CON PIÙ RISPOSTE ESATTE)
 // AS = DOMANDA ASSOCIAZIONE
 // OD = DOMANDA ORDINAMENTO
-var VF = /^[\s]*<question [\s]*type[\s]*=[\s]*"(VF)">[\s]*<text>[\s]*(.*)[\s]*<\/text>[\s]*<answer [\s]*isRight[\s]*=[\s]*"(yes|no)"[\s]*>(.*)<\/answer>[\s]*<\/question>[\s]*$/;
-var MU = /^[\s]*<question [\s]*type[\s]*=[\s]*"(MU)">[\s]*<text>[\s]*(.*)[\s]*<\/text>[\s]*((<answer [\s]*isRight[\s]*=[\s]*"(yes|no)"[\s]*>(.*)<\/answer>[\s]*){2,})<\/question>[\s]*$/;
-var MX = /^[\s]*<question [\s]*type[\s]*=[\s]*"(MX)">[\s]*<text>[\s]*(.*)[\s]*<\/text>[\s]*((<answer [\s]*isRight[\s]*=[\s]*"(yes|no)"[\s]*>(.*)<\/answer>[\s]*){2,})<\/question>[\s]*$/;
-var AS = /^[\s]*<question [\s]*type[\s]*=[\s]*"(AS)">[\s]*<text>[\s]*(.*)[\s]*<\/text>[\s]*((<answer [\s]*set[\s]*=[\s]*"(A|B)" [\s]*pos[\s]*=[\s]*"(\d)"[\s]*>(.*)<\/answer>[\s]*){2,})<\/question>[\s]*$/;
-var OD = /^[\s]*<question [\s]*type[\s]*=[\s]*"(OD)">[\s]*<text>[\s]*(.*)[\s]*<\/text>[\s]*((<answer [\s]*pos[\s]*=[\s]*"(\d)"[\s]*>(.*)<\/answer>[\s]*){2,})<\/question>[\s]*$/;
+
+var VF = /^[\s]*<question [\s]*type[\s]*=[\s]*"(VF)">[\s]*(<img>(.*)<\/img>){0,1}[\s]*<text>[\s]*(.*)[\s]*<\/text>[\s]*<answer [\s]*isRight[\s]*=[\s]*"(yes|no)"[\s]*>(.*)<\/answer>[\s]*<\/question>[\s]*$/;
+var MU = /^[\s]*<question [\s]*type[\s]*=[\s]*"(MU)">[\s]*(<img>(.*)<\/img>){0,1}[\s]*<text>[\s]*(.*)[\s]*<\/text>[\s]*((<answer [\s]*isRight[\s]*=[\s]*"(yes|no)"[\s]*>(.*)<\/answer>[\s]*){2,})<\/question>[\s]*$/;
+var MX = /^[\s]*<question [\s]*type[\s]*=[\s]*"(MX)">[\s]*(<img>(.*)<\/img>){0,1}[\s]*<text>[\s]*(.*)[\s]*<\/text>[\s]*((<answer [\s]*isRight[\s]*=[\s]*"(yes|no)"[\s]*>(.*)<\/answer>[\s]*){2,})<\/question>[\s]*$/;
+var AS = /^[\s]*<question [\s]*type[\s]*=[\s]*"(AS)">[\s]*(<img>(.*)<\/img>){0,1}[\s]*<text>[\s]*(.*)[\s]*<\/text>[\s]*((<answer [\s]*set[\s]*=[\s]*"(A|B)" [\s]*pos[\s]*=[\s]*"(\d)"[\s]*>(.*)<\/answer>[\s]*){2,})<\/question>[\s]*$/;
+var OD = /^[\s]*<question [\s]*type[\s]*=[\s]*"(OD)">[\s]*(<img>(.*)<\/img>){0,1}[\s]*<text>[\s]*(.*)[\s]*<\/text>[\s]*((<answer [\s]*pos[\s]*=[\s]*"(\d)"[\s]*>(.*)<\/answer>[\s]*){2,})<\/question>[\s]*$/;
 
 var str; // stringa in cui viene memorizzato il testo di input compilato dall'utente
 var m; // array in cui viene memorizzata la domanda scomposta secondo l'espressione regolare definita
@@ -40,7 +41,8 @@ export default function QML2HTML(QMLtesto)
     {   case "VF":
             var element = {
                   type: m[1],
-                  text: m[2],
+                  text: m[4],
+				  image: m[3],
                   ans: getAnswerVF() //m[3]
                 }; 
             break; 
@@ -48,7 +50,8 @@ export default function QML2HTML(QMLtesto)
             var rightAns = getRightAnsMU();
             var element = {
                 type: m[1],
-                text: m[2],
+                text: m[4],
+				image: m[3],
                 ans: getAnswerMU(), //m[6],
                 rightAns: rightAns
             };
@@ -57,7 +60,8 @@ export default function QML2HTML(QMLtesto)
             var rightAns = getRightAnsMX();
             var element = {
                 type: m[1],
-                text: m[2],
+                text: m[4],
+				image: m[3],
                 ans: getAnswerMX(), // m[6],
                 rightAns: rightAns
             };
@@ -68,7 +72,8 @@ export default function QML2HTML(QMLtesto)
             var rightAns = getRightAnsAS(sets.A, sets.B);
             var element = {
                 type: m[1],
-                text: m[2],
+                text: m[4],
+				image: m[3],
                 ans: sets, // 
                 rightAns: rightAns
             };
@@ -80,7 +85,8 @@ export default function QML2HTML(QMLtesto)
             //var orderedAns = getOrderedAnsOD(set);
             var element = {
                 type: m[1],
-                text: m[2],
+                text: m[4],
+				image: m[3],
                 ans: ans,
                 rightAns: rightAns,
 				risp: {}
@@ -98,7 +104,7 @@ export default function QML2HTML(QMLtesto)
 
 function getAnswerVF()
 {
-	if (m[3] === "yes") return true;
+	if (m[5] === "yes") return true;
 	else return false;
 }
 function getRightAnsMU()
@@ -107,7 +113,7 @@ function getRightAnsMU()
     var s;
     var rAns;
 
-    var lines = m[3].split('\n');
+    var lines = m[5].split('\n');
     var j = 0; 
     for (var i = 0; i < lines.length; i++) {
         if(lines[i] == null)
@@ -138,7 +144,7 @@ function getRightAnsMX()
     var s;
     var rAns = {};
 
-    var lines = m[3].split('\n');
+    var lines = m[5].split('\n');
     var j = 0; 
     for (var i = 0; i < lines.length; i++) {
         if(lines[i] == null)
@@ -177,7 +183,7 @@ function getAnswersAS()
     var reB = /<answer [\s]*set[\s]*=[\s]*"(B)" [\s]*pos[\s]*=[\s]*"(\d)"[\s]*>(.*)<\/answer>/;
     var s;
     //debugger;
-    var lines = m[3].split('\n');
+    var lines = m[5].split('\n');
     var j = 0; 
     for (var i = 0; i < lines.length; i++) {
         if(lines[i] == null)
@@ -259,7 +265,7 @@ function getAnsOD()
     var reA = /<answer [\s]*pos[\s]*=[\s]*"(\d)"[\s]*>(.*)<\/answer>/;
     var s;
     //debugger;
-    var lines = m[3].split('\n');
+    var lines = m[5].split('\n');
     var j = 0; 
     for (var i = 0; i < lines.length; i++) {
         if(lines[i] == null)
@@ -313,7 +319,7 @@ function getAnswerMU()
 	re = /<answer [\s]*isRight[\s]*=[\s]*"(yes|no)"[\s]*>(.*)<\/answer>/ ; 	
 	var s;
 
-    var lines = m[3].split('\n');
+    var lines = m[5].split('\n');
     
     var j = 0; 
     for (var i = 0; i < lines.length; i++) {
@@ -341,7 +347,7 @@ function getAnswerMX()
 	re = /<answer [\s]*isRight[\s]*=[\s]*"(yes|no)"[\s]*>(.*)<\/answer>/ ; 	
 	var s;
 
-    var lines = m[3].split('\n');
+    var lines = m[5].split('\n');
     
     var j = 0; 
     for (var i = 0; i < lines.length; i++) {

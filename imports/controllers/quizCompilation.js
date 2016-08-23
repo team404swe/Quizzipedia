@@ -13,7 +13,7 @@ class QuizCompilationController{
 			this.helpers({
 			'wTime' : function() {return QzTimer.tempo; }					
 		});	
-			this.myClock = {tempo:150000, format: 'mm:ss', timerID: undefined,
+			/* this.myClock = {tempo:150000, format: 'mm:ss', timerID: undefined,
 				CheckTimee: function()
 				{  	
 					if(QzTimer.tempo === 0)
@@ -23,9 +23,10 @@ class QuizCompilationController{
 					else{ 
 							if(QzTimer.quizPlay) QzTimer.tempo = QzTimer.tempo - 1000; $scope.$apply() ;
 							//else  Meteor.clearInterval(QzTimer.timerID);
-							}
+						}
 				}  
-			};
+			};  */
+			
 			this.link = "qzcustom/p1.gif";
 			this.myQuiz = [];
 			this.miniModel = {
@@ -67,16 +68,17 @@ class QuizCompilationController{
 				}
 			});
 		*/	
-		$scope.$on('$locationChangeStart', function( event,QzFine ) {
-			if(QzFine.QzConferma == true)
+		$scope.$on('$locationChangeStart', function( event,next, current ) {
+			debugger;
+			if(QzFine.QzConferma !== true)
 			{
-				var answer = confirm("Are you sure you want to leave this page?")
+				var answer = confirm("Vuole abbandonnare lo svolgimento del quiz?")
 				if (!answer) 
 				{
 					event.preventDefault();
-				}
+				}else Meteor.clearInterval(QzTimer.timerID);
 			}
-});
+		});
 		
 	}
 	
@@ -114,10 +116,12 @@ class QuizCompilationController{
 		}		
 	}
 	CheckTime()
-				{ 
+				{ debugger;
+				var aaa = this;
 					if(QzTimer.tempo === 0)
 					{
 						Meteor.clearInterval(QzTimer.timerID);
+						QzFine.QzSubmit(); 
 					}
 					else{ 
 							if(QzTimer.quizPlay) 
@@ -128,24 +132,27 @@ class QuizCompilationController{
 							}
 						}
 				}
+		
 	startQuiz()
 	{	if(this.miniModel.questions != null)
-		{
+		{	QzFine.QzSubmit = this.submitQuiz;
+			qzthis = this;
 			this.quizPlay = true;
 			QzTimer.quizPlay = true;
 			this.myQuiz = this.miniModel.questions;
 			this.goIndex(0);	
-			QzTimer.tempo = this.miniModel.time * 60000;
+			QzTimer.tempo = this.miniModel.time * 1000;
 			QzTimer.timerID = Meteor.setInterval(this.CheckTime,1000);
 			myTimer = QzTimer.tempo;
-			this.pageTime = QzTimer;			
+			this.pageTime = QzTimer;
+			
 		}else
 		{
 			alert("nessun quiz caricato");
 			//Meteor.Router.to("/quizlist");
 			debugger;
 			//var percorso = $location.path();
-			window.location=('/quizResults');
+			window.location=('/quizList');
 			
 		}
 	}	
@@ -188,13 +195,16 @@ class QuizCompilationController{
 	}
 	
 	submitQuiz(){		
-		
-		this.punti = this.contaPunti();
-		QzFine.QzPunti = this.punti;
+		if(QzTimer.quizPlay){
+		qzthis.punti = qzthis.contaPunti();
+		QzFine.QzPunti = qzthis.punti;
 		QzFine.QzConferma = true;
 		debugger;
-		QzMessage.showText(2, "Punteggio attuale: " + this.punti);
-		//window.location=('/quizResults');
+		$('#endQuiz').openModal();
+		QzMessage.showText(2, "Punteggio attuale: " + qzthis.punti);
+		
+		//window.location.assign("/quizResults");
+		}
 	}
 	setAnswer(rispo)
 	{	

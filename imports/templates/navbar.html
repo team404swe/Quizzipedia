@@ -20,10 +20,9 @@
 	<li><login-buttons></login-buttons></li>
 	<li class="bold"><a href="/quizHome" class="waves-effect waves-teal">Home</a></li>	
 	<li ng-show="$ctrl.isLoggedIn" class="bold"><a href="/userProfile" class="waves-effect waves-teal">Profilo</a></li>
-	<li class="bold"><a href="/searchForm" class="waves-effect waves-teal">Cerca</a></li>	
+	<!--<li class="bold"><a href="/searchForm" class="waves-effect waves-teal">Cerca</a></li>-->
 	<li class="bold"><a href="/quizlist" class="waves-effect waves-teal">Tutti i Quiz</a></li>	
-	<div ng-show="$ctrl.isLoggedIn">
-		<!--<li class="bold"><a href="/questionlist" class="waves-effect waves-teal">Question List</a></li>-->
+	<div ng-show="$ctrl.isLoggedIn">		
 		<li class="bold"><a href="/questionForm" class="waves-effect waves-teal">Crea Domanda</a></li>
 		<li class="bold"><a href="/quizCreationForm" class="waves-effect waves-teal">Crea Quiz</a></li>		
 	</div>	

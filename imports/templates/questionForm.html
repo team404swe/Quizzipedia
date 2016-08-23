@@ -27,7 +27,7 @@
 					</div>
 
 					<div class="input-field col s12 m6 ">
-						<i class="material-icons prefix">account_circle</i>
+						<i class="material-icons prefix">subject</i>
 						<input type="text" name="category" id="category" class="validate" ng-model="$ctrl.category"/>
 						<label for="category"  data-error="wrong" data-success="right" >Categoria</label>
 					</div>
@@ -47,14 +47,16 @@
 					</div>
 					<div ng-switch="$ctrl.tipoDomanda" class="col s12">
 						<div  ng-switch-when="VF">
-							<p>
-								Qui vanno VF
-							</p>
+							<div class="input-field col s12 m6  ">
+								<select class="browser-default" ng-model="$ctrl.answer">
+									<option value="" disabled selected>Scegli un valore</option>
+									<option value="V">Vero</option>
+									<option value="F">Falso</option>
+								</select>						
+							</div>
 						</div>
-						<div  ng-switch-when="MU">
-							<p>
-								Qui vanno MU
-							</p>
+						<div ng-switch-when="MU">
+							
 						</div>
 						<div  ng-switch-when="MX">
 							<p>
@@ -76,6 +78,7 @@
 				</fieldset>
 					
 			</div>
+			<br>
 		<input type="submit" id="submit" value="Save Question" class="waves-effect waves-light btn"/>				
 		</fieldset>
 	
@@ -89,10 +92,12 @@
 			 <div >
 				<fieldset>					
 					<div class="input-field col s4">
+						<i class="material-icons prefix">subject</i>
 						<label for="category" data-error="wrong" data-success="right">Categoria</label>
 						<input type="text" name="category" id="category" class="validate" ng-model="$ctrl.category"/>
 					</div>
 					<div class="input-field col s10">
+						<i class="material-icons prefix">code</i>
 						<label for="qmlCode">Codice QML</label>
 						<textarea id="QMLCode" class="materialize-textarea" ng-model="$ctrl.QMLtext"></textarea>							
 					</div>				

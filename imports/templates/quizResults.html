@@ -1,27 +1,27 @@
 
 <div class="row">
 	<br/>
-	<div class="col s12">			
+	<div class="card">
+		<div class="card-panel teal white-text">
+			<i class="material-icons">info</i><span class="card-title">     Dettagli Quiz</span>
+			<p>Nome del Quiz: {{$ctrl.quizObj.title}}</p>
+			<p>Domande totali: {{$ctrl.quizObj.questions.length}}</p>
+			<p>Autore: {{$ctrl.quizObj._author}}</p>
+		</div>		   
+    </div>
 	
-		Nome del Quiz: {{$ctrl.quizObj.title}}
-	
-	</div>
-	<div class="col s12">
-		Domande totali: {{$ctrl.quizObj.questions.length}}
-	</div>
-	<div class="col s12">
-		Autore: {{$ctrl.quizObj._author}}
-	</div>
-	<div class="col s12">
-		<br>
-		HAI REALIZZATO: <strong> {{$ctrl.punti}} </strong> punti.
-		<h1> RISULTATO DELLE DOMANDE </h1>
-		<div id="lista_risposte">
-			<div ng-repeat="question in $ctrl.quizObj.questions">
-				<div>
-					<p>{{question.text}}</p>
+	<div class="card">		
+		<div class="card-panel teal white-text">				
+			<i class="material-icons">assignment</i><span class="card-title">        Risultati</span>
+			<h4>HAI REALIZZATO: <strong> {{$ctrl.punti}} </strong> punti</h4>
+			<p> RISULTATO DELLE DOMANDE </p>
+			<div id="lista_risposte">
+				<div ng-repeat="question in $ctrl.quizObj.questions">
+					<div>
+						<p>{{question.text}}</p>
+					</div>
 				</div>
-			</div>
+			</div>		
 		</div>
 	</div>
 </div>

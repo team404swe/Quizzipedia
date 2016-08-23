@@ -35,6 +35,10 @@ class UserProfileController{
 		return Meteor.users.findOne({"_id" : Meteor.userId()}).username;
 	}	
 	
+	changePhoto(){
+		
+	}
+	
 }
 
 export default angular.module('userProfile', [

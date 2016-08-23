@@ -8,68 +8,33 @@
     </div>
 </div>
 <div class="row container">
-    <div class="col s12 m4 center promo">
+    <div class="col s12 m4 center promo" ng-show="$ctrl.isLoggedIn">
         <i class="material-icons large">settings</i>
         <p class="promo-title">Creazione domande semplice e veloce</p>
-        <p>Tutte le domande possono essere creati utilizzando un apposito linguaggio, il QML, oppure utilizzando l'interfaccia creata su misura.</p>
-        <a class="waves-effect waves-light btn">Crea domanda</a>
+        <p>Tutte le domande possono essere create utilizzando un apposito linguaggio, il QML, oppure utilizzando l'interfaccia creata su misura.</p>
+        <a class="waves-effect waves-light btn" href="/questionForm">Crea domanda</a>
     </div>
     <div class="col s12 m4 center promo">
         <i class="material-icons large">search</i>
-        <p class="promo-title">Ricerca questionari</p>
-        <p>I questionari possono essere filtrati per categoria, nome, autore e numero di domande per trovare quello più adatto a te.</p>
-        <a class="waves-effect waves-light btn">Cerca questionario</a>
+        <p class="promo-title">Lista questionari</p>
+        <p>Esplora l'intera lista di questionari per trovare quello più adatto a te.</p>
+        <a class="waves-effect waves-light btn" href="/quizlist">Cerca questionario</a>
     </div>
-    <div class="col s12 m4 center promo">
+    <div class="col s12 m4 center promo" ng-show="$ctrl.isLoggedIn">
         <i class="material-icons large">perm_identity</i>
         <p class="promo-title">Gestione domande personali</p>
-        <p>Ogni domanda e questionario creati possono essere modificati o eliminati in ogni momento dalla propria pagina di gestione.</p>
-        <a class="waves-effect waves-light btn">Gestisci domande</a>
+        <p>Ogni domanda e questionario creati possono essere visualizzati o eliminati in ogni momento dalla propria pagina del profilo.</p>
+        <a class="waves-effect waves-light btn" href="/userProfile">Gestisci domande</a>
+    </div>
+    <div class ="col s12 m4 center promo" ng-show="!$ctrl.isLoggedIn">
+		<i class="material-icons large">vpn_key</i>
+        <p class="promo-title">Accedi</p>
+        <p>Accedi per usufruire delle funzionalità complete di Quizzipedia</p>        
     </div>
 </div>
-<!--<div class="row devs">-->
-<!--    <div class="col s12">-->
-<!--        <div class="row container">-->
-<!--            <div class="col s12">-->
-<!--                <h3 class="subtitle">Developers</h3>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--        <div class="row center container">-->
-<!--            <div class="col s12 m6 l3 dev">-->
-<!--                <img src="images/abeccaro.jpg" alt="Alex Beccaro" class="circle dev-photo" />-->
-<!--                <p class="name">Alex Beccaro</p>-->
-<!--                <p class>Programmatore di incredibili capacità tecniche, sa fare di tutto ed è pure molto veloce, 10/10 ign review</p>-->
-<!--            </div>-->
-<!--            <div class="col s12 m6 l3 dev">-->
-<!--                <img src="images/abeccaro.jpg" alt="Alex Beccaro" class="circle dev-photo" />-->
-<!--                <p class="name">Alex Beccaro</p>-->
-<!--                <p class>Programmatore di incredibili capacità tecniche, sa fare di tutto ed è pure molto veloce, 10/10 ign review</p>-->
-<!--            </div>-->
-<!--            <div class="col s12 m6 l3 dev">-->
-<!--                <img src="images/abeccaro.jpg" alt="Alex Beccaro" class="circle dev-photo" />-->
-<!--                <p class="name">Alex Beccaro</p>-->
-<!--                <p class>Programmatore di incredibili capacità tecniche, sa fare di tutto ed è pure molto veloce, 10/10 ign review</p>-->
-<!--            </div>-->
-<!--            <div class="col s12 m6 l3 dev">-->
-<!--                <img src="images/abeccaro.jpg" alt="Alex Beccaro" class="circle dev-photo" />-->
-<!--                <p class="name">Alex Beccaro</p>-->
-<!--                <p class>Programmatore di incredibili capacità tecniche, sa fare di tutto ed è pure molto veloce, 10/10 ign review</p>-->
-<!--            </div>-->
-<!--            <div class="col s12 m6 l3 offset-l3 dev">-->
-<!--                <img src="images/abeccaro.jpg" alt="Alex Beccaro" class="circle dev-photo" />-->
-<!--                <p class="name">Alex Beccaro</p>-->
-<!--                <p class>Programmatore di incredibili capacità tecniche, sa fare di tutto ed è pure molto veloce, 10/10 ign review</p>-->
-<!--            </div>-->
-<!--            <div class="col s12 m6 l3 dev">-->
-<!--                <img src="images/abeccaro.jpg" alt="Alex Beccaro" class="circle dev-photo" />-->
-<!--                <p class="name">Alex Beccaro</p>-->
-<!--                <p class>Programmatore di incredibili capacità tecniche, sa fare di tutto ed è pure molto veloce, 10/10 ign review</p>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
 
 
+<!--
 <div class="row dev2">
     <div class="container">
         <div class="col s3 photo">
@@ -142,3 +107,4 @@
         </div>
     </div>
 </div>
+-->

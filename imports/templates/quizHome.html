@@ -7,28 +7,58 @@
         </blockquote>
     </div>
 </div>
-<div class="row container">
-    <div class="col s12 m4 center promo" ng-show="$ctrl.isLoggedIn">
-        <i class="material-icons large">settings</i>
-        <p class="promo-title">Creazione domande semplice e veloce</p>
-        <p>Tutte le domande possono essere create utilizzando un apposito linguaggio, il QML, oppure utilizzando l'interfaccia creata su misura.</p>
-        <a class="waves-effect waves-light btn" href="/questionForm">Crea domanda</a>
+<div class="container">	
+	
+	<div class="row">		
+		<div class="col s12 m2 center promo nascosto" ng-show="!$ctrl.isLoggedIn">________</div>
+		<div class="col s12 m4 center promo">			
+			<i class="material-icons large">settings</i>			
+		</div>		
+		<div class="col s12 m4 center promo" ng-show="$ctrl.isLoggedIn">
+			<i class="material-icons large">search</i>
+		</div>
+		<div class="col s12 m4 center promo" ng-show="$ctrl.isLoggedIn">
+			<i class="material-icons large">perm_identity</i>
+		</div>
+		<div class="col s12 m4 center promo" ng-show="!$ctrl.isLoggedIn">
+			<i class="material-icons large">vpn_key</i>
+		</div>				
+		<div class="col s12 m2 center promo nascosto" ng-show="!$ctrl.isLoggedIn">________</div>
     </div>
-    <div class="col s12 m4 center promo">
-        <i class="material-icons large">search</i>
-        <p class="promo-title">Lista questionari</p>
-        <p>Esplora l'intera lista di questionari per trovare quello più adatto a te.</p>
-        <a class="waves-effect waves-light btn" href="/quizlist">Cerca questionario</a>
+    
+    <div class="row">		
+		<div class="col s12 m2 center promo nascosto" ng-show="!$ctrl.isLoggedIn">________</div>
+		<div class="col s12 m4 center promo">			
+			<p class="promo-title">Lista questionari</p>
+			<p>Esplora l'intera lista di questionari per trovare quello più adatto a te.</p>			
+		</div>
+		<div class="col s12 m4 center promo" ng-show="$ctrl.isLoggedIn">
+			<p class="promo-title">Gestione domande personali</p>
+			<p>Ogni domanda e questionario creati possono essere visualizzati o eliminati in ogni momento dalla propria pagina del profilo.</p>
+		</div>
+		<div class="col s12 m4 center promo" ng-show="!$ctrl.isLoggedIn">
+			<p class="promo-title">Accedi</p>
+			<p>Accedi per usufruire delle funzionalità complete di Quizzipedia</p>  
+		</div>
+		<div class="col s12 m4 center promo" ng-show="$ctrl.isLoggedIn">
+			<p class="promo-title">Creazione domande semplice</p>
+			<p>Tutte le domande possono essere create utilizzando un apposito linguaggio, il QML, oppure utilizzando l'interfaccia creata su misura.</p>
+		</div>		
+		<div class="col s12 m2 center promo nascosto" ng-show="!$ctrl.isLoggedIn">________</div>
     </div>
-    <div class="col s12 m4 center promo" ng-show="$ctrl.isLoggedIn">
-        <i class="material-icons large">perm_identity</i>
-        <p class="promo-title">Gestione domande personali</p>
-        <p>Ogni domanda e questionario creati possono essere visualizzati o eliminati in ogni momento dalla propria pagina del profilo.</p>
-        <a class="waves-effect waves-light btn" href="/userProfile">  Gestisci  </a>
+    
+    <div class="row">
+		<div class="col s12 m2 center promo nascosto" ng-show="!$ctrl.isLoggedIn">________</div>
+		<div class="col s12 m4 center promo">			
+			 <a class="waves-effect waves-light btn " href="/quizlist">Cerca questionario</a>			
+		</div>
+		<div class="col s12 m4 center promo" ng-show="$ctrl.isLoggedIn">
+			<a class="waves-effect waves-light btn" href="/userProfile">  Gestisci  </a>
+		</div>
+		<div class="col s12 m4 center promo" ng-show="$ctrl.isLoggedIn">
+			<a class="waves-effect waves-light btn " href="/questionForm">Crea domanda</a>
+		</div>		
+		<div class="col s12 m2 center promo nascosto" ng-show="!$ctrl.isLoggedIn">________</div>
     </div>
-    <div class ="col s12 m4 center promo" ng-show="!$ctrl.isLoggedIn">
-		<i class="material-icons large">vpn_key</i>
-        <p class="promo-title">Accedi</p>
-        <p>Accedi per usufruire delle funzionalità complete di Quizzipedia</p>        
-    </div>
+  
 </div>

@@ -64,6 +64,14 @@ class NewQuestionController{
 			});
 		}
 	}
+	
+	setVF(id){		
+		document.getElementById(id).className = "btn";
+		if(id == 'vero')
+			document.getElementById('falso').className = "btn grey";		
+		else
+			document.getElementById('vero').className = "btn grey";
+	}
 }
 
 export default angular.module('questionForm', [

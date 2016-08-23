@@ -5,9 +5,79 @@
 <div class="row">
     <div class="col s11">
       <ul class="tabs">        
-        <li class="tab col s2"><a class="active" href="#qzQMLCode">QML</a></li>
+		<!--<li class="tab col s2"><a class="active" href="#qzIntuitivo">Intuitivo</a></li>-->
+        <li class="tab col s2"><a href="#qzQMLCode">QML</a></li>
       </ul>
     </div>
+    
+    <!--<div id="qzIntuitivo" class="col s12">
+		<form ng-submit="$ctrl.saveQuestion($ctrl.QMLtext, $ctrl.category)">
+			<fieldset>
+				<legend class="hidden">Crea la tua domanda</legend>  			 
+				<div class="input-field col s12 m6  ">
+					<select class="browser-default" ng-model="$ctrl.tipoDomanda">
+						<option value="" disabled selected>Scegli una tipologia</option>
+						<option value="VF">VF - Vero o Falso</option>
+						<option value="MU">MU - Scelta multipla unica</option>
+						<option value="MX">MX - Scelta multipla</option>
+						<option value="AS">AS - Associazione</option>
+						<option value="OD">OD - Ordinamento</option>
+					</select>						
+				</div>
+
+				<div class="input-field col s10 m4 ">
+					<i class="material-icons prefix">subject</i>
+					<input type="text" name="category" id="category" class="validate" ng-model="$ctrl.category"/>
+					<label for="category"  data-error="wrong" data-success="right" >Categoria</label>
+				</div>
+				
+				<div class="input-field col s10">
+					<label for="Domanda">Domanda</label>
+					<textarea id="Domanda" class="materialize-textarea" ng-model="$ctrl.QMLtext"></textarea>							
+				</div>	
+				<div class="file-field input-field col s10">
+					<div class="btn">
+						<span>File</span>
+						<input type="file">
+					</div>
+					<div class="file-path-wrapper">
+						<input class="file-path validate" type="text" placeholder="Carica un immagine per la domanda">
+					</div>
+				</div>
+				<div ng-switch="$ctrl.tipoDomanda" class="col s12">
+					<div ng-switch-when="VF">
+						<p>Scegli la risposta esatta</p>
+						<button class="btn grey" type="button" id="vero" ng-click="$ctrl.setVF('vero')">Vero</button>
+						<button class="btn grey" type="button" id="falso" ng-click="$ctrl.setVF('falso')">Falso</button>
+					</div>
+					<div  ng-switch-when="MU">		
+						<form action="">
+							<input type="checkbox" value="boh" name="mah"/>
+						</form>	
+					</div>
+					<div  ng-switch-when="MX">
+						<p>
+							Qui vanno MX
+						</p>
+					</div>
+					<div  ng-switch-when="AS">
+						<p>
+							Qui vanno AS
+						</p>
+					</div>
+					<div  ng-switch-when="OD">
+						<p>
+							Qui vanno OD
+						</p>
+					</div>
+					<br>
+				</div>
+			</fieldset>
+									
+			<input type="submit" id="submit" value="Salva Domanda" class="waves-effect waves-light btn"/>						
+		
+		</form>
+ 	</div>-->
     	
     <div id="qzQMLCode" class="col s12">
 		<form ng-submit="$ctrl.saveQuestion($ctrl.QMLtext, $ctrl.category)">

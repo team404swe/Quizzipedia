@@ -36,6 +36,10 @@ fieldset{
 	display: none;
 }
 
+.nascosto{
+	color: white;
+}
+
 input #submit{
 	margin-top: 2em;
 }

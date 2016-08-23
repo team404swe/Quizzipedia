@@ -14,19 +14,7 @@ class QuizCompilationController{
 			'wTime' : function() {return QzTimer.tempo; }					
 		});	
 		
-			/* this.myClock = {tempo:150000, format: 'mm:ss', timerID: undefined,
-				CheckTimee: function()
-				{  	
-					if(QzTimer.tempo === 0)
-					{
-						Meteor.clearInterval(QzTimer.timerID);
-					}
-					else{ 
-							if(QzTimer.quizPlay) QzTimer.tempo = QzTimer.tempo - 1000; $scope.$apply() ;
-							//else  Meteor.clearInterval(QzTimer.timerID);
-						}
-				}  
-			};  */
+
 			
 			this.link = "qzcustom/p1.gif";
 			this.myQuiz = [];
@@ -56,19 +44,7 @@ class QuizCompilationController{
 			
 			this.setQuiz();
 			
-		/*	
-		Meteor.call("", QMLtext, function(error, result) {
-				if (error)
-					QzMessage.showText(0, error);
-				else{
-					console.log(result);
-					if(result)
-						QzMessage.showText(2, "QML syntax is valid");
-					else
-						QzMessage.showText(1, "QML text has sintax errors");
-				}
-			});
-		*/	
+	
 		$scope.$on('$locationChangeStart', function( event,next, current ) {
 			debugger;
 			if(QzFine.QzConferma !== true)

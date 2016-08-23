@@ -22,9 +22,7 @@ class Quizzipedia {
 	constructor($scope){
 		debugger;
 		$scope.viewModel(this);		
-		
-		//attivazione del menu mobile
-		//$(".button-collapse").sideNav();
+
 	}	
 		
 }

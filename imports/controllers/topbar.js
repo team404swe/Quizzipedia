@@ -1,6 +1,5 @@
 import angular from 'angular';
 import angularMeteor from 'angular-meteor';
-//import { Accounts } from "meteor/accounts-base";
 import template from '../templates/topbar.html';
 
 class TopbarController {
@@ -30,15 +29,3 @@ export default angular.module('topbar', [
   controllerAs: 'topbar',
   controller: [ '$scope' , TopbarController ]
 });
-
-/*
-
-<nav class="top-nav">
-	<div class="nav-wrapper">
-		<a href="/" class="brand-logo center">Quizzipedia</a>
-		<ul id="nav-mobile" class="right hide-on-med-and-down">   									
-		</ul>
-	</div>
-</nav>
-
-*/

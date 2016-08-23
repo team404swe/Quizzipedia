@@ -144,7 +144,7 @@ class QuizCompilationController{
 			QzTimer.quizPlay = true;
 			this.myQuiz = this.miniModel.questions;
 			this.goIndex(0);	
-			QzTimer.tempo = this.miniModel.time * 1000;
+			QzTimer.tempo = this.miniModel.time * 60000;
 			QzTimer.timerID = Meteor.setInterval(this.CheckTime,1000);
 			myTimer = QzTimer.tempo;
 			this.pageTime = QzTimer;

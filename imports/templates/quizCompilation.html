@@ -20,7 +20,7 @@
 		<div class="qzcomp card-panel  col s12 m12 l12" ng-show="$ctrl.quizPlay">
 			<div class="qzcomphdr col s12 m12 ">
 				<div class="col s12 m l9 card">
-					<p class="col s6 ">	{{$ctrl.miniModel.title}} </p>
+					<h5 class="col s6 ">	{{$ctrl.miniModel.title}} </h5>
 					<p class="col s2" > {{$ctrl.idx + 1}}/{{$ctrl.myQuiz.length}} </p>
 					<p class="col s3 offset-s1 right"> 	
 					<i class="material-icons">av_timer</i> 
@@ -28,20 +28,20 @@
 					</p>
 				</div>				
 				<div class="col s12 m3 offset-m1 l2 offset-l1"> 
-					<a  href="#" class="waves-effect waves-light btn col s12 card modal-trigger " ng-click="$ctrl.submitQuiz()">Consegna!</a> 
+					<a  href="#" class="waves-effect waves-light btn col s12 card modal-trigger " style="margin-top: 2em; margin-right: 2em;" ng-click="$ctrl.submitQuiz()">Consegna!</a> 
 				</div> 
 				
-				<div class="col s12 m12 l12 breadcrumb1 flat hide-on-small-only">
+				<div class="col s12 m9 l9 breadcrumb1 flat hide-on-small-only">
 					
 					<a href="#" ng-repeat= "x in $ctrl.myQuiz" ng-click="$ctrl.goIndex($index)" class="{{x.nClass}}">{{$index+1}}
 					</a>					
 									
 				</div>
 			</div>
-			<div class="qzdmd col s12 m12 l12  " >
+			<div class="qzdmd col s12 m12 l12  " style="margin-top: 2em;">
 				<div class="row">
-					<div class="col s12 m9 l8 offset-l1  card ">
-						<p>{{$ctrl.myQuiz[$ctrl.idx].text}}</p>
+					<div class="col s12 m9 l9 card ">
+						<p class="bold">{{$ctrl.myQuiz[$ctrl.idx].text}}</p>
 					</div>
 					<div class="col s12 m2 offset-m1 l2    ">
 						<p class="center"  ng-if="$ctrl.myQuiz[$ctrl.idx].image != undefined">

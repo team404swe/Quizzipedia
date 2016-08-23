@@ -13,6 +13,9 @@ class QuizCompilationController{
 			this.helpers({
 			'wTime' : function() {return QzTimer.tempo; }					
 		});	
+		$('.modal-trigger').leanModal({
+		dismissible: false
+	});
 			/* this.myClock = {tempo:150000, format: 'mm:ss', timerID: undefined,
 				CheckTimee: function()
 				{  	
@@ -201,8 +204,9 @@ class QuizCompilationController{
 		QzFine.QzConferma = true;
 		debugger;
 		$('#endQuiz').openModal();
-		QzMessage.showText(2, "Punteggio attuale: " + qzthis.punti);
 		
+		//QzMessage.showText(2, "Punteggio attuale: " + qzthis.punti);
+		QzTimer.quizPlay = false;
 		//window.location.assign("/quizResults");
 		}
 	}
@@ -255,13 +259,7 @@ class QuizCompilationController{
 	}
 }
 
-export default angular.module('quizCompilation', [
-  angularMeteor
-])
-  .component('quizCompilation', {
-    templateUrl: 'imports/templates/quizCompilation.html',
-    controller: ['$scope','$interval', QuizCompilationController]
-  });
+
 
 export default function QuestionResult(question)
 {
@@ -346,3 +344,11 @@ function ResultOD(question)
 	}
 	return false;
 }
+
+export default angular.module('quizCompilation', [
+  angularMeteor
+])
+  .component('quizCompilation', {
+    templateUrl: 'imports/templates/quizCompilation.html',
+    controller: ['$scope','$interval', QuizCompilationController]
+  });

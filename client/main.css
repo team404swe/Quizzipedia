@@ -335,9 +335,10 @@ header, main, footer {
 
 /*------------------------------------------------------------------*/
 /* Resize dei popup*/
-
+@media only screen and (min-width : 992px) {
 .modal { width: 30% !important  } 
 .modal-footer a{
 	margin-right: 1em !important;
 }
 
+}

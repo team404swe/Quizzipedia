@@ -119,32 +119,31 @@ class NewQuizController{
 	{
 		var answer = "";
 		//return question.QMLtext.substring(11, 13);
-		switch(question.QMLtext.substring(11, 13)){
-			case "VF":
-				if(question.QMLtext.indexOf("{V}") > 0)
+		switch(this.getFullQuestionType(this.getQuestionDetails(question.QMLtext).type)){
+			case "Vero o Falso":
+				if(question.QMLtext.indexOf('<answer isRight="yes"></answer>') > 0)
 					answer = "Vero";
 				else
 					answer = "Falso";
 				break;
-			case "MU":
-				answer = question.QMLtext.substring(question.QMLtext.search("{X}")+3, question.QMLtext.indexOf("{}", question.QMLtext.search("{X}")+3));
+			case "Risposta multipla (unica risposta esatta)":
+				answer = question.QMLtext.substring(question.QMLtext.search('<answer isRight="yes">')+22, question.QMLtext.indexOf("</answer>", question.QMLtext.search('<answer isRight="yes">')+22));
 				break;
-			case "MX":
-				var index = 0;
-				for(var i = 0; i < (question.QMLtext.match(/{X}/g) || []).length; i++)
+			case "Risposta multipla (più risposte esatte)":
+				var ls = question.QMLtext.split('<answer isRight="yes">');
+				var ls1 = [];
+				for(var i = 1; i < ls.length; i++)
 				{
-					answer += question.QMLtext.substring(question.QMLtext.search("{X}")+3+index, question.QMLtext.indexOf("{}", question.QMLtext.search("{X}")+3+index));
-					index = question.QMLtext.search("{X}")+3+1;
+					ls1.push(" " + ls[i].split('</answer>')[0].trim());
+					
 				}
+				answer = ls1.toString().trim();
 				break;
-			case "AS":
+			case "Associazione":
 			
 				break;
-			case "OD":
+			case "Ordinamento":
 			
-				break;
-			default:
-				answer = "";
 				break;
 		}
 		

@@ -13,9 +13,7 @@ class QuizCompilationController{
 			this.helpers({
 			'wTime' : function() {return QzTimer.tempo; }					
 		});	
-		$('.modal-trigger').leanModal({
-		dismissible: false
-	});
+		
 			/* this.myClock = {tempo:150000, format: 'mm:ss', timerID: undefined,
 				CheckTimee: function()
 				{  	
@@ -94,7 +92,9 @@ class QuizCompilationController{
 	}
 	activeModal()
 	{		debugger;
-		$('#beginQuiz').openModal();
+		$('#beginQuiz').openModal({
+        dismissible:false
+    });
 	}
 	setClass()
 	{ 
@@ -203,7 +203,9 @@ class QuizCompilationController{
 		QzFine.QzPunti = qzthis.punti;
 		QzFine.QzConferma = true;
 		debugger;
-		$('#endQuiz').openModal();
+		$('#endQuiz').openModal({
+        dismissible:false
+    });
 		
 		//QzMessage.showText(2, "Punteggio attuale: " + qzthis.punti);
 		QzTimer.quizPlay = false;

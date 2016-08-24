@@ -13,10 +13,10 @@
 	<div class="card">		
 		<div class="card-panel teal white-text">				
 			<i class="material-icons">assignment</i><span class="card-title">        Risultati</span>
-			<h4>HAI REALIZZATO: <strong> {{$ctrl.punti}} </strong> punti</h4>
+			<h4>HAI REALIZZATO: <strong> {{$ctrl.punti}} </strong> punti su </h4>
 			<p> DOMANDE </p>
 			<div id="lista_risposte">
-				<div ng-repeat="question in $ctrl.quizObj.questions" class="card-panel black-text">
+				<div ng-repeat="question in $ctrl.quizObj.questions" class="card-panel black-text " ng-class="question.resClass" >
 					<div>
 						<p>Domanda: {{question.text}}</p>
 						<p>Categoria: {{$ctrl.getFullQuestionType(question.type)}}</p>

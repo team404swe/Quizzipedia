@@ -20,6 +20,10 @@ class quizResultsController{
 		console.log(question);
 	}
 	
+	resultQZ(quest){
+	return QuestionResult(quest);
+	}
+	
 	getFullQuestionType(shortType){
 		var fullType;
 		switch(shortType){

@@ -231,7 +231,12 @@ class QuizCompilationController{
 		var conta = 0;
 		for(var i = 0; i < this.myQuiz.length; i++)
 		{
-			if(QuestionResult(this.myQuiz[i])) {conta += 1;}
+			if(QuestionResult(this.myQuiz[i])) {
+				this.myQuiz[i].resClass = "green lighten-3";
+				conta += 1;}
+			else{
+				this.myQuiz[i].resClass = " red lighten-4";
+			}
 		}
 		return conta;
 	}
@@ -240,7 +245,7 @@ class QuizCompilationController{
 
 
 export default function QuestionResult(question)
-{
+{ debugger;
 	if (question.type === "VF")
 	{	if(ResultVF(question))
 		{

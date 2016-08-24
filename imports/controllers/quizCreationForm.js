@@ -140,7 +140,38 @@ class NewQuizController{
 				answer = ls1.toString().trim();
 				break;
 			case "Associazione":
-			
+				ls = question.QMLtext.split('<answer set="A" pos=');
+				ls1 = question.QMLtext.split('<answer set="B" pos=');
+				var ls_1 = []; var ls1_1 = [];
+				for(var i = 1; i < ls.length || i < ls1.length; i++)
+				{
+					//ls_1 contiene le risposte del gruppo A in modo disordinato
+					//ls1_1 contiene le risposte del gruppo B in modo disordinato
+					if(i < ls.length)
+						ls_1.push(ls[i].split('</answer>')[0].trim());
+					if(i < ls1.length)
+						ls1_1.push(ls1[i].split('</answer>')[0].trim());
+				}
+				ls_1.sort(); ls1_1.sort();
+				
+				for(var i = 0; i < ls_1.length; i++)
+				{
+					var j; var trovato = false;
+					for(j = 0; j < ls1_1.length && !trovato; j++)
+					{
+						if(ls_1[i].split('>')[0] == ls1_1[j].split('>')[0])
+						{
+							trovato = true;
+						}
+					}
+					answer += ls_1[i].substring(ls_1[i].indexOf('>') + 1) + " ==> ";
+					if(trovato)
+						answer += ls1_1[j].substring(ls1_1[j].indexOf('>') + 1);
+					else
+						answer += "    ";
+					if(i < ls_1.length - 1)
+						answer += ', ';
+				}	
 				break;
 			case "Ordinamento":
 			
